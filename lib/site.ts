@@ -3,8 +3,17 @@ export const SITE_NAME_ZH = "成人冰舞資訊站";
 export const SITE_TAGLINE =
   "整理美國、日本、加拿大、瑞士、義大利與澳洲的成人雙人冰舞與成人單人冰舞官方入口。";
 
+export const PRODUCTION_SITE_URL = "https://adult-ice-dance-hub.vercel.app";
+
 export function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+  if (configured && !/localhost|127\.0\.0\.1/i.test(configured)) {
+    return configured;
+  }
+  if (process.env.VERCEL) {
+    return PRODUCTION_SITE_URL;
+  }
+  return configured || "http://localhost:3000";
 }
 
 export const DEFAULT_DESCRIPTION =
