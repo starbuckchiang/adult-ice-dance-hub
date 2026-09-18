@@ -47,6 +47,10 @@ export function getCompetitions(): Competition[] {
   return competitions;
 }
 
+export function getCompetition(slug: string): Competition | undefined {
+  return competitions.find((competition) => competition.slug === slug);
+}
+
 export function getCompetitionsByCountry(country: CountrySlug): Competition[] {
   return competitions.filter((competition) => competition.country === country);
 }

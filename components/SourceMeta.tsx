@@ -15,7 +15,7 @@ export function SourceMeta({
       {source ? (
         <ExternalLink href={source.url}>{source.nameZh}</ExternalLink>
       ) : (
-        "來源待補"
+        "來源將依官方公告持續更新"
       )}
       <br />
       最後查證日期：{formatDate(lastVerified)}

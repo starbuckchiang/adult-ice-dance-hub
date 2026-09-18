@@ -1,4 +1,4 @@
-import type { DanceType, VerificationStatus } from "@/data/types";
+import type { AdultProgramEvidence, CountrySlug, DanceType, VerificationStatus } from "@/data/types";
 
 export const danceTypeLabel: Record<DanceType, string> = {
   partnered: "成人雙人冰舞 Partnered Ice Dance",
@@ -18,6 +18,35 @@ export const statusLabel: Record<VerificationStatus, string> = {
   verified: "已查證",
   unverified: "待查證",
 };
+
+export const adultProgramEvidenceLabel: Record<AdultProgramEvidence, string> = {
+  official: "官方載明成人冰舞",
+  "not-stated": "成人冰舞課程未載明",
+  unverified: "待查證",
+};
+
+export const countryShortLabel: Record<CountrySlug | "international", string> = {
+  usa: "美國",
+  japan: "日本",
+  canada: "加拿大",
+  switzerland: "瑞士",
+  italy: "義大利",
+  australia: "澳洲",
+  international: "國際賽",
+};
+
+export const COUNTRY_SLUGS: CountrySlug[] = [
+  "usa",
+  "japan",
+  "canada",
+  "switzerland",
+  "italy",
+  "australia",
+];
+
+export function isCountrySlug(value: string): value is CountrySlug {
+  return COUNTRY_SLUGS.includes(value as CountrySlug);
+}
 
 export function formatDate(value: string | null): string {
   if (!value) {
@@ -109,3 +138,78 @@ export const competitionPhaseLabel: Record<
   completed: "已結束",
   unscheduled: "賽期待查證",
 };
+
+export const videoStatusLabel: Record<
+  "scheduled" | "live" | "replay" | "highlights" | "unavailable" | "unverified",
+  string
+> = {
+  scheduled: "直播已排程",
+  live: "正在直播",
+  replay: "回放",
+  highlights: "精華",
+  unavailable: "官方錄影待公布",
+  unverified: "待查證",
+};
+
+export const videoDisciplineLabel: Record<
+  | "partnered_ice_dance"
+  | "solo_dance"
+  | "pattern_dance"
+  | "rhythm_dance"
+  | "free_dance"
+  | "mixed"
+  | "other",
+  string
+> = {
+  partnered_ice_dance: "Partnered Ice Dance",
+  solo_dance: "Adult Solo Dance",
+  pattern_dance: "Pattern Dance",
+  rhythm_dance: "Rhythm Dance",
+  free_dance: "Free Dance",
+  mixed: "完整場次",
+  other: "其他",
+};
+
+export const sessionGroupLabel: Record<
+  | "partnered_ice_dance"
+  | "solo_dance"
+  | "pattern_dance"
+  | "rhythm_dance"
+  | "free_dance"
+  | "practice"
+  | "awards"
+  | "full_replay"
+  | "other",
+  string
+> = {
+  partnered_ice_dance: "Partnered Ice Dance",
+  solo_dance: "Adult Solo Dance",
+  pattern_dance: "Pattern Dance",
+  rhythm_dance: "Rhythm Dance",
+  free_dance: "Free Dance",
+  practice: "Practice／練習",
+  awards: "Award Ceremony／頒獎",
+  full_replay: "Full Replay／完整回放",
+  other: "Other／其他",
+};
+
+export function formatZonedDateTime(value: string | null, timeZone: string): string | null {
+  if (!value) {
+    return null;
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  return new Intl.DateTimeFormat("zh-Hant", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone,
+    timeZoneName: "short",
+  }).format(date);
+}

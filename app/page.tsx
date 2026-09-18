@@ -56,7 +56,7 @@ export default function HomePage() {
       <Band tone="warm">
         <div className="section-head">
           <p className="kicker">DISCIPLINES</p>
-          <h2>兩種成人冰舞，分開標示</h2>
+          <h2>兩種成人冰舞</h2>
         </div>
         <div className="grid grid-2">
           <article className="card-warm">

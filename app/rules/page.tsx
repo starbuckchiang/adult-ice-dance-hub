@@ -20,7 +20,7 @@ export default function RulesPage() {
         <p className="kicker">RULES</p>
         <h1>規則中心</h1>
         <p>
-          規則以各國協會與 ISU 最新官方文件為準。本站提供入口與摘要，不取代正式規則全文，也不把雙人冰舞與單人冰舞規則混為一談。
+          規則以各國協會與 ISU 最新官方文件為準。本站提供入口與摘要，並將雙人冰舞與單人冰舞分開標示。
         </p>
       </header>
       <ContentWithSidebar>

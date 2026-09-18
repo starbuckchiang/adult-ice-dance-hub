@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "俱樂部",
   description:
-    "成人冰舞俱樂部入口：第一版提供美國、加拿大、瑞士與日本的官方名錄或加盟團體一覽，不列出未經查證的個別俱樂部。",
+    "成人冰舞俱樂部入口：整理美國、日本、加拿大與瑞士的官方名錄或加盟團體一覽。來源不足的個別俱樂部會標示待查證。",
   path: "/clubs",
 });
 
@@ -20,7 +20,7 @@ export default function ClubsPage() {
         <p className="kicker">CLUBS</p>
         <h1>俱樂部</h1>
         <p>
-          本頁只放協會官方搜尋工具或公開名錄。個別俱樂部是否開設成人雙人冰舞或成人單人冰舞課程，若沒有可追溯來源，一律標示待查證。
+          本頁整理協會官方搜尋工具或公開名錄。個別俱樂部是否開設成人雙人冰舞或成人單人冰舞課程，若沒有可追溯來源，會標示待查證。
         </p>
       </header>
       <AdList>

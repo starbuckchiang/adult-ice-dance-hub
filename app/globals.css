@@ -96,6 +96,7 @@ button:focus-visible,
 .page-main {
   flex: 1;
   padding-bottom: 40px;
+  scroll-margin-top: calc(var(--header-h) + 12px);
 }
 
 .page-main:has(.band) {
@@ -363,7 +364,8 @@ button:focus-visible,
 .panel h3,
 .list-card h3 {
   margin: 0 0 8px;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .card-dark p,
@@ -569,6 +571,10 @@ button:focus-visible,
   align-items: start;
   padding: 22px;
   border-radius: var(--radius-card);
+}
+
+.list-card:not(:has(.date-block)) {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .date-block {
