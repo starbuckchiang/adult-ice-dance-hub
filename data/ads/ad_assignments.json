@@ -1,7 +1,7 @@
 [
   {
     "id": "asg_hero",
-    "campaign_id": "camp_demo_hero",
+    "campaign_id": "house-ad-advertising-partnership-2026",
     "placement_id": "plc_home_hero",
     "starts_at": "2026-09-01T00:00:00.000Z",
     "ends_at": "2027-09-01T00:00:00.000Z",
@@ -10,7 +10,7 @@
   },
   {
     "id": "asg_home_inline",
-    "campaign_id": "camp_demo_home_inline",
+    "campaign_id": "house-ad-advertising-partnership-2026",
     "placement_id": "plc_home_inline",
     "starts_at": "2026-09-01T00:00:00.000Z",
     "ends_at": "2027-09-01T00:00:00.000Z",
@@ -19,7 +19,7 @@
   },
   {
     "id": "asg_list",
-    "campaign_id": "camp_demo_list",
+    "campaign_id": "house-ad-advertising-partnership-2026",
     "placement_id": "plc_list_inline",
     "starts_at": "2026-09-01T00:00:00.000Z",
     "ends_at": "2027-09-01T00:00:00.000Z",
@@ -28,7 +28,7 @@
   },
   {
     "id": "asg_sidebar",
-    "campaign_id": "camp_demo_sidebar",
+    "campaign_id": "house-ad-advertising-partnership-2026",
     "placement_id": "plc_sidebar",
     "starts_at": "2026-09-01T00:00:00.000Z",
     "ends_at": "2027-09-01T00:00:00.000Z",

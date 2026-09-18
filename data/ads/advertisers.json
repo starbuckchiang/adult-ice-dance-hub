@@ -1,18 +1,18 @@
 [
   {
     "id": "adv_demo",
-    "name": "示範廣告主（非真實客戶）",
-    "contact_name": "Demo Desk",
-    "contact_email": "demo-advertiser@example.invalid",
+    "name": "廣告合作",
+    "contact_name": "Advertising desk",
+    "contact_email": "ads@example.invalid",
     "status": "active",
     "created_at": "2026-09-18T00:00:00.000Z",
     "updated_at": "2026-09-18T00:00:00.000Z"
   },
   {
     "id": "adv_inactive",
-    "name": "停用示範廣告主（非真實客戶）",
-    "contact_name": "Inactive Desk",
-    "contact_email": "inactive-advertiser@example.invalid",
+    "name": "廣告合作（未啟用）",
+    "contact_name": "Advertising desk",
+    "contact_email": "ads-inactive@example.invalid",
     "status": "inactive",
     "created_at": "2026-09-18T00:00:00.000Z",
     "updated_at": "2026-09-18T00:00:00.000Z"

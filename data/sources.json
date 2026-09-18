@@ -207,5 +207,93 @@
     "lastVerified": "2026-09-18",
     "status": "verified",
     "summary": "2026 年德國 Oberstdorf 國際成人花式滑冰比賽正式公告，含雙人冰舞項目。"
+  },
+  {
+    "id": "src-usfs-youtube",
+    "slug": "us-figure-skating-youtube",
+    "nameZh": "美國花式滑冰協會官方 YouTube",
+    "nameEn": "U.S. Figure Skating YouTube",
+    "publisher": "U.S. Figure Skating",
+    "url": "https://www.youtube.com/@USFigureSkating",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "美國花式滑冰協會官方 YouTube 頻道，含成人錦標賽場次錄影。"
+  },
+  {
+    "id": "src-usfs-adult-2026-playlist",
+    "slug": "us-adult-championships-2026-youtube-playlist",
+    "nameZh": "2026 美國成人花式滑冰錦標賽官方播放清單",
+    "nameEn": "2026 U.S. Adult Figure Skating Championships YouTube Playlist",
+    "publisher": "U.S. Figure Skating",
+    "url": "https://www.youtube.com/playlist?list=PL-CheZaoFWwQwzCct0M3C494basoUcs-n",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "美國花式滑冰協會公布的 2026 年美國成人花式滑冰錦標賽官方 YouTube 播放清單。"
+  },
+  {
+    "id": "src-usfs-adult-2026-results",
+    "slug": "us-adult-championships-2026-results",
+    "nameZh": "2026 美國成人花式滑冰錦標賽官方成績",
+    "nameEn": "2026 U.S. Adult Figure Skating Championships Results",
+    "publisher": "U.S. Figure Skating",
+    "url": "https://ijs.usfigureskating.org/leaderboard/results/2026/30921/index.asp",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "美國花式滑冰協會公布的 2026 年美國成人花式滑冰錦標賽成績入口。"
+  },
+  {
+    "id": "src-deu-sporteurope-2026",
+    "slug": "oberstdorf-2026-sporteurope",
+    "nameZh": "德國滑冰聯盟 SportEurope.TV 2026 Oberstdorf 官方轉播",
+    "nameEn": "Deutsche Eislauf-Union SportEurope.TV 2026 Oberstdorf Broadcast",
+    "publisher": "Deutsche Eislauf-Union e.V.",
+    "url": "https://sporteurope.tv/en/deutsche-eislauf-union/isu-adult-fsc-2026-sunday-may-17th-part-1",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "德國滑冰聯盟透過 SportEurope.TV 提供 2026 Oberstdorf 國際成人花式滑冰比賽官方轉播與回放。"
+  },
+  {
+    "id": "src-deu-oberstdorf-2026-results",
+    "slug": "oberstdorf-2026-results",
+    "nameZh": "2026 Oberstdorf 國際成人花式滑冰比賽官方成績",
+    "nameEn": "2026 Oberstdorf International Adult Figure Skating Competition Results",
+    "publisher": "Deutsche Eislauf-Union e.V.",
+    "url": "http://www.deu-event.de/results/adult2026/index.htm",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "2026 年 Oberstdorf 國際成人花式滑冰比賽官方成績頁，含冰舞規定舞、韻律舞與自由舞。"
+  },
+  {
+    "id": "src-skate-canada-watch",
+    "slug": "skate-canada-watch",
+    "nameZh": "加拿大滑冰協會觀看專頁",
+    "nameEn": "Skate Canada Watch",
+    "publisher": "Skate Canada",
+    "url": "https://skatecanada.ca/fans/watch/",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "Skate Canada 官方觀看入口。Vernon 國際成人賽列於該頁；直播與回放請以官方最新公告為準。"
+  },
+  {
+    "id": "src-fisg-home",
+    "slug": "fisg-home",
+    "nameZh": "義大利冰上運動總會",
+    "nameEn": "Federazione Italiana Sport del Ghiaccio",
+    "publisher": "Federazione Italiana Sport del Ghiaccio",
+    "url": "https://www.fisg.it/",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "義大利冰上運動總會官方網站，公布花式滑冰與冰上舞蹈規則、賽程與成人比賽技術要求。"
+  },
+  {
+    "id": "src-isa-adult",
+    "slug": "ice-skating-australia-adult",
+    "nameZh": "Ice Skating Australia 成人滑冰專頁",
+    "nameEn": "Ice Skating Australia Adult Skating",
+    "publisher": "Ice Skating Australia",
+    "url": "https://isa.org.au/technical/adult/",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "summary": "Ice Skating Australia 官方成人滑冰專頁，說明澳洲成人分組自 18 歲起，並分開指向 Ice Dance 與成人比賽資料。"
   }
 ]

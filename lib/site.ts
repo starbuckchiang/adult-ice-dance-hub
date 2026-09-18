@@ -1,7 +1,7 @@
 export const SITE_NAME_EN = "Adult Ice Dance Hub";
 export const SITE_NAME_ZH = "成人冰舞資訊站";
 export const SITE_TAGLINE =
-  "整理美國、日本、加拿大與瑞士的成人雙人冰舞與成人單人冰舞官方入口。";
+  "整理美國、日本、加拿大、瑞士、義大利與澳洲的成人雙人冰舞與成人單人冰舞官方入口。";
 
 export function getSiteUrl(): string {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";

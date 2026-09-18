@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { getCountries } from "@/lib/content";
 import { SITE_NAME_EN, SITE_NAME_ZH } from "@/lib/site";
 
 export function SiteFooter() {
+  const countries = getCountries();
+
   return (
     <footer className="site-footer">
       <div className="footer-inner">
@@ -17,18 +20,11 @@ export function SiteFooter() {
           <p>
             <Link href="/countries">國家總覽</Link>
           </p>
-          <p>
-            <Link href="/countries/usa">美國</Link>
-          </p>
-          <p>
-            <Link href="/countries/japan">日本</Link>
-          </p>
-          <p>
-            <Link href="/countries/canada">加拿大</Link>
-          </p>
-          <p>
-            <Link href="/countries/switzerland">瑞士</Link>
-          </p>
+          {countries.map((country) => (
+            <p key={country.slug}>
+              <Link href={`/countries/${country.slug}`}>{country.nameZh}</Link>
+            </p>
+          ))}
         </div>
         <div className="footer-col">
           <h2>資料</h2>

@@ -16,7 +16,7 @@ import { SITE_NAME_EN } from "@/lib/site";
 export const metadata: Metadata = createPageMetadata({
   title: `${SITE_NAME_EN}｜成人冰舞官方資訊入口`,
   description:
-    "Adult Ice Dance Hub 成人冰舞資訊站：分開標示成人雙人冰舞與成人單人冰舞，並提供美國、日本、加拿大、瑞士的官方入口、比賽資訊與規則來源。",
+    "Adult Ice Dance Hub 成人冰舞資訊站：分開標示成人雙人冰舞與成人單人冰舞，並提供美國、日本、加拿大、瑞士、義大利、澳洲的官方入口、比賽資訊與規則來源。",
   path: "/",
 });
 
@@ -28,7 +28,7 @@ export default function HomePage() {
   return (
     <>
       <Band tone="hero" as="header">
-        <div className="hero-grid">
+        <div className="hero-layout">
           <div className="hero-copy">
             <p className="kicker">GLOBAL ADULT ICE DANCE DIRECTORY</p>
             <h1>找到你的下一段冰舞旅程</h1>
@@ -45,7 +45,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <HeroVisual />
+          <HeroVisual countries={countries} />
         </div>
       </Band>
 
@@ -63,7 +63,7 @@ export default function HomePage() {
             <p className="kicker">PARTNERED ICE DANCE</p>
             <h3>成人雙人冰舞</h3>
             <p>
-              Partnered Ice Dance / Couples Ice Dance 由一對舞者共同比賽，國際成人賽技術公告將其分為規定舞、韻律舞與自由舞。本站不以單人冰舞資料替代雙人冰舞資訊。
+              Partnered Ice Dance / Couples Ice Dance 由一對舞者共同比賽，國際成人賽技術公告將其分為規定舞、韻律舞與自由舞。雙人冰舞與單人冰舞資料分開整理。
             </p>
           </article>
           <article className="card-warm">
@@ -76,7 +76,7 @@ export default function HomePage() {
         </div>
         <div className="section-head" style={{ marginTop: 48 }}>
           <p className="kicker">COUNTRIES</p>
-          <h2>四國入口</h2>
+          <h2>國家入口</h2>
         </div>
         <div className="grid grid-2">
           {countries.map((country) => (
@@ -122,7 +122,7 @@ export default function HomePage() {
           <p className="kicker">CLUBS</p>
           <h2>俱樂部入口</h2>
           <p className="muted">
-            第一版只放官方俱樂部搜尋工具或協會名錄，不列出未經查證的個別俱樂部、教練或聯絡方式。
+            本站優先收錄具公開來源的成人冰舞資訊，目前整理官方俱樂部搜尋工具或協會名錄。
           </p>
         </div>
         <div className="grid grid-2">

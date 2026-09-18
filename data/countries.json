@@ -25,11 +25,11 @@
     "federationZh": "公益財團法人日本滑冰聯盟",
     "federationEn": "Japan Skating Federation",
     "officialUrl": "https://www.skatingjapan.or.jp/figure/",
-    "summary": "日本滑冰聯盟是日本花式滑冰與冰舞的國家主管團體，官方網站提供花式滑冰賽程、要項與加盟團體入口。本站尚未在公開頁面查得獨立的全國成人冰舞錦標賽或公開的全國俱樂部名錄。",
+    "summary": "日本滑冰聯盟是日本花式滑冰與冰舞的國家主管團體，官方網站提供花式滑冰賽程、要項與加盟團體入口。目前可從協會頁面進入相關公開資訊；全國成人冰舞錦標賽與全國俱樂部名錄標示為待查證，資料將依官方公告持續更新。",
     "lastVerified": "2026-09-18",
     "status": "verified",
     "sourceId": "src-jsf-figure",
-    "notes": "日本是否存在常設成人雙人冰舞或成人單人冰舞全國賽，目前標示為待查證。選手所屬俱樂部一覽並未作為全國公開名錄發布，公開可見的是加盟團體事務局一覽。"
+    "notes": "常設成人雙人冰舞或成人單人冰舞全國賽標示為待查證。公開可見的是加盟團體事務局一覽。"
   },
   {
     "id": "country-canada",
@@ -61,6 +61,40 @@
     "lastVerified": "2026-09-18",
     "status": "verified",
     "sourceId": "src-swiss-regs",
-    "notes": "名錄可確認俱樂部隸屬於瑞士滑冰協會，但本站尚未逐一查證各俱樂部是否開設成人雙人冰舞或成人單人冰舞課程。"
+    "notes": "所屬俱樂部名錄可確認協會隸屬關係；各俱樂部是否開設成人冰舞課程，標示為待查證。"
+  },
+  {
+    "id": "country-italy",
+    "slug": "italy",
+    "nameZh": "義大利",
+    "nameEn": "Italy",
+    "country": "italy",
+    "type": "partnered",
+    "federationZh": "義大利冰上運動總會",
+    "federationEn": "Federazione Italiana Sport del Ghiaccio",
+    "officialUrl": "https://www.fisg.it/",
+    "summary": "義大利冰上運動總會（FISG）是義大利冰上運動的國家主管團體，官方公布花式滑冰與冰上舞蹈規則，以及在義大利舉辦成人比賽的技術要求。官方成人賽頁已列出 Adult Danza；成人單人冰舞專用規則標示為待查證。",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-fisg-home",
+    "notes": "成人比賽技術要求指向 ISU 成人花式滑冰規則。官方賽程可見 Trofeo Adulti、Adult Cup 等成人賽。成人冰舞賽事與活動資訊將依官方公告持續更新。",
+    "disciplineNotes": "官方成人賽頁列出 Adult Danza（規定舞、自由舞、韻律舞）。義大利成人單人冰舞專用規則標示為待查證。"
+  },
+  {
+    "id": "country-australia",
+    "slug": "australia",
+    "nameZh": "澳洲",
+    "nameEn": "Australia",
+    "country": "australia",
+    "type": "both",
+    "federationZh": "澳洲滑冰協會",
+    "federationEn": "Ice Skating Australia",
+    "officialUrl": "https://isa.org.au/technical/adult/",
+    "summary": "Ice Skating Australia 是澳洲花式滑冰的國家主管團體。官方成人滑冰頁說明成人可參加單人、雙人、冰舞等項目，澳洲成人分組自 18 歲起。By-Laws Section 4 分開訂定 Ice Dance、Adult Ice Dance 與 Solo Ice Dance。",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-isa-adult",
+    "notes": "州級協會入口見 Ice Skating Australia 治理與會員協會頁。個別俱樂部是否開設成人冰舞課程，須有官方 Adult Dance、Solo Dance 或 Ice Dance 載明才會標示。資料將依官方公告持續更新。",
+    "disciplineNotes": "Ice Skating Australia 將 Adult Ice Dance 與 Solo Ice Dance 分開訂於 By-Laws Section 4；成人滑冰專頁亦列出 Ice Dance。"
   }
 ]

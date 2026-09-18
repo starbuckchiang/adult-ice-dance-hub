@@ -86,7 +86,7 @@ export default function AdvertisingPage() {
         </p>
         <h2>標示原則</h2>
         <ul>
-          <li>每個版位都會顯示「廣告」或「Sponsored」。</li>
+          <li>每個版位都會顯示「廣告合作」。</li>
           <li>廣告與編輯內容分開，不會偽裝成導覽按鈕。</li>
           <li>沒有自動播放音效、閃爍或跳出式廣告。</li>
           <li>沒有廣告時，版位會自動收合。</li>

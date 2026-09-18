@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { AdCreative } from "@/data/ads/types";
+import { isHouseCreative } from "@/lib/ads/catalog";
+import { AdvertisingPartnershipBanner } from "@/components/ads/AdvertisingPartnershipBanner";
 import styles from "./AdBanner.module.css";
 
 const SESSION_KEY = "aidh_anon_session";
@@ -54,11 +56,24 @@ async function postAdEvent(
   }>;
 }
 
+function navigateToDestination(url: string, fallback: string) {
+  try {
+    const parsed = new URL(url, window.location.origin);
+    if (parsed.origin === window.location.origin) {
+      window.location.assign(`${parsed.pathname}${parsed.search}${parsed.hash}`);
+      return;
+    }
+    window.open(parsed.toString(), "_blank", "noopener,noreferrer");
+  } catch {
+    window.location.assign(fallback);
+  }
+}
+
 export function AdBanner({ creative }: { creative: AdCreative }) {
   const slotRef = useRef<HTMLElement | null>(null);
   const recordedRef = useRef(false);
   const timerRef = useRef<number | null>(null);
-  const [hidden, setHidden] = useState(false);
+  const houseAd = isHouseCreative(creative);
 
   useEffect(() => {
     const node = slotRef.current;
@@ -110,19 +125,12 @@ export function AdBanner({ creative }: { creative: AdCreative }) {
     };
   }, [creative]);
 
-  if (hidden) {
-    return null;
-  }
-
   async function handleClick() {
     try {
       const result = await postAdEvent("/api/ads/click", creative, "click");
-      if (!result.ok || !result.destinationUrl) {
-        return;
-      }
-      window.open(result.destinationUrl, "_blank", "noopener,noreferrer");
+      navigateToDestination(result.destinationUrl || creative.destinationUrl, creative.destinationUrl);
     } catch {
-      // Keep the user on-page if tracking or the registered destination fails.
+      navigateToDestination(creative.destinationUrl, creative.destinationUrl);
     }
   }
 
@@ -130,37 +138,23 @@ export function AdBanner({ creative }: { creative: AdCreative }) {
     <aside
       ref={slotRef}
       className={styles.slot}
+      data-campaign={creative.campaignId}
       data-placement={creative.placementCode}
-      aria-label="廣告"
+      aria-label="廣告合作"
     >
-      <div className={styles.frame}>
-        <p className={styles.label}>廣告 · Sponsored</p>
-        <a
-          className={styles.trigger}
-          href={creative.destinationUrl}
-          target="_blank"
-          rel="sponsored noopener noreferrer"
-          onClick={(event) => {
-            event.preventDefault();
-            void handleClick();
-          }}
-        >
-          <picture className={styles.picture}>
-            <source media="(max-width: 720px)" srcSet={creative.mobileImageUrl} />
-            <img
-              className={styles.image}
-              src={creative.desktopImageUrl}
-              alt={creative.altText}
-              onError={() => setHidden(true)}
-            />
-          </picture>
-        </a>
-        {creative.isDemo ? (
-          <p className={styles.note}>
-            <a href="/advertising#contact">廣告合作版位</a>
-          </p>
+      <a
+        className={styles.trigger}
+        href={creative.destinationUrl}
+        rel={houseAd ? "noopener" : "sponsored noopener noreferrer"}
+        onClick={(event) => {
+          event.preventDefault();
+          void handleClick();
+        }}
+      >
+        {houseAd ? (
+          <AdvertisingPartnershipBanner placementCode={creative.placementCode} />
         ) : null}
-      </div>
+      </a>
     </aside>
   );
 }

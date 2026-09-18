@@ -1,5 +1,6 @@
 .slot {
   margin: 20px 0;
+  min-width: 0;
 }
 
 .slot[data-placement="HOME_HERO"] {
@@ -10,48 +11,21 @@
   margin: 0;
 }
 
-.frame {
-  display: grid;
-  gap: 8px;
-  padding: 10px;
-  border: 1px dashed #9bb4c7;
-  border-radius: 12px;
-  background: #f4f7fa;
-}
-
-.label {
-  margin: 0;
-  color: #5b6f82;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
 .trigger {
   display: block;
   width: 100%;
+  min-width: 0;
   padding: 0;
   border: 0;
   background: transparent;
+  color: inherit;
   cursor: pointer;
   text-align: left;
   text-decoration: none;
 }
 
-.picture,
-.image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.image {
-  border-radius: 8px;
-  background: #d9e6f0;
-}
-
-.note {
-  margin: 0;
-  color: #6a7d90;
-  font-size: 0.75rem;
+.trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 24px;
 }

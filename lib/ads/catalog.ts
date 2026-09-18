@@ -45,6 +45,12 @@ export function getPlacementByCode(code: PlacementCode): AdPlacement | undefined
   return placements.find((item) => item.code === code);
 }
 
+export const HOUSE_CAMPAIGN_ID = "house-ad-advertising-partnership-2026";
+
+export function isHouseCreative(creative: Pick<AdCreative, "campaignId" | "campaignType">): boolean {
+  return creative.campaignType === "house" || creative.campaignId === HOUSE_CAMPAIGN_ID;
+}
+
 function isWithinWindow(startsAt: string, endsAt: string, now: Date): boolean {
   const start = Date.parse(startsAt);
   const end = Date.parse(endsAt);
@@ -112,6 +118,7 @@ export function getActiveCreative(
     return {
       campaignId: campaign.id,
       campaignName: campaign.name,
+      campaignType: campaign.campaign_type,
       advertiserId: advertiser.id,
       advertiserName: advertiser.name,
       placementId: placement.id,

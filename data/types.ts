@@ -2,7 +2,9 @@ export type VerificationStatus = "verified" | "unverified";
 
 export type DanceType = "partnered" | "solo" | "both" | "general";
 
-export type CountrySlug = "usa" | "japan" | "canada" | "switzerland";
+export type CountrySlug = "usa" | "japan" | "canada" | "switzerland" | "italy" | "australia";
+
+export type AdultProgramEvidence = "official" | "not-stated" | "unverified";
 
 export type Source = {
   id: string;
@@ -31,6 +33,7 @@ export type Country = {
   status: VerificationStatus;
   sourceId: string;
   notes: string;
+  disciplineNotes?: string;
 };
 
 export type Club = {
@@ -41,8 +44,11 @@ export type Club = {
   country: CountrySlug;
   type: "directory" | "federation-list";
   danceType: DanceType;
-  summary: string;
+  city: string;
   officialUrl: string;
+  contactUrl: string;
+  adultProgramEvidence: AdultProgramEvidence;
+  summary: string;
   lastVerified: string;
   status: VerificationStatus;
   sourceId: string;
@@ -76,5 +82,65 @@ export type Rule = {
   officialUrl: string;
   lastVerified: string;
   status: VerificationStatus;
+  sourceId: string;
+};
+
+export type VideoStatus =
+  | "scheduled"
+  | "live"
+  | "replay"
+  | "highlights"
+  | "unavailable"
+  | "unverified";
+
+export type VideoType =
+  | "livestream"
+  | "full_replay"
+  | "session"
+  | "performance"
+  | "highlights"
+  | "practice"
+  | "awards";
+
+export type VideoDiscipline =
+  | "partnered_ice_dance"
+  | "solo_dance"
+  | "pattern_dance"
+  | "rhythm_dance"
+  | "free_dance"
+  | "mixed"
+  | "other";
+
+export type CompetitionVideo = {
+  id: string;
+  competitionId: string;
+  competitionSlug: string;
+  titleZh: string;
+  titleEn: string;
+  sessionName: string;
+  videoType: VideoType;
+  discipline: VideoDiscipline;
+  youtubeVideoId: string | null;
+  youtubePlaylistId: string | null;
+  youtubeChannelUrl: string | null;
+  officialWatchUrl: string;
+  officialSourceUrl: string;
+  officialResultsUrl: string | null;
+  scheduledStartAt: string | null;
+  actualStartAt: string | null;
+  endedAt: string | null;
+  timezone: string;
+  status: VideoStatus;
+  isOfficial: boolean;
+  embeddable: boolean;
+  stillAvailable: boolean;
+  containsMultipleEvents: boolean;
+  venueName: string | null;
+  city: string | null;
+  countryName: string | null;
+  durationLabel: string | null;
+  skaterInfo: string | null;
+  displayOrder: number;
+  lastVerifiedAt: string;
   sourceId: string;
 };

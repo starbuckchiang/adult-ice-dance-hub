@@ -16,10 +16,13 @@ export type Advertiser = {
   updated_at: string;
 };
 
+export type CampaignType = "house" | "paid";
+
 export type AdCampaign = {
   id: string;
   advertiser_id: string;
   name: string;
+  campaign_type: CampaignType;
   destination_url: string;
   desktop_image_url: string;
   mobile_image_url: string;
@@ -65,6 +68,7 @@ export type AdEvent = {
 export type AdCreative = {
   campaignId: string;
   campaignName: string;
+  campaignType: CampaignType;
   advertiserId: string;
   advertiserName: string;
   placementId: string;
