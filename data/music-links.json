@@ -1,0 +1,38 @@
+[
+  {
+    "id": "link-iafsc",
+    "nameZh": "2026–27 國際成人技術公告",
+    "nameEn": "IAFSC Technical Announcement 2026-27",
+    "url": "https://isu-d8g8b4b7ece7aphs.a03.azurefd.net/isudamcontainer/CMS/Fansite/Figure-Skating/2026-2027/Events/Adult-Skating/Documents/IAFSC-Technical-Announcement-2026-27-1783431048-4361.pdf",
+    "kind": "official-rule",
+    "lastVerified": "2026-09-19",
+    "sourceId": "src-iafsc-tech-2026-27"
+  },
+  {
+    "id": "link-comm-2795",
+    "nameZh": "ISU Communication 2795",
+    "nameEn": "ISU Communication 2795",
+    "url": "https://isu-d8g8b4b7ece7aphs.a03.azurefd.net/isudamcontainer/CMS/Corporate-Site/Governance/Transparency/ISU-Communications/2795-ID-Requirements-for-Technical-Specifications-season-2026-27-Final-UPDATE-JULY-14-1784031771-9821.pdf",
+    "kind": "official-rule",
+    "lastVerified": "2026-09-19",
+    "sourceId": "src-isu-comm-2795"
+  },
+  {
+    "id": "link-isu-youtube",
+    "nameZh": "ISU Figure Skating YouTube",
+    "nameEn": "ISU Figure Skating YouTube",
+    "url": "https://www.youtube.com/@ISUFigureSkating",
+    "kind": "official-video",
+    "lastVerified": "2026-09-19",
+    "sourceId": "src-isu-youtube"
+  },
+  {
+    "id": "link-spotify",
+    "nameZh": "Spotify（已授權串流平台）",
+    "nameEn": "Spotify licensed streaming",
+    "url": "https://open.spotify.com/",
+    "kind": "licensed-platform",
+    "lastVerified": "2026-09-19",
+    "sourceId": "src-isu-comm-2795"
+  }
+]

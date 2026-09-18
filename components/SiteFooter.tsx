@@ -29,6 +29,18 @@ export function SiteFooter() {
         <div className="footer-col">
           <h2>資料</h2>
           <p>
+            <Link href="/learn">學習中心</Link>
+          </p>
+          <p>
+            <Link href="/testing">成人檢定</Link>
+          </p>
+          <p>
+            <Link href="/music">音樂與編舞</Link>
+          </p>
+          <p>
+            <Link href="/community">交流</Link>
+          </p>
+          <p>
             <Link href="/competitions">比賽資訊</Link>
           </p>
           <p>

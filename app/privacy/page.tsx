@@ -41,6 +41,13 @@ export default function PrivacyPage() {
         <p>
           廣告版位與合作洽詢見 <Link href="/advertising#contact">廣告合作</Link>。
         </p>
+        <h2>舞伴與教練刊登申請</h2>
+        <p>
+          申請刊登時留下的 Email 只供管理者審核，不會出現在公開卡片。公開卡片也不會顯示私人電話、精確生日、住址或未成年人可識別資訊。
+        </p>
+        <p>
+          申請頁見 <Link href="/submit-listing">申請刊登</Link>。
+        </p>
       </article>
     </>
   );

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "music-rd-principles",
+    "titleZh": "Rhythm Dance 音樂選擇原則",
+    "titleEn": "Rhythm Dance music principles",
+    "body": "2026–27 國際冰舞 Rhythm Dance 主題是 Rhythm and Waltz。華爾滋段落須為 3/4 或 6/8。須再加入至少一種其他節奏、速度與舞蹈風格。音樂可為重混、翻唱或 AI 製作，但不得含攻擊性或冒犯歌詞。成人國際賽 Rhythm Dance 時長見當季 IAFSC 技術公告（Gold／Silver 文件載明 2 分 20 秒 ±10 秒），Junior／Senior 國際賽則為 2 分 50 秒 ±10 秒。請以自己報名的比賽文件為準。",
+    "season": "2026-27",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-isu-comm-2795"
+  },
+  {
+    "id": "music-sfd-principles",
+    "titleZh": "Free Dance／Solo Free Dance 音樂原則",
+    "titleEn": "Free Dance and Solo Free Dance music principles",
+    "body": "自由舞音樂須符合當季 ISU 冰舞技術規格與成人技術公告的節目時間、停頓與風格限制。成人國際賽 Couples 與 Solo Free Dance 的元素與時間以 IAFSC 2026–27 技術公告 Section 6 與 Section 7 為準。本站不提供未授權音檔，也不指定特定商業歌曲。",
+    "season": "2026-27",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-iafsc-tech-2026-27"
+  },
+  {
+    "id": "music-pattern-tempo",
+    "titleZh": "規定舞節奏與速度",
+    "titleEn": "Pattern dance rhythm and tempo",
+    "body": "國際成人規定舞由選手自備音樂，必須符合該舞節奏，速度在整段指定 sequences 中保持穩定，並落在該舞的速度範圍。成人技術公告對部分舞蹈提供 adjusted tempo option，例如 Foxtrot 96–102 bpm、European Waltz 129–138 bpm。實際數字以當季公告與 ISU Sport Rules 為準。",
+    "season": "2026-27",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-iafsc-tech-2026-27"
+  }
+]

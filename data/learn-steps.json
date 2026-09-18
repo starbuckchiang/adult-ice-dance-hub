@@ -1,0 +1,163 @@
+[
+  {
+    "id": "step-edges",
+    "slug": "inside-outside-edges",
+    "nameZh": "內刃與外刃",
+    "nameEn": "Inside / Outside Edges",
+    "purpose": "建立冰舞最基本的刃感與身體傾斜，後續轉體、Mohawk、Twizzle 都依賴穩定的單足刃。",
+    "entryEdge": "依練習方向可為左／右足的前進或後退內刃或外刃",
+    "exitEdge": "同一足保持同一刃，直到準備轉換或換足",
+    "prerequisites": ["能在冰上單足滑行數拍", "已建立基本前後滑行與膝蓋彎曲"],
+    "breakdown": [
+      "雙足平行站立，確認冰刀內側為內刃、外側為外刃。",
+      "將體重放到練習足，另一足輕離冰面。",
+      "膝蓋保持彈性，上身隨刃的弧線微微傾斜，不要硬折腰。",
+      "沿一條平滑曲線完成一次長刃，再換另一刃或另一足。",
+      "用慢速重複前進與後退，確認離冰足不拖地。"
+    ],
+    "commonErrors": ["刀平踩在冰上沒有真正走刃", "上身過度前傾或後仰", "離冰足緊張並干擾平衡"],
+    "safetyNotes": ["場地擁擠時只做短弧，避免突然變向。", "本站教學不能取代現場教練的保護與糾正。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-usfs-ice-dance-rules",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-crossovers",
+    "slug": "forward-backward-crossovers",
+    "nameZh": "前進與後退交叉步",
+    "nameEn": "Forward / Backward Crossovers",
+    "purpose": "用來沿圓弧加速、維持速度，是規定舞與自由舞中連接步伐的基礎。",
+    "entryEdge": "圓弧外側足的外刃進入",
+    "exitEdge": "交叉後落到內側足的內刃，再準備下一次外側足",
+    "prerequisites": ["穩定的前進與後退弧線", "左右足都能做內外刃"],
+    "breakdown": [
+      "沿逆時針或順時針圓弧滑行，外側足先走外刃。",
+      "內側足從外側足前方（前進）或後方（後退）交叉越過。",
+      "體重平滑轉移，避免雙足同時重踩。",
+      "上身朝圓心保持輕微傾斜，手臂協助對向。",
+      "完成數圈後換方向，確認兩邊對稱。"
+    ],
+    "commonErrors": ["交叉時刮冰或踩到另一刀", "只用上身扭轉、下肢沒有真正交叉", "後退交叉時低頭看冰"],
+    "safetyNotes": ["後退交叉時先確認後方無人。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-usfs-ice-dance-rules",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-fwd-three",
+    "slug": "forward-three-turn",
+    "nameZh": "前進三字轉",
+    "nameEn": "Forward Three-turn",
+    "purpose": "在單足上由前進刃轉為後退刃，常用於規定舞轉體與方向轉換。",
+    "entryEdge": "前進外刃或前進內刃（依練習項目）",
+    "exitEdge": "同足的後退相對刃：前進外刃轉成後退內刃，前進內刃轉成後退外刃",
+    "prerequisites": ["穩定的前進單足刃", "能控制轉體前的節奏"],
+    "breakdown": [
+      "沿弧線建立清楚的進入刃，膝蓋下沉。",
+      "轉體前讓肩與髖準備朝新方向打開，不要突然甩頭。",
+      "在弧線最高點完成轉體，冰刀在冰上畫出『3』字。",
+      "轉後立刻找回新的後退刃，視線看行進方向。",
+      "左右足、內外刃分開練習，再連到交叉步。"
+    ],
+    "commonErrors": ["轉體時換足或雙足點冰", "轉後失去刃變成平刃", "上身比腳先轉導致刮冰"],
+    "safetyNotes": ["先在空曠弧線練習，不要在障礙旁急轉。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-usfs-ice-dance-rules",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-bwd-three",
+    "slug": "backward-three-turn",
+    "nameZh": "後退三字轉",
+    "nameEn": "Backward Three-turn",
+    "purpose": "由後退刃轉為前進刃，常見於較高程度規定舞與連接步伐。",
+    "entryEdge": "後退外刃或後退內刃",
+    "exitEdge": "同足的前進相對刃",
+    "prerequisites": ["穩定後退單足刃", "已能控制前進三字轉"],
+    "breakdown": [
+      "先建立後退弧線與清楚進入刃。",
+      "確認後方空間後開始轉體準備。",
+      "轉體時保持單足，冰刀畫出後退三字。",
+      "轉後立刻走在新的前進刃上，膝蓋重新下沉。",
+      "左右足交替，避免只練慣用足。"
+    ],
+    "commonErrors": ["轉體前先換足", "轉後衝直線而不是沿弧", "因害怕後方空間而中斷"],
+    "safetyNotes": ["務必先觀察後方與其他使用者。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-usfs-ice-dance-rules",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-mohawk",
+    "slug": "mohawk",
+    "nameZh": "Mohawk 基礎",
+    "nameEn": "Mohawk",
+    "purpose": "以前進刃換到另一足的後退同名刃，用來轉換方向並保持弧線。",
+    "entryEdge": "例如左足前進內刃（依指定 Mohawk 種類）",
+    "exitEdge": "另一足後退內刃（開式內刃 Mohawk 的典型結果）",
+    "prerequisites": ["左右足內外刃", "能在換足時保持膝蓋彈性"],
+    "breakdown": [
+      "沿弧線建立進入刃，身體對向圓心。",
+      "自由足放到即將承接的位置，足尖方向符合新的後退刃。",
+      "體重由進入足平滑換到新足，兩足短暫接近但不糾纏。",
+      "離開足離冰，新足走清楚的後退刃。",
+      "開式與閉式、內刃與外刃 Mohawk 需由教練依程度分開教，不在此頁一次學完。"
+    ],
+    "commonErrors": ["換足時轉成三字轉", "兩足交叉絆刀", "換足後沒有刃只有滑行"],
+    "safetyNotes": ["Mohawk 種類很多，請依教練指定的進入刃練習。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-isu-ice-dance-handbooks",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-choctaw",
+    "slug": "choctaw",
+    "nameZh": "Choctaw 入門",
+    "nameEn": "Choctaw",
+    "purpose": "換足並改變刃的性質（由內刃到外刃或相反），常見於較高程度規定舞。",
+    "entryEdge": "依指定 Choctaw 為前進或後退的內刃或外刃",
+    "exitEdge": "另一足、相反前後方向、且刃性相反的刃",
+    "prerequisites": ["穩定 Mohawk", "能清楚分辨內刃與外刃"],
+    "breakdown": [
+      "先確認這次練習的是哪一種 Choctaw，不要混用進入刃。",
+      "沿弧線建立進入刃，自由足準備落到相反刃。",
+      "換足時改變刃性，而不是只換成同名刃。",
+      "新足立刻走在新的弧線上。",
+      "只在教練看得到的場地練習，並從慢速開始。"
+    ],
+    "commonErrors": ["做成 Mohawk（刃性沒變）", "換足時轉體過多", "進入速度太快導致刮冰"],
+    "safetyNotes": ["Choctaw 容易絆刀，必須有現場指導。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-isu-ice-dance-handbooks",
+    "season": "2026-27"
+  },
+  {
+    "id": "step-twizzle",
+    "slug": "twizzle",
+    "nameZh": "Twizzle 入門",
+    "nameEn": "Twizzle",
+    "purpose": "在行進中完成單足連續旋轉，是 Rhythm Dance 與 Free Dance 的指定技術元素。",
+    "entryEdge": "ISU 列出四種進入刃：前進內刃、前進外刃、後退內刃、後退外刃；2026–27 季左右足共八種可被接受的選項",
+    "exitEdge": "依編舞指定的離開刃，通常在完成所需圈數後接到下一步伐",
+    "prerequisites": ["穩定單足刃", "能控制三字轉與行進旋轉", "已能在教練保護下做慢速單足轉"],
+    "breakdown": [
+      "先在直線或淺弧上建立指定進入刃。",
+      "用身體縱軸旋轉，冰刀持續行進，而不是停在原地轉。",
+      "保持單足，離冰足靠近但不碰撞。",
+      "完成教練指定的圈數後，落到離開刃。",
+      "左右足與不同進入刃分開練習，再談組合。"
+    ],
+    "commonErrors": ["做成原地 Spin", "旋轉中換足", "進入刃不清楚導致沒有技術價值"],
+    "safetyNotes": ["Twizzle 有摔倒風險，必須在空曠區域並由教練指導。", "本站教學不能取代現場教練。"],
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "sourceId": "src-isu-comm-2795",
+    "season": "2026-27"
+  }
+]

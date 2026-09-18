@@ -295,5 +295,82 @@
     "lastVerified": "2026-09-18",
     "status": "verified",
     "summary": "Ice Skating Australia 官方成人滑冰專頁，說明澳洲成人分組自 18 歲起，並分開指向 Ice Dance 與成人比賽資料。"
+  },
+  {
+    "id": "src-usfs-tests",
+    "slug": "us-figure-skating-test-structure",
+    "nameZh": "美國花式滑冰協會測驗結構",
+    "nameEn": "U.S. Figure Skating Test Structure",
+    "publisher": "U.S. Figure Skating",
+    "url": "https://usfigureskating.org/sports/2025/12/2/test-structure.aspx",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "說明美國測驗可在俱樂部測驗場次進行，成人可走成人測驗結構，細節以現行 Rulebook Test Rules 為準。"
+  },
+  {
+    "id": "src-isu-comm-2795",
+    "slug": "isu-communication-2795",
+    "nameZh": "ISU Communication 2795 冰舞技術規格 2026–27",
+    "nameEn": "ISU Communication 2795 Ice Dance Technical Specifications 2026-27",
+    "publisher": "International Skating Union",
+    "url": "https://isu-d8g8b4b7ece7aphs.a03.azurefd.net/isudamcontainer/CMS/Corporate-Site/Governance/Transparency/ISU-Communications/2795-ID-Requirements-for-Technical-Specifications-season-2026-27-Final-UPDATE-JULY-14-1784031771-9821.pdf",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "2026–27 國際冰舞 Rhythm Dance 與 Free Dance 技術規格，含節奏主題、時間與音樂原則。"
+  },
+  {
+    "id": "src-skate-canada-star",
+    "slug": "skate-canada-star-assessments",
+    "nameZh": "加拿大滑冰協會 STAR 評核指南",
+    "nameEn": "Skate Canada STAR Assessments",
+    "publisher": "Skate Canada",
+    "url": "https://info.skatecanada.ca/index.php/en-ca/rules-of-sport/65-guide-to-starskate.html",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "STAR 2 至 Gold 含 Pattern Dance 評核，規定舞可單人、影子或雙人進行。"
+  },
+  {
+    "id": "src-swiss-dance-tests",
+    "slug": "swiss-ice-skating-ice-dance-tests",
+    "nameZh": "瑞士滑冰協會冰舞測驗規則",
+    "nameEn": "Swiss Ice Skating Ice Dance Test Regulations",
+    "publisher": "Swiss Ice Skating",
+    "url": "https://www.swissiceskating.ch/de/eiskunstlauf-und-eistanz/reglemente",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "瑞士公布冰舞測驗規則、Pattern Dance 與 Solo Ice Dance 技術規則入口。"
+  },
+  {
+    "id": "src-isa-dance-tests",
+    "slug": "isa-ice-dance-and-solo-ice-dance-tests",
+    "nameZh": "Ice Skating Australia 冰舞與單人冰舞測驗 By-Laws",
+    "nameEn": "ISA Ice Dance and Solo Ice Dance Tests",
+    "publisher": "Ice Skating Australia",
+    "url": "https://isa.org.au/wp-content/uploads/2024/05/By-Laws-Section-2-Tests-Part-D-Ice-Dance-and-Solo-Ice-Dance-September-2025.pdf",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "澳洲冰舞與單人冰舞測驗分級與先修條件。"
+  },
+  {
+    "id": "src-isa-comm-182",
+    "slug": "isa-communication-182-adult-solo-ice-dance",
+    "nameZh": "ISA Communication 182 成人單人冰舞",
+    "nameEn": "ISA Communication 182 Adult Solo Ice Dance",
+    "publisher": "Ice Skating Australia",
+    "url": "https://isa.org.au/wp-content/uploads/2026/02/ISA-Communication-182-Adult-Solo-Ice-Dance-SID-%E2%80%93-ISU-Alignment-and-Amendment-to-ISA-By-Laws.pdf",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "說明澳洲成人單人冰舞比賽類別與 ISU 國際成人賽技術要求對齊。"
+  },
+  {
+    "id": "src-isu-youtube",
+    "slug": "isu-figure-skating-youtube",
+    "nameZh": "ISU Figure Skating YouTube 頻道",
+    "nameEn": "ISU Figure Skating YouTube",
+    "publisher": "International Skating Union",
+    "url": "https://www.youtube.com/@ISUFigureSkating",
+    "lastVerified": "2026-09-19",
+    "status": "verified",
+    "summary": "ISU 官方花式滑冰影音頻道，可用於延伸觀看，不作為規則依據。"
   }
 ]

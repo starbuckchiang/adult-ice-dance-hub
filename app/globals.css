@@ -218,10 +218,11 @@ button:focus-visible,
 
 .page-header h1 {
   margin: 0 0 12px;
-  max-width: 16ch;
+  max-width: min(22ch, 100%);
   font-size: clamp(2.2rem, 4.5vw, 3.6rem);
   font-weight: 800;
   line-height: 1.08;
+  overflow-wrap: break-word;
 }
 
 .page-header p {
@@ -738,6 +739,130 @@ button:focus-visible,
 .hero-country-chip:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+}
+
+.breadcrumbs {
+  margin: 0 0 14px;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-muted-dark);
+  font-size: 0.88rem;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  margin: 0 8px;
+  color: var(--color-text-muted-dark);
+}
+
+.breadcrumbs a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.disclaimer {
+  max-width: var(--measure);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.text-chip {
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-dark);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-on-dark);
+  font-weight: 700;
+}
+
+.text-chip.is-active {
+  background: var(--color-primary);
+  border-color: transparent;
+  color: white;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.filter-bar label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.filter-bar select,
+.filter-bar input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-dark);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-on-dark);
+  font: inherit;
+}
+
+.learn-card ul,
+.learn-card ol,
+.testing-card ul {
+  margin: 0 0 12px;
+  padding-left: 1.2rem;
+  color: var(--color-text-muted-dark);
+  overflow-wrap: break-word;
+}
+
+.learn-card h3,
+.testing-card h3 {
+  margin: 16px 0 8px;
+  font-size: 1.05rem;
+}
+
+.rink-schematic {
+  margin: 16px 0 0;
+  max-width: 560px;
+}
+
+.rink-schematic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rink-schematic figcaption {
+  margin-top: 8px;
+  color: var(--color-text-muted-dark);
+  font-size: 0.88rem;
+  overflow-wrap: break-word;
 }
 
 .empty-state {

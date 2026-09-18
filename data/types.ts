@@ -144,3 +144,120 @@ export type CompetitionVideo = {
   lastVerifiedAt: string;
   sourceId: string;
 };
+
+export type LearnStep = {
+  id: string;
+  slug: string;
+  nameZh: string;
+  nameEn: string;
+  purpose: string;
+  entryEdge: string;
+  exitEdge: string;
+  prerequisites: string[];
+  breakdown: string[];
+  commonErrors: string[];
+  safetyNotes: string[];
+  lastVerified: string;
+  status: VerificationStatus;
+  sourceId: string;
+  season: string;
+};
+
+export type PatternDanceRecord = {
+  id: string;
+  slug: string;
+  nameZh: string;
+  nameEn: string;
+  isuNumber: string | null;
+  rhythm: string;
+  timeSignature: string;
+  suggestedLevel: string;
+  danceType: DanceType;
+  overview: string;
+  keySteps: string[];
+  officialRuleUrl: string;
+  demoVideoUrl: string | null;
+  season: string;
+  lastVerified: string;
+  status: VerificationStatus;
+  sourceId: string;
+};
+
+export type TestingProgram = {
+  id: string;
+  slug: "usa" | "japan" | "canada" | "switzerland" | "italy" | "australia" | "isu";
+  nameZh: string;
+  nameEn: string;
+  federationZh: string;
+  federationEn: string;
+  hasFormalAdultDanceTests: "yes" | "no" | "not-stated";
+  partneredSystem: string;
+  soloSystem: string;
+  pathway: string[];
+  eligibility: string;
+  officialRuleUrl: string;
+  applicationUrl: string;
+  season: string;
+  lastVerified: string;
+  status: VerificationStatus;
+  sourceId: string;
+  notes: string;
+};
+
+export type MusicGuide = {
+  id: string;
+  titleZh: string;
+  titleEn: string;
+  body: string;
+  season: string;
+  lastVerified: string;
+  status: VerificationStatus;
+  sourceId: string;
+};
+
+export type MusicLink = {
+  id: string;
+  nameZh: string;
+  nameEn: string;
+  url: string;
+  kind: "official-rule" | "licensed-platform" | "official-video";
+  lastVerified: string;
+  sourceId: string;
+};
+
+export type ListingKind = "partner" | "coach";
+
+export type PublishedPartnerListing = {
+  id: string;
+  displayName: string;
+  country: CountrySlug;
+  city: string;
+  danceType: DanceType;
+  level: string;
+  ageGroup: string;
+  heightRange: string;
+  practiceFrequency: string;
+  competitionIntent: string;
+  languages: string[];
+  meetingType: "in-person" | "online" | "both";
+  lastVerified: string;
+  status: VerificationStatus;
+};
+
+export type PublishedCoachListing = {
+  id: string;
+  name: string;
+  country: CountrySlug;
+  city: string;
+  languages: string[];
+  specialties: string[];
+  adultExperience: string;
+  danceType: DanceType;
+  meetingType: "in-person" | "online" | "both";
+  publicWebsite: string;
+  publicContactPage: string;
+  consentConfirmed: boolean;
+  lastVerified: string;
+  status: VerificationStatus;
+  sourceId: string;
+};

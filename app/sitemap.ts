@@ -15,6 +15,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/about", changeFrequency: "monthly", priority: 0.5 },
     { url: "/advertising", changeFrequency: "monthly", priority: 0.4 },
     { url: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+    { url: "/learn", changeFrequency: "weekly", priority: 0.85 },
+    { url: "/learn/steps", changeFrequency: "weekly", priority: 0.8 },
+    { url: "/learn/pattern-dance", changeFrequency: "weekly", priority: 0.8 },
+    { url: "/testing", changeFrequency: "weekly", priority: 0.8 },
+    { url: "/music", changeFrequency: "weekly", priority: 0.75 },
+    { url: "/community", changeFrequency: "weekly", priority: 0.7 },
+    { url: "/community/partners", changeFrequency: "weekly", priority: 0.65 },
+    { url: "/community/coaches", changeFrequency: "weekly", priority: 0.65 },
+    { url: "/community/off-ice", changeFrequency: "monthly", priority: 0.5 },
   ];
 
   const countryRoutes: MetadataRoute.Sitemap = getCountries().map((country) => ({

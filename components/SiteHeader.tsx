@@ -8,6 +8,8 @@ import styles from "./SiteHeader.module.css";
 
 const navItems = [
   { href: "/", label: "首頁" },
+  { href: "/learn", label: "學習中心" },
+  { href: "/community", label: "交流" },
   { href: "/countries", label: "國家" },
   { href: "/clubs", label: "俱樂部" },
   { href: "/competitions", label: "比賽資訊" },

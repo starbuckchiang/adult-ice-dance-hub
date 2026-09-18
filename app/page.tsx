@@ -37,7 +37,10 @@ export default function HomePage() {
               整合成人冰舞俱樂部、賽事、規則與跨國參賽資訊。
             </p>
             <div className="button-row">
-              <Link className="button" href="/countries">
+              <Link className="button" href="/learn">
+                開始學冰舞
+              </Link>
+              <Link className="button-secondary" href="/countries">
                 探索國家
               </Link>
               <Link className="button-secondary" href="/competitions">
@@ -88,6 +91,30 @@ export default function HomePage() {
               tone="warm"
             />
           ))}
+        </div>
+      </Band>
+
+      <Band tone="plum">
+        <div className="section-head">
+          <p className="kicker">LEARN</p>
+          <h2>開始學冰舞</h2>
+          <p className="muted">基礎步伐、Pattern Dance、檢定路線與音樂編舞。網站教學不能取代現場教練。</p>
+        </div>
+        <div className="grid grid-2">
+          <article className="card-dark">
+            <h3>學習中心</h3>
+            <p>從刃感、規定舞導覽到各國測驗入口，只放已查證資料。</p>
+            <Link className="button" href="/learn">
+              進入學習中心
+            </Link>
+          </article>
+          <article className="card-dark">
+            <h3>交流</h3>
+            <p>尋找舞伴、教練與 Off-ice 原則。未審核與未同意的資料不會公開。</p>
+            <Link className="button-secondary" href="/community">
+              進入交流
+            </Link>
+          </article>
         </div>
       </Band>
 
