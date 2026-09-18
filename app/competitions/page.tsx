@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { AdList } from "@/components/ads/AdList";
 import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { CompetitionCard } from "@/components/RecordCards";
-import { UpdateNotice } from "@/components/UpdateNotice";
 import { getCompetitions, getSource } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -25,7 +24,6 @@ export default function CompetitionsPage() {
           這裡只列出官方公告可核對的賽名、日期與地點。雙人冰舞與單人冰舞會分開標示；本站不刊登比賽結果，也不補寫尚未公布的成績。
         </p>
       </header>
-      <UpdateNotice />
       <ContentWithSidebar>
         <AdList>
           {competitions.map((competition) => (

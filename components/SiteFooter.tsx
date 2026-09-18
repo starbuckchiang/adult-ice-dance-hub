@@ -5,22 +5,57 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <p>
-          {SITE_NAME_EN} {SITE_NAME_ZH}｜第一版僅提供公開資訊入口，不含登入、後台或付款功能。
-        </p>
-        <p>
-          正式資訊均附官方來源與最後查證日期。尚未核對的內容會標示「待查證」，本站不編造俱樂部、教練、賽程或比賽結果。
-        </p>
-        <p>
-          <Link href="/about">關於本站</Link>
-          {" · "}
-          <Link href="/rules">規則中心</Link>
-          {" · "}
-          <Link href="/competitions">比賽資訊</Link>
-          {" · "}
-          <Link href="/advertising">廣告說明</Link>
-          {" · "}
-          <Link href="/privacy">隱私說明</Link>
+        <div className="footer-brand">
+          <strong>{SITE_NAME_EN}</strong>
+          <span>{SITE_NAME_ZH}</span>
+          <p className="muted">
+            成人冰舞資訊入口：整理俱樂部名錄、賽事公告與規則來源，雙人冰舞與單人冰舞分開標示。
+          </p>
+        </div>
+        <div className="footer-col">
+          <h2>國家入口</h2>
+          <p>
+            <Link href="/countries">國家總覽</Link>
+          </p>
+          <p>
+            <Link href="/countries/usa">美國</Link>
+          </p>
+          <p>
+            <Link href="/countries/japan">日本</Link>
+          </p>
+          <p>
+            <Link href="/countries/canada">加拿大</Link>
+          </p>
+          <p>
+            <Link href="/countries/switzerland">瑞士</Link>
+          </p>
+        </div>
+        <div className="footer-col">
+          <h2>資料</h2>
+          <p>
+            <Link href="/competitions">比賽資訊</Link>
+          </p>
+          <p>
+            <Link href="/rules">規則中心</Link>
+          </p>
+          <p>
+            <Link href="/clubs">俱樂部</Link>
+          </p>
+        </div>
+        <div className="footer-col">
+          <h2>本站</h2>
+          <p>
+            <Link href="/about">關於本站</Link>
+          </p>
+          <p>
+            <Link href="/advertising">廣告說明</Link>
+          </p>
+          <p>
+            <Link href="/privacy">隱私說明</Link>
+          </p>
+        </div>
+        <p className="footer-note">
+          <Link href="/about#data-policy">資料來源與更新政策</Link>
         </p>
       </div>
     </footer>

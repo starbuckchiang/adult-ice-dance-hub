@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { UpdateNotice } from "@/components/UpdateNotice";
 import { createPageMetadata } from "@/lib/metadata";
 import { SITE_NAME_EN, SITE_NAME_ZH } from "@/lib/site";
 
@@ -21,7 +20,6 @@ export default function AboutPage() {
           {SITE_NAME_EN}（{SITE_NAME_ZH}）是成人冰舞的公開資訊入口，主語言為繁體中文，並保留官方英文名稱。
         </p>
       </header>
-      <UpdateNotice />
       <article className="prose">
         <h2>本站做什麼</h2>
         <p>
@@ -34,9 +32,9 @@ export default function AboutPage() {
           <li>不編造俱樂部、教練、舞者、聯絡方式、賽程或比賽結果。</li>
           <li>不宣稱某一俱樂部或國家參與人數最多。</li>
         </ul>
-        <h2>資料原則</h2>
+        <h2 id="data-policy">資料來源與查證原則</h2>
         <p>
-          每一筆正式資訊都會顯示官方來源與最後查證日期。尚未核對的內容會標示「待查證」。外部連結會在新分頁開啟，並使用安全屬性。資料會逐年補充，而不是一次填滿無法追溯的細節。
+          本站優先收錄可追溯的官方協會、賽事與俱樂部資料。尚未取得足夠來源的項目會標示為待查證；歷史規則則會注明適用賽季，避免與現行規則混淆。
         </p>
         <h2>廣告與追蹤</h2>
         <p>

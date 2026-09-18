@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AdList } from "@/components/ads/AdList";
 import { ClubCard } from "@/components/RecordCards";
-import { UpdateNotice } from "@/components/UpdateNotice";
 import { getClubs, getSource } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -24,7 +23,6 @@ export default function ClubsPage() {
           本頁只放協會官方搜尋工具或公開名錄。個別俱樂部是否開設成人雙人冰舞或成人單人冰舞課程，若沒有可追溯來源，一律標示待查證。
         </p>
       </header>
-      <UpdateNotice />
       <AdList>
         {clubs.map((club) => (
           <ClubCard key={club.id} club={club} source={getSource(club.sourceId)} />

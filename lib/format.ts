@@ -37,6 +37,33 @@ export function formatDate(value: string | null): string {
   }).format(date);
 }
 
+export function formatDateParts(
+  value: string | null,
+): { month: string; day: string; year: string } | null {
+  if (!value) {
+    return null;
+  }
+
+  const date = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  return {
+    month: new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      timeZone: "UTC",
+    })
+      .format(date)
+      .toUpperCase(),
+    day: new Intl.DateTimeFormat("en-US", {
+      day: "2-digit",
+      timeZone: "UTC",
+    }).format(date),
+    year: String(date.getUTCFullYear()),
+  };
+}
+
 export function formatDateRange(start: string | null, end: string | null): string {
   if (!start && !end) {
     return "賽期待查證";

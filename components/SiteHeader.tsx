@@ -15,21 +15,50 @@ const navItems = [
   { href: "/about", label: "關於本站" },
 ];
 
+function isCurrent(pathname: string, href: string) {
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+      <div className={styles.bar}>
         <Link className={styles.brand} href="/">
           <span className={styles.brandEm}>{SITE_NAME_EN}</span>
           <span className={styles.brandZh}>{SITE_NAME_ZH}</span>
         </Link>
+        <nav className={styles.desktopNav} aria-label="主要導覽">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              className={styles.link}
+              href={item.href}
+              aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link className="button" href="/countries">
+            探索國家
+          </Link>
+        </nav>
         <button
           className={styles.toggle}
           type="button"
@@ -39,30 +68,27 @@ export function SiteHeader() {
         >
           {open ? "關閉選單" : "選單"}
         </button>
-        <nav
-          id="site-nav"
-          className={`${styles.nav} ${open ? styles.navOpen : ""}`}
-          aria-label="主要導覽"
-        >
-          {navItems.map((item) => {
-            const current =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-            return (
-              <Link
-                key={item.href}
-                className={styles.link}
-                href={item.href}
-                aria-current={current ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
       </div>
+      <nav
+        id="site-nav"
+        className={`${styles.mobileNav} ${open ? styles.mobileOpen : ""}`}
+        aria-label="手機導覽"
+        hidden={!open}
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            className={styles.link}
+            href={item.href}
+            aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <Link className="button" href="/countries">
+          探索國家
+        </Link>
+      </nav>
     </header>
   );
 }

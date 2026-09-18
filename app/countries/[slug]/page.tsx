@@ -6,7 +6,6 @@ import { DanceTypeBadge } from "@/components/DanceTypeBadge";
 import { ExternalLink } from "@/components/ExternalLink";
 import { SourceMeta } from "@/components/SourceMeta";
 import { StatusBadge } from "@/components/StatusBadge";
-import { UpdateNotice } from "@/components/UpdateNotice";
 import {
   getClubsByCountry,
   getCompetitionsByCountry,
@@ -74,7 +73,6 @@ export default async function CountryPage({ params }: CountryPageProps) {
         </div>
         <p>{country.summary}</p>
       </header>
-      <UpdateNotice />
       <ContentWithSidebar>
       <section className="panel">
         <h2>主管團體</h2>

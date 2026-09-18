@@ -1,12 +1,21 @@
 type ExternalLinkProps = {
   href: string;
   children: string;
+  className?: string;
 };
 
-export function ExternalLink({ href, children }: ExternalLinkProps) {
+export function ExternalLink({ href, children, className }: ExternalLinkProps) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      {children}
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>{children}</span>
+      <span className="ext-icon" aria-hidden="true">
+        ↗
+      </span>
     </a>
   );
 }

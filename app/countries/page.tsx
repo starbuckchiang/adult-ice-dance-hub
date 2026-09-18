@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CountryCard } from "@/components/RecordCards";
-import { UpdateNotice } from "@/components/UpdateNotice";
 import { getCountries, getSource } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -23,7 +22,6 @@ export default function CountriesPage() {
           第一版先建立四個國家入口。國家頁只彙整可追溯的協會、俱樂部名錄、比賽與規則來源，不會比較哪一國參與人數最多。
         </p>
       </header>
-      <UpdateNotice />
       <div className="grid grid-2">
         {countries.map((country) => (
           <CountryCard
