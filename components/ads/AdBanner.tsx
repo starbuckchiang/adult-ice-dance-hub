@@ -134,7 +134,7 @@ export function AdBanner({ creative }: { creative: AdCreative }) {
       aria-label="廣告"
     >
       <div className={styles.frame}>
-        <p className={styles.label}>廣告 · Sponsored{creative.isDemo ? " · 廣告示意版位" : ""}</p>
+        <p className={styles.label}>廣告 · Sponsored</p>
         <a
           className={styles.trigger}
           href={creative.destinationUrl}
@@ -156,7 +156,9 @@ export function AdBanner({ creative }: { creative: AdCreative }) {
           </picture>
         </a>
         {creative.isDemo ? (
-          <p className={styles.note}>此為開發與展示用中性示意，不是真實廣告主或品牌商標。</p>
+          <p className={styles.note}>
+            <a href="/advertising#contact">廣告合作版位</a>
+          </p>
         ) : null}
       </div>
     </aside>

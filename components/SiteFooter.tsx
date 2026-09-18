@@ -48,7 +48,7 @@ export function SiteFooter() {
             <Link href="/about">關於本站</Link>
           </p>
           <p>
-            <Link href="/advertising">廣告說明</Link>
+            <Link href="/advertising#contact">廣告合作</Link>
           </p>
           <p>
             <Link href="/privacy">隱私說明</Link>
