@@ -1,0 +1,31 @@
+.slot {
+  margin: 20px 0;
+  min-width: 0;
+}
+
+.slot[data-placement="HOME_HERO"] {
+  margin: 8px 0 24px;
+}
+
+.slot[data-placement="SIDEBAR"] {
+  margin: 0;
+}
+
+.trigger {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 24px;
+}

@@ -1,0 +1,121 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-bg-primary);
+}
+
+.scrolled {
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.bar {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--color-text-on-dark);
+}
+
+.brandEm {
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.brandZh {
+  color: var(--color-text-muted-dark);
+  font-size: 0.78rem;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--color-text-on-dark);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.link:hover {
+  background: rgba(112, 71, 235, 0.22);
+}
+
+.link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.toggle {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--color-text-on-dark);
+  font-weight: 700;
+}
+
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .bar {
+    width: min(var(--max), calc(100% - 28px));
+    min-height: 64px;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileNav {
+    display: none;
+    width: min(var(--max), calc(100% - 28px));
+    margin: 0 auto;
+    padding: 8px 0 16px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobileOpen {
+    display: flex;
+  }
+
+  .mobileNav .link,
+  .mobileNav .button {
+    min-height: 44px;
+    justify-content: flex-start;
+  }
+}

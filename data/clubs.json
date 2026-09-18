@@ -1,0 +1,72 @@
+[
+  {
+    "id": "club-us-find-a-club",
+    "slug": "us-figure-skating-find-a-club",
+    "nameZh": "美國花式滑冰協會俱樂部搜尋",
+    "nameEn": "U.S. Figure Skating Find a Club",
+    "country": "usa",
+    "type": "directory",
+    "danceType": "general",
+    "summary": "美國花式滑冰協會官方俱樂部與冰場搜尋工具。官方成人滑冰專頁說明，加入所屬俱樂部是參與美國花式滑冰的主要途徑；俱樂部可作為練習、測驗、比賽與冰舞週末等活動的入口。個別俱樂部課程請以官方搜尋工具為準。",
+    "officialUrl": "https://usfigureskating.org/sports/2025/11/18/find-a-club.aspx",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-usfs-find-a-club"
+  },
+  {
+    "id": "club-canada-find-a-club",
+    "slug": "skate-canada-find-a-club",
+    "nameZh": "加拿大滑冰協會俱樂部搜尋",
+    "nameEn": "Skate Canada Find a Club",
+    "country": "canada",
+    "type": "directory",
+    "danceType": "general",
+    "summary": "加拿大滑冰協會官方俱樂部與滑冰學校搜尋頁。協會在該頁說明加拿大各地有滑冰俱樂部與學校，但未在此區分哪些據點提供成人雙人冰舞或成人單人冰舞。",
+    "officialUrl": "https://skatecanada.ca/learn-to-skate/find-a-club/",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-skate-canada-find-a-club"
+  },
+  {
+    "id": "club-switzerland-directory",
+    "slug": "swiss-ice-skating-clubs-directory",
+    "nameZh": "瑞士滑冰協會俱樂部與協會名錄",
+    "nameEn": "Swiss Ice Skating Clubs and Associations",
+    "country": "switzerland",
+    "type": "federation-list",
+    "danceType": "general",
+    "summary": "瑞士滑冰協會官方公布所屬俱樂部與地區協會名單。此名錄可作為尋找瑞士滑冰據點的入口；個別俱樂部是否提供成人冰舞，仍標示為待查證。",
+    "officialUrl": "https://www.swissiceskating.ch/de/verband/organisation/clubs-und-verbaende",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-swiss-clubs"
+  },
+  {
+    "id": "club-japan-member-associations",
+    "slug": "japan-skating-federation-member-associations",
+    "nameZh": "日本滑冰聯盟加盟團體一覽",
+    "nameEn": "Japan Skating Federation Member Associations",
+    "country": "japan",
+    "type": "federation-list",
+    "danceType": "general",
+    "summary": "日本滑冰聯盟公開的是都道府縣等加盟團體事務局一覽。全國俱樂部公開名錄標示為待查證，資料將依官方公告持續更新。",
+    "officialUrl": "https://www.skatingjapan.or.jp/link/",
+    "lastVerified": "2026-09-18",
+    "status": "verified",
+    "sourceId": "src-jsf-links"
+  },
+  {
+    "id": "club-japan-individual-clubs",
+    "slug": "japan-individual-ice-dance-clubs",
+    "nameZh": "日本成人冰舞俱樂部明細",
+    "nameEn": "Japan Adult Ice Dance Club Details",
+    "country": "japan",
+    "type": "directory",
+    "danceType": "both",
+    "summary": "日本滑冰聯盟目前公開的是都道府縣等加盟團體入口。全國成人冰舞俱樂部明細標示為待查證，資料將依官方公告持續更新。",
+    "officialUrl": "https://www.skatingjapan.or.jp/figure/",
+    "lastVerified": "2026-09-18",
+    "status": "unverified",
+    "sourceId": "src-jsf-figure"
+  }
+]

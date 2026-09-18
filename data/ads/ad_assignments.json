@@ -1,0 +1,56 @@
+[
+  {
+    "id": "asg_hero",
+    "campaign_id": "house-ad-advertising-partnership-2026",
+    "placement_id": "plc_home_hero",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "priority": 10,
+    "status": "active"
+  },
+  {
+    "id": "asg_home_inline",
+    "campaign_id": "house-ad-advertising-partnership-2026",
+    "placement_id": "plc_home_inline",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "priority": 10,
+    "status": "active"
+  },
+  {
+    "id": "asg_list",
+    "campaign_id": "house-ad-advertising-partnership-2026",
+    "placement_id": "plc_list_inline",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "priority": 10,
+    "status": "active"
+  },
+  {
+    "id": "asg_sidebar",
+    "campaign_id": "house-ad-advertising-partnership-2026",
+    "placement_id": "plc_sidebar",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "priority": 10,
+    "status": "active"
+  },
+  {
+    "id": "asg_expired",
+    "campaign_id": "camp_expired",
+    "placement_id": "plc_home_hero",
+    "starts_at": "2025-01-01T00:00:00.000Z",
+    "ends_at": "2025-12-31T00:00:00.000Z",
+    "priority": 1,
+    "status": "active"
+  },
+  {
+    "id": "asg_inactive",
+    "campaign_id": "camp_inactive",
+    "placement_id": "plc_home_inline",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "priority": 1,
+    "status": "inactive"
+  }
+]

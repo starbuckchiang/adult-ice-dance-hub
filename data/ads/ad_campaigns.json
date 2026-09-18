@@ -1,0 +1,50 @@
+[
+  {
+    "id": "house-ad-advertising-partnership-2026",
+    "advertiser_id": "adv_demo",
+    "name": "廣告合作招募",
+    "campaign_type": "house",
+    "destination_url": "/advertising#contact",
+    "desktop_image_url": "",
+    "mobile_image_url": "",
+    "alt_text": "洽詢廣告合作",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "status": "active",
+    "is_demo": false,
+    "created_at": "2026-09-18T00:00:00.000Z",
+    "updated_at": "2026-09-18T00:00:00.000Z"
+  },
+  {
+    "id": "camp_expired",
+    "advertiser_id": "adv_demo",
+    "name": "Expired inventory (hidden)",
+    "campaign_type": "paid",
+    "destination_url": "/advertising#contact",
+    "desktop_image_url": "",
+    "mobile_image_url": "",
+    "alt_text": "廣告合作",
+    "starts_at": "2025-01-01T00:00:00.000Z",
+    "ends_at": "2025-12-31T00:00:00.000Z",
+    "status": "active",
+    "is_demo": false,
+    "created_at": "2026-09-18T00:00:00.000Z",
+    "updated_at": "2026-09-18T00:00:00.000Z"
+  },
+  {
+    "id": "camp_inactive",
+    "advertiser_id": "adv_inactive",
+    "name": "Inactive inventory (hidden)",
+    "campaign_type": "paid",
+    "destination_url": "/advertising#contact",
+    "desktop_image_url": "",
+    "mobile_image_url": "",
+    "alt_text": "廣告合作",
+    "starts_at": "2026-09-01T00:00:00.000Z",
+    "ends_at": "2027-09-01T00:00:00.000Z",
+    "status": "inactive",
+    "is_demo": false,
+    "created_at": "2026-09-18T00:00:00.000Z",
+    "updated_at": "2026-09-18T00:00:00.000Z"
+  }
+]
