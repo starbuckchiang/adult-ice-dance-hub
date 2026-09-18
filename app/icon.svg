@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Adult Ice Dance Hub">
+  <rect width="32" height="32" rx="8" fill="#0B1F3A"/>
+  <circle cx="16" cy="16" r="8" fill="none" stroke="#D7EAF5" stroke-width="2"/>
+  <path d="M10 18c2-4 10-4 12 0" fill="none" stroke="#7FB3D5" stroke-width="2" stroke-linecap="round"/>
+</svg>

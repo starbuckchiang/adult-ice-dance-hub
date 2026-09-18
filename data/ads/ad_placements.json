@@ -1,0 +1,30 @@
+[
+  {
+    "id": "plc_home_hero",
+    "code": "HOME_HERO",
+    "name": "首頁主視覺下方",
+    "page_type": "home",
+    "status": "active"
+  },
+  {
+    "id": "plc_home_inline",
+    "code": "HOME_INLINE",
+    "name": "首頁內容中段",
+    "page_type": "home",
+    "status": "active"
+  },
+  {
+    "id": "plc_list_inline",
+    "code": "LIST_INLINE",
+    "name": "列表內容中間",
+    "page_type": "list",
+    "status": "active"
+  },
+  {
+    "id": "plc_sidebar",
+    "code": "SIDEBAR",
+    "name": "規則／賽事／文章側欄",
+    "page_type": "article",
+    "status": "active"
+  }
+]
