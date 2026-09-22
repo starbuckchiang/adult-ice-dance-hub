@@ -92,6 +92,11 @@ export default function AdvertisingPage() {
           <li>沒有廣告時，版位會自動收合。</li>
         </ul>
         <p>
+          2026 台灣成人參賽指南等站內內容卡不是付費廣告，不顯示 Sponsored，也不計入廣告成效報表。國內成人參賽支援見
+          <Link href="/guides/taiwan-adult-competitions-2026">2026 台灣成人參賽指南</Link>
+          ；品牌合作內容不會暗示品牌是賽事主辦、官方贊助或能影響比賽結果。
+        </p>
+        <p>
           隱私處理方式見 <Link href="/privacy">隱私說明</Link>。
         </p>
       </article>

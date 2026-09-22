@@ -35,6 +35,9 @@ export function SiteFooter() {
             <Link href="/guides/buy-skates">滑冰鞋採購指南</Link>
           </p>
           <p>
+            <Link href="/guides/taiwan-adult-competitions-2026">2026台灣成人參賽指南</Link>
+          </p>
+          <p>
             <Link href="/testing">成人檢定</Link>
           </p>
           <p>

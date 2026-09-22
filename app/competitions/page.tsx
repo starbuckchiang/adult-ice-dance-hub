@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AdList } from "@/components/ads/AdList";
 import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { EmptyState } from "@/components/EmptyState";
@@ -32,6 +33,18 @@ export default function CompetitionsPage() {
         </p>
       </header>
       <ContentWithSidebar>
+        <section className="section">
+          <article className="card-dark">
+            <p className="kicker">TAIWAN 2026</p>
+            <h2>2026 台灣成人參賽指南</h2>
+            <p>
+              國內花式滑冰與冰舞賽事、成人組資格、報名期限與備賽工具另見專頁。美國成人賽與其他國際賽資訊仍整理於本頁。
+            </p>
+            <Link className="button" href="/guides/taiwan-adult-competitions-2026">
+              進入台灣成人參賽指南
+            </Link>
+          </article>
+        </section>
         {liveVideos.length > 0 ? (
           <section className="section" id="live-now">
             <div className="section-head">

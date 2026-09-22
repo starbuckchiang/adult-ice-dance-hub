@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { url: "/learn", changeFrequency: "weekly", priority: 0.85 },
     { url: "/guides/buy-skates", changeFrequency: "monthly", priority: 0.7 },
+    { url: "/guides/taiwan-adult-competitions-2026", changeFrequency: "weekly", priority: 0.8 },
     { url: "/learn/steps", changeFrequency: "weekly", priority: 0.8 },
     { url: "/learn/pattern-dance", changeFrequency: "weekly", priority: 0.8 },
     { url: "/testing", changeFrequency: "weekly", priority: 0.8 },

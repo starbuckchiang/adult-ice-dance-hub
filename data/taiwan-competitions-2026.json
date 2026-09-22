@@ -1,0 +1,104 @@
+[
+  {
+    "id": "tw-2026-elites-cup",
+    "slug": "2026-national-figure-skating-elites-cup",
+    "nameZh": "2026全國花式滑冰菁英錦標賽",
+    "nameEn": "2026 Chinese Taipei National Figure Skating Elites Cup",
+    "organizer": "中華民國滑冰協會",
+    "venue": "臺北小巨蛋副館－冰上樂園",
+    "city": "臺北市",
+    "startDate": "2026-04-25",
+    "endDate": "2026-04-26",
+    "registrationOpen": "2026-02-24",
+    "registrationDeadline": "2026-03-23T12:00:00+08:00",
+    "status": "completed",
+    "adultEligibility": "confirmed",
+    "adultDivisions": ["成年組（男、女）Senior Men & Women"],
+    "disciplines": ["單人短曲", "單人長曲"],
+    "fees": [
+      { "label": "成年組報名費", "amount": 6500, "currency": "TWD", "status": "confirmed" },
+      { "label": "協會年度註冊費", "amount": 500, "currency": "TWD", "status": "confirmed" },
+      { "label": "音樂授權費（每首，代繳予 MÜST）", "amount": 300, "currency": "TWD", "status": "confirmed" }
+    ],
+    "officialNoticeUrl": "https://ctsu.com.tw/2026/2026-ct-finger-skating-elites-cup/",
+    "rulesUrl": "https://ctsu.com.tw/wp-content/uploads/2026/02/2026%E5%85%A8%E5%9C%8B%E8%8A%B1%E5%BC%8F%E6%BB%91%E5%86%B0%E8%8F%81%E8%8B%B1%E9%8C%A6%E6%A8%99%E8%B3%BD%E8%A6%8F%E7%A8%8B-%E5%AE%94%E7%B6%B2%E5%85%AC%E5%91%8A%E7%89%88.pdf",
+    "registrationUrl": "https://forms.gle/4nnqx7SyUaxqoitL9",
+    "scheduleUrl": "https://ctsu.com.tw/wp-content/uploads/2026/04/2026%E8%8F%81%E8%8B%B1%E8%B3%BD-%E6%AF%94%E8%B3%BD%E6%99%82%E9%96%93%E8%A1%A80410.pdf",
+    "resultsUrl": "https://ctsu.com.tw/records/2026ElitesCup/",
+    "sourceUrls": [
+      "https://ctsu.com.tw/2026/2026-ct-finger-skating-elites-cup/",
+      "https://ctsu.com.tw/wp-content/uploads/2026/02/2026%E5%85%A8%E5%9C%8B%E8%8A%B1%E5%BC%8F%E6%BB%91%E5%86%B0%E8%8F%81%E8%8B%B1%E9%8C%A6%E6%A8%99%E8%B3%BD%E8%A6%8F%E7%A8%8B-%E5%AE%94%E7%B6%B2%E5%85%AC%E5%91%8A%E7%89%88.pdf",
+      "https://ctsu.com.tw/2026/2026-ctn-fs-elite-championship-results/",
+      "https://ctsu.com.tw/figureskating-taiwan-competition/2026-fs-national-game-details-2/",
+      "https://ctsu.com.tw/competition-calendar/"
+    ],
+    "verifiedAt": "2026-09-22",
+    "notes": [
+      "規程列成年組須至少年滿 17 週歲，出生於 2009 年 7 月 1 日之前。",
+      "成年組短曲 2'40\"±10\"，長曲 4'00\"±10\"。音樂限 MP3。",
+      "本規程未列出 Solo Dance、Partnered Ice Dance 或 Showcase 項目。",
+      "參賽者須為協會註冊選手；非本國籍選手列為表演賽。",
+      "官方直播與官方錄影連結在查證當日未見獨立公告。"
+    ]
+  },
+  {
+    "id": "tw-2026-taichung-mayor-cup",
+    "slug": "2026-taichung-mayor-cup-figure-skating",
+    "nameZh": "115年臺中市市長盃滑冰錦標賽—花式滑冰",
+    "organizer": "臺中市政府、臺中市政府運動局、臺中市體育總會（指導單位：中華民國滑冰協會；承辦：臺中市體育總會滑冰委員會）",
+    "venue": "北屯國民運動暨兒童運動中心－冰上樂園",
+    "city": "臺中市",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-18",
+    "registrationDeadline": "2026-09-05T17:00:00+08:00",
+    "status": "upcoming",
+    "adultEligibility": "confirmed",
+    "adultDivisions": ["公開菁英組滑冰－成年組", "菁英青年／成人組（長曲／短曲）"],
+    "disciplines": ["單人短曲", "單人長曲", "指定花式", "藝術滑冰／道具秀滑冰", "家庭娛樂／團體花式滑冰", "個人冰舞（表演項目）", "雙人冰舞（表演項目）", "雙人花式（表演項目）"],
+    "fees": [
+      { "label": "菁英青年／成人組（長曲／短曲）", "amount": 3500, "currency": "TWD", "status": "confirmed" },
+      { "label": "菁英青年／成人組增報一項", "amount": 3000, "currency": "TWD", "status": "confirmed" }
+    ],
+    "officialNoticeUrl": "https://cmsb.tc.edu.tw/p/406-1089-623558,r2861.php",
+    "rulesUrl": "https://school.tc.edu.tw/open-message/193624/view-news/23402",
+    "sourceUrls": [
+      "https://cmsb.tc.edu.tw/p/406-1089-623558,r2861.php",
+      "https://school.tc.edu.tw/open-message/193624/view-news/23402"
+    ],
+    "verifiedAt": "2026-09-22",
+    "notes": [
+      "臺中市政府教育局轉知：賽期 115 年 10 月 17 日至 18 日，地點為北屯國民運動暨兒童運動中心冰上樂園。",
+      "報名截止日為 115 年 9 月 5 日 17:00；查證當日該期限已過。",
+      "規程列出公開菁英組滑冰含成年組，以及菁英青年／成人組長曲與短曲。",
+      "規程另列「增加表演項目：個人冰舞／雙人冰舞／雙人花式」。分組細節與是否計成績，需向承辦單位確認。",
+      "報名方式為網路報名，承辦信箱 tcfscrm@c-tek.com.tw。",
+      "官方直播、賽程表與成績頁在查證當日未見獨立公告。"
+    ]
+  },
+  {
+    "id": "tw-2026-national-championships",
+    "slug": "2026-national-figure-skating-championships",
+    "nameZh": "115學年度全國花式滑冰錦標賽",
+    "organizer": "中華民國滑冰協會",
+    "venue": "臺北小巨蛋副館－冰上樂園",
+    "city": "臺北市",
+    "startDate": "2026-12-05",
+    "endDate": "2026-12-06",
+    "status": "upcoming",
+    "adultEligibility": "ask-organizer",
+    "officialNoticeUrl": "https://ctsu.com.tw/2026/2026-national-figure-skating-level-a-b-judge-seminar-postpone/",
+    "sourceUrls": [
+      "https://ctsu.com.tw/2026/2026-national-figure-skating-level-a-b-judge-seminar-postpone/",
+      "https://ctsu.com.tw/competition-calendar/",
+      "https://ctsu.com.tw/figureskating-taiwan-competition/2026-fs-national-game-details-2/"
+    ],
+    "verifiedAt": "2026-09-22",
+    "notes": [
+      "協會 2026 年 8 月 13 日延期公告：原訂 115 年 10 月 24 日至 25 日，改至 115 年 12 月 5 日至 6 日。",
+      "協會行事曆同步列於臺北小巨蛋－冰上樂園。",
+      "國內賽彙整頁在查證當日仍寫報名「尚未開放」，且尚未公布 115 學年度競賽規程。",
+      "成人組、冰舞項目、報名費、音樂規格與報名方式均標示等待公告，不以 114 學年度規程代替 115 學年度結論。",
+      "114 學年度全國錦標賽曾設成年組單人滑，並在青年組列出冰舞；該資料僅能作為歷史對照，不能當作 115 學年度已確認項目。"
+    ]
+  }
+]

@@ -116,6 +116,16 @@ export default function HomePage() {
             </Link>
           </article>
         </div>
+        <article className="card-dark" style={{ marginTop: 24 }}>
+          <p className="kicker">TAIWAN 2026</p>
+          <h3>2026 台灣成人參賽指南</h3>
+          <p>
+            整理2026年台灣國內花式滑冰與冰舞賽事，協助成人新手核對資格、報名期限、備賽計畫與參賽支援。這是站內內容，不是付費廣告。
+          </p>
+          <Link className="button" href="/guides/taiwan-adult-competitions-2026">
+            進入台灣成人參賽指南
+          </Link>
+        </article>
       </Band>
 
       <Band tone="warm" className="band-ad">
@@ -140,6 +150,9 @@ export default function HomePage() {
         <div className="button-row">
           <Link className="button" href="/competitions">
             查看全部比賽資訊
+          </Link>
+          <Link className="button-secondary" href="/guides/taiwan-adult-competitions-2026">
+            2026 台灣成人參賽指南
           </Link>
         </div>
       </Band>

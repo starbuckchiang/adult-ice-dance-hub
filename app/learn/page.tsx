@@ -24,6 +24,7 @@ const entries = [
   { href: "/testing", kicker: "TESTING", title: "成人檢定路線", text: "六國協會與 ISU 國際成人賽資格入口，不把 ISU 寫成全球統一檢定。" },
   { href: "/music", kicker: "MUSIC", title: "音樂與編舞", text: "Rhythm Dance 與自由舞選曲原則、檢查表與合法音樂來源。" },
   { href: "/guides/buy-skates", kicker: "GUIDE", title: "花式滑冰鞋網路採購指南", text: "先確認尺寸與寬度，再比較庫存、運費、稅費與退換貨。中立工具，不替商店背書。" },
+  { href: "/guides/taiwan-adult-competitions-2026", kicker: "TAIWAN 2026", title: "2026 台灣成人參賽指南", text: "查詢2026國內花式滑冰與冰舞賽事、成人組資格、報名期限、備賽計畫與參賽支援。" },
 ];
 
 export default function LearnPage() {

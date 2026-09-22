@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { RuleCard } from "@/components/RecordCards";
 import { getRules, getSource } from "@/lib/content";
@@ -24,6 +25,14 @@ export default function RulesPage() {
         </p>
       </header>
       <ContentWithSidebar>
+        <article className="card-dark">
+          <p className="kicker">TAIWAN 2026</p>
+          <h2>國內賽事規程入口</h2>
+          <p>2026 台灣成人花式滑冰與冰舞參賽指南整理協會及主辦單位已公布的規程與報名資料，不取代官方文件。</p>
+          <Link className="button-secondary" href="/guides/taiwan-adult-competitions-2026">
+            查看台灣成人參賽指南
+          </Link>
+        </article>
         <div className="grid">
           {rules.map((rule) => (
             <RuleCard key={rule.id} rule={rule} source={getSource(rule.sourceId)} />
