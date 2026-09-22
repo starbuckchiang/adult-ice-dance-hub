@@ -606,6 +606,106 @@ export function groupCompetitions(competitions: TaiwanCompetition2026[], now = n
   };
 }
 
+export type GuideLane =
+  | "ongoing"
+  | "registration-open"
+  | "opening-soon"
+  | "awaiting-brief"
+  | "closed-upcoming"
+  | "completed";
+
+export function resolveGuideLane(competition: TaiwanCompetition2026, now = new Date()): GuideLane {
+  const status = resolveRuntimeStatus(competition, now);
+  if (status === "ongoing") {
+    return "ongoing";
+  }
+  if (status === "completed") {
+    return "completed";
+  }
+  if (status === "registration-open") {
+    return "registration-open";
+  }
+  if (status === "awaiting-announcement") {
+    return "awaiting-brief";
+  }
+  const deadline = parseTaipeiDate(competition.registrationDeadline);
+  if (deadline && now > deadline) {
+    return "closed-upcoming";
+  }
+  return "opening-soon";
+}
+
+export function laneLabel(lane: GuideLane): string {
+  switch (lane) {
+    case "ongoing":
+      return "正在進行";
+    case "registration-open":
+      return "報名中";
+    case "opening-soon":
+      return "即將開放";
+    case "awaiting-brief":
+      return "等待簡章";
+    case "closed-upcoming":
+      return "尚未比賽，報名已截止";
+    case "completed":
+      return "已結束";
+  }
+}
+
+function byStartDate(a: TaiwanCompetition2026, b: TaiwanCompetition2026) {
+  const aTime = parseTaipeiDate(a.startDate)?.getTime() ?? Number.POSITIVE_INFINITY;
+  const bTime = parseTaipeiDate(b.startDate)?.getTime() ?? Number.POSITIVE_INFINITY;
+  return aTime - bTime;
+}
+
+export function groupGuideLanes(competitions: TaiwanCompetition2026[], now = new Date()) {
+  const buckets: Record<GuideLane, TaiwanCompetition2026[]> = {
+    ongoing: [],
+    "registration-open": [],
+    "opening-soon": [],
+    "awaiting-brief": [],
+    "closed-upcoming": [],
+    completed: [],
+  };
+  competitions.forEach((item) => {
+    buckets[resolveGuideLane(item, now)].push(item);
+  });
+  buckets["opening-soon"].sort(byStartDate);
+  buckets["closed-upcoming"].sort(byStartDate);
+  buckets.completed.sort((a, b) => {
+    const aTime = parseTaipeiDate(a.endDate || a.startDate)?.getTime() ?? 0;
+    const bTime = parseTaipeiDate(b.endDate || b.startDate)?.getTime() ?? 0;
+    return bTime - aTime;
+  });
+  return buckets;
+}
+
+export function featuredActionableEvent(
+  competitions: TaiwanCompetition2026[],
+  now = new Date(),
+): TaiwanCompetition2026 | null {
+  const lanes = groupGuideLanes(competitions, now);
+  return lanes.ongoing[0] || lanes["registration-open"][0] || lanes["opening-soon"][0] || lanes["awaiting-brief"][0] || null;
+}
+
+export const SUPPORT_GROUPS = [
+  {
+    id: "on-ice-prep",
+    title: "上場準備",
+    values: ["costume", "hair-makeup", "choreography", "music-edit"],
+  },
+  {
+    id: "admin-day",
+    title: "報名與比賽日",
+    values: ["registration-admin", "companion-video", "transport-safety"],
+  },
+  {
+    id: "growth",
+    title: "成長與保存",
+    values: ["mentor", "archive"],
+  },
+] as const;
+
 export function countdownLabel(target?: string, now = new Date()): string | null {
   const parsed = parseTaipeiDate(target);
   if (!parsed) {

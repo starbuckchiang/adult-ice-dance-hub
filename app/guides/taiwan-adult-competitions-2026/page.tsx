@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { TaiwanCompetitionHub } from "@/components/guides/TaiwanCompetitionHub";
 import { Breadcrumbs } from "@/components/nav/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -63,20 +61,8 @@ export default function TaiwanAdultCompetitions2026Page() {
       ))}
       <header className="page-header">
         <Breadcrumbs items={crumbs} />
-        <p className="disclaimer">
-          台灣成人花式滑冰比賽、台灣成人冰舞比賽、中正盃花式滑冰、全國花式滑冰錦標賽、成人滑冰參賽、花式滑冰比賽報名、成人冰舞參賽服務與2026滑冰比賽資料，均以官方規程與協會公告為準。中正盃全國溜冰錦標賽屬滑輪溜冰賽事，不列入本頁冰上賽事表。
-        </p>
-        <p>
-          延伸閱讀：
-          <Link href="/competitions">比賽資訊</Link>、
-          <Link href="/countries">國家入口</Link>、
-          <Link href="/rules">規則中心</Link>、
-          <Link href="/advertising#contact">參賽服務與品牌合作</Link>。
-        </p>
       </header>
-      <ContentWithSidebar>
-        <TaiwanCompetitionHub />
-      </ContentWithSidebar>
+      <TaiwanCompetitionHub />
     </>
   );
 }

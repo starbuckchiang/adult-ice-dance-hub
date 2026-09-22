@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { ExternalLink } from "@/components/ExternalLink";
 import { LazyYouTubePlayer } from "@/components/watch/LazyYouTubePlayer";
 import {
@@ -13,6 +14,7 @@ import {
   parseCompetitionSupportInquiry,
   type CompetitionSupportFieldErrors,
 } from "@/lib/contact/competition-support";
+import { getActiveCreative } from "@/lib/ads/catalog";
 import {
   BUDGET_CATEGORIES,
   EMPTY_BUDGET,
@@ -39,26 +41,26 @@ import {
   buildResultSummary,
   buildSupportSummary,
   budgetTotals,
-  confirmedAdultCount,
   confirmedFeeText,
   countdownLabel,
   eligibilityLabel,
   emptyResultRecord,
   evaluateEligibility,
+  featuredActionableEvent,
   formatDateRange,
   formatZhDate,
   getTaiwanCompetitions2026,
-  groupCompetitions,
+  groupGuideLanes,
   hasOfficialDate,
+  laneLabel,
   latestVerifiedAt,
-  nearestOpenDeadline,
-  nextCompetition,
   outcomeLabel,
   parseTaipeiDate,
   readStorage,
+  resolveGuideLane,
   resolveRuntimeStatus,
   seedBudgetFromCompetition,
-  statusLabel,
+  SUPPORT_GROUPS,
   twd,
   writeStorage,
   youtubeIdFromUrl,
@@ -83,22 +85,27 @@ function CompetitionCard({
   onAdd,
   onArchive,
   now,
+  quiet = false,
 }: {
   competition: TaiwanCompetition2026;
   selected: boolean;
   onAdd: () => void;
   onArchive: () => void;
   now: Date;
+  quiet?: boolean;
 }) {
   const status = resolveRuntimeStatus(competition, now);
+  const lane = resolveGuideLane(competition, now);
   const youtubeId = youtubeIdFromUrl(competition.livestreamUrl);
   const registrationCountdown = countdownLabel(competition.registrationDeadline, now);
+  const planLabel =
+    lane === "completed" ? "歷屆參考，加入計畫" : lane === "closed-upcoming" ? "加入備賽參考" : "規劃參賽";
 
   return (
-    <article className={styles.card} id={competition.id}>
+    <article className={`${styles.card} ${quiet ? styles.cardQuiet : ""}`} id={competition.id}>
       <div className={styles.cardMeta}>
-        <span className={`${styles.badge} ${status === "ongoing" ? styles.badgeLive : ""} ${status === "completed" ? styles.badgeDone : ""}`}>
-          {statusLabel(status)}
+        <span className={`${styles.badge} ${lane === "ongoing" || lane === "registration-open" ? styles.badgeLive : ""} ${lane === "completed" ? styles.badgeDone : ""}`}>
+          {laneLabel(lane)}
         </span>
         <span className={styles.badge}>{eligibilityLabel(competition.adultEligibility)}</span>
       </div>
@@ -132,21 +139,16 @@ function CompetitionCard({
           <dt>報名費</dt>
           <dd>{confirmedFeeText(competition)}</dd>
         </div>
-        <div>
-          <dt>主辦／承辦</dt>
-          <dd>{competition.organizer}</dd>
-        </div>
-        <div>
-          <dt>最後查證日期</dt>
-          <dd>{formatZhDate(competition.verifiedAt)}</dd>
-        </div>
       </dl>
       {competition.notes?.length ? (
-        <ul>
-          {competition.notes.map((note) => (
-            <li key={note}>{note}</li>
-          ))}
-        </ul>
+        <details className={styles.fold}>
+          <summary>賽事備註與查證說明</summary>
+          <ul>
+            {competition.notes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+        </details>
       ) : null}
       {status === "ongoing" && competition.livestreamUrl ? (
         <div className={styles.liveBox}>
@@ -160,33 +162,68 @@ function CompetitionCard({
               embeddable
             />
           ) : null}
-          <ExternalLink className="button-accent" href={competition.livestreamUrl}>
+          <ExternalLink className="button-secondary" href={competition.livestreamUrl}>
             觀看官方直播
           </ExternalLink>
         </div>
       ) : null}
       <div className={styles.actions}>
-        {competition.officialNoticeUrl ? (
+        {lane === "registration-open" || lane === "opening-soon" || lane === "ongoing" ? (
+          <button className="button" type="button" onClick={onAdd}>
+            {selected ? "已加入參賽計畫" : planLabel}
+          </button>
+        ) : null}
+        {lane === "awaiting-brief" && competition.officialNoticeUrl ? (
+          <ExternalLink className="button" href={competition.officialNoticeUrl}>
+            追蹤公告
+          </ExternalLink>
+        ) : null}
+        {lane === "opening-soon" && competition.officialNoticeUrl ? (
           <ExternalLink className="button-secondary" href={competition.officialNoticeUrl}>
-            查看官方公告
+            追蹤公告
           </ExternalLink>
         ) : null}
-        {competition.rulesUrl ? (
-          <ExternalLink className="button-secondary" href={competition.rulesUrl}>
-            {status === "registration-open" ? "查看報名條件" : "查看競賽規程"}
-          </ExternalLink>
-        ) : null}
-        {competition.registrationUrl && status !== "completed" ? (
-          <ExternalLink className="button-secondary" href={competition.registrationUrl}>
-            前往報名
-          </ExternalLink>
-        ) : null}
-        {competition.scheduleUrl ? (
+        {lane === "closed-upcoming" && competition.scheduleUrl ? (
           <ExternalLink className="button-secondary" href={competition.scheduleUrl}>
             查看賽程
           </ExternalLink>
         ) : null}
-        {competition.resultsUrl ? (
+        {lane === "completed" && competition.resultsUrl ? (
+          <ExternalLink className="button-secondary" href={competition.resultsUrl}>
+            查看成績
+          </ExternalLink>
+        ) : null}
+        {lane === "completed" ? (
+          <button className="button-secondary" type="button" onClick={onArchive}>
+            歷屆參考／賽後檔案
+          </button>
+        ) : null}
+        {lane === "closed-upcoming" || lane === "awaiting-brief" ? (
+          <button className="button-secondary" type="button" onClick={onAdd}>
+            {selected ? "已加入參賽計畫" : planLabel}
+          </button>
+        ) : null}
+        {competition.rulesUrl ? (
+          <ExternalLink className="button-secondary" href={competition.rulesUrl}>
+            {lane === "registration-open" ? "查看報名條件" : "查看競賽規程"}
+          </ExternalLink>
+        ) : null}
+        {competition.registrationUrl && lane === "registration-open" ? (
+          <ExternalLink className="button-secondary" href={competition.registrationUrl}>
+            前往報名
+          </ExternalLink>
+        ) : null}
+        {competition.officialNoticeUrl && lane !== "awaiting-brief" && lane !== "opening-soon" ? (
+          <ExternalLink className="button-secondary" href={competition.officialNoticeUrl}>
+            查看官方公告
+          </ExternalLink>
+        ) : null}
+        {competition.scheduleUrl && lane !== "closed-upcoming" ? (
+          <ExternalLink className="button-secondary" href={competition.scheduleUrl}>
+            查看賽程
+          </ExternalLink>
+        ) : null}
+        {competition.resultsUrl && lane !== "completed" ? (
           <ExternalLink className="button-secondary" href={competition.resultsUrl}>
             查看成績
           </ExternalLink>
@@ -201,14 +238,6 @@ function CompetitionCard({
             觀看錄影
           </ExternalLink>
         ))}
-        {status === "completed" ? (
-          <button className="button-secondary" type="button" onClick={onArchive}>
-            建立我的賽後檔案
-          </button>
-        ) : null}
-        <button className="button" type="button" onClick={onAdd}>
-          {selected ? "已加入參賽計畫" : "加入我的參賽計畫"}
-        </button>
       </div>
     </article>
   );
@@ -305,10 +334,22 @@ export function TaiwanCompetitionHub() {
     writeStorage(STORAGE_KEYS.results, results);
   }, [results, hydrated]);
 
-  const groups = groupCompetitions(competitions, clock);
-  const nextEvent = nextCompetition(competitions, clock);
-  const openDeadline = nearestOpenDeadline(competitions, clock);
-  const adultConfirmed = confirmedAdultCount(competitions);
+  const lanes = groupGuideLanes(competitions, clock);
+  const featured = featuredActionableEvent(competitions, clock);
+  const featuredLane = featured ? resolveGuideLane(featured, clock) : null;
+  const openLanes: Array<[string, TaiwanCompetition2026[]]> = [
+    ["正在進行", lanes.ongoing],
+    ["報名中", lanes["registration-open"]],
+    ["即將開放", lanes["opening-soon"]],
+    ["等待簡章", lanes["awaiting-brief"]],
+  ];
+  const archiveLanes: Array<[string, TaiwanCompetition2026[]]> = [
+    ["尚未比賽，報名已截止", lanes["closed-upcoming"]],
+    ["已結束", lanes.completed],
+  ];
+  const hasOpenEvents = openLanes.some(([, items]) => items.length > 0);
+  const sourceLinks = Array.from(new Set(competitions.flatMap((item) => item.sourceUrls)));
+  const listAd = getActiveCreative("LIST_INLINE");
   const eligibilityResult = evaluateEligibility(eligibility, competitions);
   const selectedEvents = competitions.filter((item) => plan.selectedIds.includes(item.id));
   const activePlanEvent = selectedEvents[0];
@@ -464,67 +505,52 @@ export function TaiwanCompetitionHub() {
     <div className={styles.wrap}>
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <p className="kicker">TAIWAN ADULT COMPETITION GUIDE 2026</p>
-          <h1>第一次參加國內成人滑冰比賽，從這裡開始</h1>
-          <p className={styles.lede}>
-            找到適合的比賽、核對成人組資格，依序準備節目、報名、服裝、音樂、行程與賽後紀錄。
-          </p>
+          <h1>2026 台灣成人滑冰參賽指南</h1>
+          <p className={styles.lede}>先找到仍可準備的比賽，再確認資格、組別與準備時程。</p>
           <div className="button-row">
             <a className="button" href="#events-2026">
-              查看2026國內賽事
+              查看可參加賽事
             </a>
-            <a className="button-secondary" href="#my-plan">
-              建立我的參賽計畫
+            <a className="button-secondary" href="#eligibility">
+              檢查我的參賽條件
             </a>
           </div>
         </div>
-        <aside className={styles.heroCard} aria-label="賽事摘要">
-          {competitions.length === 0 ? (
-            <p>目前沒有已核對的 2026 國內花式滑冰賽事。</p>
+        <aside className={styles.heroCard} aria-label="仍可準備的賽事">
+          {featured ? (
+            <>
+              <p className={styles.heroMeta}>{featuredLane ? laneLabel(featuredLane) : ""}</p>
+              <h2>{featured.nameZh}</h2>
+              <p className={styles.heroMeta}>
+                {formatDateRange(featured.startDate, featured.endDate)}
+                {featured.city ? ` ｜ ${featured.city}` : ""}
+                {featured.adultEligibility === "confirmed" ? " ｜ 已確認成人可參加" : featured.adultEligibility === "ask-organizer" ? " ｜ 成人組需要向主辦單位確認" : ""}
+              </p>
+              <div className={styles.actions}>
+                <a className="button" href={`#${featured.id}`}>
+                  查看這場比賽
+                </a>
+                <a className="button-secondary" href="#eligibility">
+                  檢查我的參賽條件
+                </a>
+              </div>
+            </>
           ) : (
-            <dl className={styles.statGrid}>
-              <div className={styles.stat}>
-                <dt>已收錄賽事數</dt>
-                <dd>{competitions.length}</dd>
-              </div>
-              <div className={styles.stat}>
-                <dt>已確認成人可參加數</dt>
-                <dd>{adultConfirmed}</dd>
-              </div>
-              <div className={styles.stat}>
-                <dt>最近報名期限</dt>
-                <dd>
-                  {openDeadline
-                    ? `${openDeadline.nameZh} ${formatZhDate(openDeadline.registrationDeadline, true)}`
-                    : "目前沒有已公告且未截止的報名期限"}
-                </dd>
-              </div>
-              <div className={styles.stat}>
-                <dt>下一場比賽</dt>
-                <dd>{nextEvent ? `${nextEvent.nameZh} ${formatDateRange(nextEvent.startDate, nextEvent.endDate)}` : "等待公告"}</dd>
-              </div>
-              <div className={styles.stat}>
-                <dt>資料最後更新日</dt>
-                <dd>{verifiedAt ? formatZhDate(verifiedAt) : "尚無資料"}</dd>
-              </div>
-            </dl>
+            <p>目前沒有報名中或即將開放、且已查證的國內花式滑冰賽事。</p>
           )}
         </aside>
       </section>
 
-      <nav className="chip-row" aria-label="頁面章節">
+      <nav className={styles.pathNav} aria-label="閱讀順序">
         {[
-          ["events-2026", "2026國內賽事"],
-          ["eligibility", "資格檢查"],
-          ["my-plan", "參賽計畫"],
-          ["services", "參賽服務"],
-          ["budget", "預算工具"],
-          ["event-day", "比賽日模式"],
-          ["archive", "賽後檔案"],
-          ["support-contact", "洽詢支援"],
-          ["faq", "FAQ"],
+          ["events-2026", "可參加賽事"],
+          ["eligibility", "資格與項目"],
+          ["prep-steps", "準備步驟"],
+          ["my-plan", "個人計畫"],
+          ["services", "支援服務"],
+          ["archive-data", "已截止與來源"],
         ].map(([id, label]) => (
-          <a key={id} className="text-chip" href={`#${id}`}>
+          <a key={id} href={`#${id}`}>
             {label}
           </a>
         ))}
@@ -532,21 +558,13 @@ export function TaiwanCompetitionHub() {
 
       <section className={styles.section} id="events-2026">
         <div className={styles.sectionHead}>
-          <p className="kicker">2026 TAIWAN EVENTS</p>
-          <h2>查看2026國內賽事</h2>
-          <p>只收錄可追溯主辦單位與官方規程的花式滑冰冰上賽事。滑輪溜冰賽事不列入此表。</p>
+          <h2>可參加賽事</h2>
+          <p>先看現在還能準備的比賽。報名已截止與已結束賽事在頁尾。</p>
         </div>
-        <div className={styles.iceTrack} aria-hidden="true" />
-        {competitions.length === 0 ? (
-          <p className={styles.note}>目前沒有已核對的賽事資料。</p>
+        {competitions.length === 0 || !hasOpenEvents ? (
+          <p className={styles.note}>目前沒有報名中、即將開放或等待簡章的已查證賽事。</p>
         ) : (
-          ([
-            ["正在進行", groups.ongoing],
-            ["報名中", groups.registrationOpen],
-            ["即將舉行", groups.upcoming],
-            ["等待公告", groups.awaiting],
-            ["已結束", groups.completed],
-          ] as Array<[string, TaiwanCompetition2026[]]>).map(([title, items]) =>
+          openLanes.map(([title, items]) =>
             items.length ? (
               <div key={title} className={styles.cards}>
                 <h3>{title}</h3>
@@ -564,7 +582,7 @@ export function TaiwanCompetitionHub() {
                         date: competition.startDate ?? "",
                         resultsUrl: competition.resultsUrl ?? "",
                       });
-                      document.getElementById("archive")?.scrollIntoView({ behavior: "smooth" });
+                      document.getElementById("results-archive")?.scrollIntoView({ behavior: "smooth" });
                     }}
                   />
                 ))}
@@ -576,8 +594,8 @@ export function TaiwanCompetitionHub() {
 
       <section className={styles.section} id="eligibility">
         <div className={styles.sectionHead}>
-          <p className="kicker">ELIGIBILITY</p>
-          <h2>我適合參加哪一組？</h2>
+          <h2>資格與項目判斷</h2>
+          <p>先確認成人組資格與項目，再決定要準備哪一場、哪一組。</p>
         </div>
         <div className={styles.panel}>
           <form className={styles.formGrid} onSubmit={(event) => event.preventDefault()}>
@@ -667,10 +685,30 @@ export function TaiwanCompetitionHub() {
         </div>
       </section>
 
+      <section className={styles.section} id="prep-steps">
+        <div className={styles.sectionHead}>
+          <h2>準備步驟</h2>
+          <p>報名、節目、音樂、服裝和行政有明確順序。完成資格判斷後，依下列時程準備。</p>
+        </div>
+        <ol className={styles.prepList}>
+          {PREP_PHASES.map((phase) => (
+            <li key={phase.id}>
+              <strong>{phase.title}</strong>
+              <span>：{phase.tasks.map((task) => task.label).join("、")}。</span>
+            </li>
+          ))}
+        </ol>
+        <div className={styles.actions}>
+          <a className="button-secondary" href="#my-plan">
+            依此建立個人計畫
+          </a>
+        </div>
+      </section>
+
       <section className={styles.section} id="my-plan">
         <div className={styles.sectionHead}>
-          <p className="kicker">COUNTDOWN PLAN</p>
-          <h2>建立我的參賽計畫</h2>
+          <h2>建立個人計畫</h2>
+          <p>加入目標賽事後，可整理時程、預算、比賽日與賽後紀錄。資料只存在目前瀏覽器。</p>
         </div>
         <div className={styles.panel}>
           {selectedEvents.length === 0 ? (
@@ -722,70 +760,382 @@ export function TaiwanCompetitionHub() {
             </>
           )}
         </div>
+        <h3 className={styles.subHead} id="budget">
+          預算
+        </h3>
+        <div className={styles.panel}>
+          <label className={styles.field}>
+            <span>目標賽事</span>
+            <select
+              value={budget.eventId}
+              onChange={(event) => {
+                const next = competitions.find((item) => item.id === event.target.value);
+                setBudget(seedBudgetFromCompetition(next));
+              }}
+            >
+              <option value="">請選擇</option>
+              {competitions.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.nameZh}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className={styles.note}>幣別以 TWD 為主。只預填已有官方來源的報名相關費用，其餘請自行填寫。</p>
+          <div className={styles.budgetCards}>
+            {BUDGET_CATEGORIES.map((category) => (
+              <div className={styles.budgetRow} key={category.id}>
+                <span>{category.label}</span>
+                <input
+                  inputMode="numeric"
+                  aria-label={`${category.label}金額`}
+                  value={budget.items[category.id]?.amount ?? ""}
+                  onChange={(event) =>
+                    setBudget((current) => ({
+                      ...current,
+                      items: {
+                        ...current.items,
+                        [category.id]: {
+                          amount: event.target.value,
+                          confirmed: current.items[category.id]?.confirmed ?? false,
+                        },
+                      },
+                    }))
+                  }
+                />
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={Boolean(budget.items[category.id]?.confirmed)}
+                    onChange={(event) =>
+                      setBudget((current) => ({
+                        ...current,
+                        items: {
+                          ...current.items,
+                          [category.id]: {
+                            amount: current.items[category.id]?.amount ?? "",
+                            confirmed: event.target.checked,
+                          },
+                        },
+                      }))
+                    }
+                  />
+                  已確認
+                </label>
+              </div>
+            ))}
+          </div>
+          <div className={styles.totals}>
+            <div className={styles.totalCard}>
+              <span>已確認金額</span>
+              <strong>{twd(totals.confirmed)}</strong>
+            </div>
+            <div className={styles.totalCard}>
+              <span>尚未確認金額</span>
+              <strong>{twd(totals.unconfirmed)}</strong>
+            </div>
+            <div className={styles.totalCard}>
+              <span>預估總額</span>
+              <strong>{twd(totals.total)}</strong>
+            </div>
+          </div>
+          <div className={styles.actions}>
+            <button
+              className="button"
+              type="button"
+              onClick={() => {
+                void copyText(budgetSummary).then(() => markCopied("budget"));
+              }}
+            >
+              {copied === "budget" ? "已複製" : "複製預算摘要"}
+            </button>
+          </div>
+        </div>
+        <h3 className={styles.subHead} id="event-day">
+          比賽日
+        </h3>
+        <div className={styles.panel}>
+          {!activePlanEvent ? (
+            <p>先加入參賽計畫後，再進入比賽日模式。</p>
+          ) : (
+            <>
+              <h3>{activePlanEvent.nameZh}</h3>
+              <p>場館：{activePlanEvent.venue ? `${activePlanEvent.city ?? ""} ${activePlanEvent.venue}`.trim() : "等待公告"}</p>
+              <p className={styles.note}>沒有正式賽程時，不顯示虛構時間，請自行輸入報到、練習與比賽時間。</p>
+              <div className={styles.dayGrid}>
+                {([
+                  ["checkInTime", "報到時間"],
+                  ["practiceTime", "練習時間"],
+                  ["startTime", "比賽時間"],
+                  ["meetingPoint", "集合地點"],
+                  ["coachContact", "教練聯絡狀態"],
+                  ["supportContact", "服務者聯絡狀態"],
+                  ["costume", "服裝"],
+                  ["musicBackup", "音樂備份"],
+                  ["skates", "冰鞋與裝備"],
+                ] as Array<[keyof typeof EMPTY_EVENT_DAY, string]>).map(([key, label]) => (
+                  <label className={styles.field} key={key}>
+                    <span>{label}</span>
+                    <input
+                      value={String(eventDay[key] ?? "")}
+                      onChange={(event) =>
+                        setPlan((current) => ({
+                          ...current,
+                          eventDay: {
+                            ...current.eventDay,
+                            [activePlanEvent.id]: {
+                              ...EMPTY_EVENT_DAY,
+                              ...(current.eventDay[activePlanEvent.id] ?? {}),
+                              [key]: event.target.value,
+                            },
+                          },
+                        }))
+                      }
+                    />
+                  </label>
+                ))}
+              </div>
+              <label className={styles.field}>
+                <span>即時備忘錄</span>
+                <textarea
+                  className={styles.memo}
+                  value={eventDay.notes}
+                  onChange={(event) =>
+                    setPlan((current) => ({
+                      ...current,
+                      eventDay: {
+                        ...current.eventDay,
+                        [activePlanEvent.id]: {
+                          ...EMPTY_EVENT_DAY,
+                          ...(current.eventDay[activePlanEvent.id] ?? {}),
+                          notes: event.target.value,
+                        },
+                      },
+                    }))
+                  }
+                />
+              </label>
+              <div className={styles.dayButtons}>
+                {EVENT_DAY_MILESTONES.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-pressed={Boolean(eventDay.milestones[item.id])}
+                    onClick={() =>
+                      setPlan((current) => ({
+                        ...current,
+                        eventDay: {
+                          ...current.eventDay,
+                          [activePlanEvent.id]: {
+                            ...EMPTY_EVENT_DAY,
+                            ...(current.eventDay[activePlanEvent.id] ?? {}),
+                            milestones: {
+                              ...EMPTY_EVENT_DAY.milestones,
+                              ...(current.eventDay[activePlanEvent.id]?.milestones ?? {}),
+                              [item.id]: !current.eventDay[activePlanEvent.id]?.milestones?.[item.id],
+                            },
+                          },
+                        },
+                      }))
+                    }
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <h3 className={styles.subHead} id="results-archive">
+          賽後檔案
+        </h3>
+        <div className={styles.panel}>
+          <p className={styles.note}>紀錄只保存在目前瀏覽器，本站不上傳個資或影片。</p>
+          <form className={styles.formGrid} onSubmit={(event) => event.preventDefault()}>
+            <label className={styles.field}>
+              <span>賽事</span>
+              <select value={draftResult.eventId} onChange={(event) => setDraftResult((current) => ({ ...current, eventId: event.target.value }))}>
+                <option value="">自行輸入或其他賽事</option>
+                {competitions.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.nameZh}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>自行填寫賽事名稱</span>
+              <input value={draftResult.customName} onChange={(event) => setDraftResult((current) => ({ ...current, customName: event.target.value }))} />
+            </label>
+            {([
+              ["date", "日期"],
+              ["division", "組別"],
+              ["discipline", "項目"],
+              ["placement", "名次"],
+              ["total", "總分"],
+              ["tes", "TES"],
+              ["pcs", "PCS"],
+              ["deductions", "扣分"],
+              ["resultsUrl", "官方成績網址"],
+              ["videoUrl", "影片網址"],
+              ["photoUrl", "照片雲端網址"],
+            ] as Array<[keyof ResultRecord, string]>).map(([key, label]) => (
+              <label className={styles.field} key={key}>
+                <span>{label}</span>
+                <input value={String(draftResult[key] ?? "")} onChange={(event) => setDraftResult((current) => ({ ...current, [key]: event.target.value }))} />
+              </label>
+            ))}
+            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
+              <span>教練回饋</span>
+              <textarea value={draftResult.coachNotes} onChange={(event) => setDraftResult((current) => ({ ...current, coachNotes: event.target.value }))} />
+            </label>
+            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
+              <span>自我回顧</span>
+              <textarea value={draftResult.selfReview} onChange={(event) => setDraftResult((current) => ({ ...current, selfReview: event.target.value }))} />
+            </label>
+            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
+              <span>下次目標</span>
+              <textarea value={draftResult.nextGoal} onChange={(event) => setDraftResult((current) => ({ ...current, nextGoal: event.target.value }))} />
+            </label>
+          </form>
+          <div className={styles.actions}>
+            <button
+              className="button"
+              type="button"
+              onClick={() => {
+                setResults((current) => {
+                  const exists = current.records.some((item) => item.id === draftResult.id);
+                  return {
+                    records: exists
+                      ? current.records.map((item) => (item.id === draftResult.id ? draftResult : item))
+                      : [...current.records, draftResult],
+                  };
+                });
+              }}
+            >
+              儲存
+            </button>
+            <button
+              className="button-secondary"
+              type="button"
+              onClick={() => {
+                void copyText(buildResultSummary(draftResult, competitions)).then(() => markCopied("result"));
+              }}
+            >
+              {copied === "result" ? "已複製" : "複製摘要"}
+            </button>
+            <button className="button-secondary" type="button" onClick={exportResults}>
+              匯出 JSON
+            </button>
+            <label className="button-secondary">
+              匯入 JSON
+              <input
+                type="file"
+                accept="application/json"
+                hidden
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+                  if (file) {
+                    importResults(file);
+                  }
+                }}
+              />
+            </label>
+            <button className="button-secondary" type="button" onClick={() => setDraftResult(emptyResultRecord())}>
+              新增一筆
+            </button>
+          </div>
+          {results.records.length ? (
+            <div className={styles.cards}>
+              {results.records.map((record) => (
+                <article className={styles.scorecard} key={record.id}>
+                  <h3>{competitions.find((item) => item.id === record.eventId)?.nameZh || record.customName || "未命名紀錄"}</h3>
+                  <p>
+                    {record.date || "日期未填"} ｜ {record.division || "組別未填"} ｜ {record.placement || "名次未填"}
+                  </p>
+                  <div className={styles.actions}>
+                    <button className="button-secondary" type="button" onClick={() => setDraftResult(record)}>
+                      編輯
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </section>
 
       <section className={styles.section} id="services">
         <div className={styles.sectionHead}>
-          <p className="kicker">SUPPORT MODULES</p>
-          <h2>選擇參賽支援服務</h2>
-          <p>服務可自由勾選，不強迫包套。費用標示為洽詢、依需求報價、由服務提供者確認。</p>
+          <h2>支援服務</h2>
+          <p>支援服務是完成計畫的選項，不是這頁的主軸。可依需要勾選，不強迫包套。</p>
         </div>
         <div className={styles.routes}>
-          <article className={styles.route}>
-            <h3>自主參賽</h3>
-            <p>適合已有教練及參賽經驗者。</p>
-            <ul>
-              <li>賽事資訊</li>
-              <li>Checklist</li>
-              <li>預算工具</li>
-              <li>文件提醒</li>
-            </ul>
-            <p className={styles.price}>洽詢</p>
-          </article>
-          <article className={styles.route}>
-            <h3>重點協助</h3>
-            <p>適合第一次參賽但已有節目者。</p>
-            <ul>
-              <li>報名資料檢查</li>
-              <li>音樂檔案檢查</li>
-              <li>賽程與行程整合</li>
-              <li>行前會議</li>
-              <li>賽後資料整理</li>
-            </ul>
-            <p className={styles.price}>依需求報價</p>
-          </article>
-          <article className={styles.route}>
-            <h3>全程陪跑</h3>
-            <p>適合需要完整支援的新手。</p>
-            <ul>
-              <li>資格資料整理</li>
-              <li>教練與服務者協調</li>
-              <li>編舞及音樂安排</li>
-              <li>服裝與妝髮安排</li>
-              <li>報名行政</li>
-              <li>比賽日行程管理</li>
-              <li>現場陪伴</li>
-              <li>合規攝錄影</li>
-              <li>賽後歸檔</li>
-            </ul>
-            <p className={styles.price}>由服務提供者確認</p>
-          </article>
-        </div>
-        <div className={styles.services}>
-          {SUPPORT_SERVICES.map((item) => (
-            <article className={styles.service} key={item.value}>
-              <h3>{item.label}</h3>
-              <p className={styles.price}>洽詢／依需求報價</p>
+          {SUPPORT_GROUPS.map((group) => (
+            <article className={styles.serviceGroup} key={group.id}>
+              <h3>{group.title}</h3>
+              <ul>
+                {group.values.map((value) => (
+                  <li key={value}>{SUPPORT_SERVICES.find((item) => item.value === value)?.label}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
-      </section>
-
-      <section className={styles.section} id="support-builder">
-        <div className={styles.sectionHead}>
-          <p className="kicker">SUPPORT BRIEF</p>
-          <h2>服務需求產生器</h2>
+        <div className={styles.actions}>
+          <a className="button" href="#my-plan">
+            建立我的參賽計畫
+          </a>
+          <a className="button-secondary" href="#support-builder">
+            了解可選支援
+          </a>
         </div>
+        <p className={styles.feeNote}>費用依需求評估。</p>
+        <details className={styles.fold}>
+          <summary>三種協助程度</summary>
+          <div className={styles.routes}>
+            <article className={styles.route}>
+              <h3>自主參賽</h3>
+              <p>適合已有教練及參賽經驗者。</p>
+              <ul>
+                <li>賽事資訊</li>
+                <li>Checklist</li>
+                <li>預算工具</li>
+                <li>文件提醒</li>
+              </ul>
+            </article>
+            <article className={styles.route}>
+              <h3>重點協助</h3>
+              <p>適合第一次參賽但已有節目者。</p>
+              <ul>
+                <li>報名資料檢查</li>
+                <li>音樂檔案檢查</li>
+                <li>賽程與行程整合</li>
+                <li>行前會議</li>
+                <li>賽後資料整理</li>
+              </ul>
+            </article>
+            <article className={styles.route}>
+              <h3>全程陪跑</h3>
+              <p>適合需要完整支援的新手。</p>
+              <ul>
+                <li>資格資料整理</li>
+                <li>教練與服務者協調</li>
+                <li>編舞及音樂安排</li>
+                <li>服裝與妝髮安排</li>
+                <li>報名行政</li>
+                <li>比賽日行程管理</li>
+                <li>現場陪伴</li>
+                <li>合規攝錄影</li>
+                <li>賽後歸檔</li>
+              </ul>
+            </article>
+          </div>
+        </details>
+
+        <h3 className={styles.subHead} id="support-builder">
+          了解可選支援
+        </h3>
         <div className={styles.panel}>
           <form className={styles.formGrid} onSubmit={(event) => event.preventDefault()}>
             <label className={styles.field}>
@@ -916,328 +1266,10 @@ export function TaiwanCompetitionHub() {
             </div>
           </div>
         </div>
-      </section>
 
-      <section className={styles.section} id="budget">
-        <div className={styles.sectionHead}>
-          <p className="kicker">BUDGET</p>
-          <h2>國內參賽預算工具</h2>
-        </div>
-        <div className={styles.panel}>
-          <label className={styles.field}>
-            <span>目標賽事</span>
-            <select
-              value={budget.eventId}
-              onChange={(event) => {
-                const next = competitions.find((item) => item.id === event.target.value);
-                setBudget(seedBudgetFromCompetition(next));
-              }}
-            >
-              <option value="">請選擇</option>
-              {competitions.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.nameZh}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p className={styles.note}>幣別以 TWD 為主。只預填已有官方來源的報名相關費用，其餘請自行填寫。</p>
-          <div className={styles.budgetCards}>
-            {BUDGET_CATEGORIES.map((category) => (
-              <div className={styles.budgetRow} key={category.id}>
-                <span>{category.label}</span>
-                <input
-                  inputMode="numeric"
-                  aria-label={`${category.label}金額`}
-                  value={budget.items[category.id]?.amount ?? ""}
-                  onChange={(event) =>
-                    setBudget((current) => ({
-                      ...current,
-                      items: {
-                        ...current.items,
-                        [category.id]: {
-                          amount: event.target.value,
-                          confirmed: current.items[category.id]?.confirmed ?? false,
-                        },
-                      },
-                    }))
-                  }
-                />
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={Boolean(budget.items[category.id]?.confirmed)}
-                    onChange={(event) =>
-                      setBudget((current) => ({
-                        ...current,
-                        items: {
-                          ...current.items,
-                          [category.id]: {
-                            amount: current.items[category.id]?.amount ?? "",
-                            confirmed: event.target.checked,
-                          },
-                        },
-                      }))
-                    }
-                  />
-                  已確認
-                </label>
-              </div>
-            ))}
-          </div>
-          <div className={styles.totals}>
-            <div className={styles.totalCard}>
-              <span>已確認金額</span>
-              <strong>{twd(totals.confirmed)}</strong>
-            </div>
-            <div className={styles.totalCard}>
-              <span>尚未確認金額</span>
-              <strong>{twd(totals.unconfirmed)}</strong>
-            </div>
-            <div className={styles.totalCard}>
-              <span>預估總額</span>
-              <strong>{twd(totals.total)}</strong>
-            </div>
-          </div>
-          <div className={styles.actions}>
-            <button
-              className="button"
-              type="button"
-              onClick={() => {
-                void copyText(budgetSummary).then(() => markCopied("budget"));
-              }}
-            >
-              {copied === "budget" ? "已複製" : "複製預算摘要"}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section} id="event-day">
-        <div className={styles.sectionHead}>
-          <p className="kicker">EVENT DAY</p>
-          <h2>比賽日控制台</h2>
-        </div>
-        <div className={styles.panel}>
-          {!activePlanEvent ? (
-            <p>先加入參賽計畫後，再進入比賽日模式。</p>
-          ) : (
-            <>
-              <h3>{activePlanEvent.nameZh}</h3>
-              <p>場館：{activePlanEvent.venue ? `${activePlanEvent.city ?? ""} ${activePlanEvent.venue}`.trim() : "等待公告"}</p>
-              <p className={styles.note}>沒有正式賽程時，不顯示虛構時間，請自行輸入報到、練習與比賽時間。</p>
-              <div className={styles.dayGrid}>
-                {([
-                  ["checkInTime", "報到時間"],
-                  ["practiceTime", "練習時間"],
-                  ["startTime", "比賽時間"],
-                  ["meetingPoint", "集合地點"],
-                  ["coachContact", "教練聯絡狀態"],
-                  ["supportContact", "服務者聯絡狀態"],
-                  ["costume", "服裝"],
-                  ["musicBackup", "音樂備份"],
-                  ["skates", "冰鞋與裝備"],
-                ] as Array<[keyof typeof EMPTY_EVENT_DAY, string]>).map(([key, label]) => (
-                  <label className={styles.field} key={key}>
-                    <span>{label}</span>
-                    <input
-                      value={String(eventDay[key] ?? "")}
-                      onChange={(event) =>
-                        setPlan((current) => ({
-                          ...current,
-                          eventDay: {
-                            ...current.eventDay,
-                            [activePlanEvent.id]: {
-                              ...EMPTY_EVENT_DAY,
-                              ...(current.eventDay[activePlanEvent.id] ?? {}),
-                              [key]: event.target.value,
-                            },
-                          },
-                        }))
-                      }
-                    />
-                  </label>
-                ))}
-              </div>
-              <label className={styles.field}>
-                <span>即時備忘錄</span>
-                <textarea
-                  className={styles.memo}
-                  value={eventDay.notes}
-                  onChange={(event) =>
-                    setPlan((current) => ({
-                      ...current,
-                      eventDay: {
-                        ...current.eventDay,
-                        [activePlanEvent.id]: {
-                          ...EMPTY_EVENT_DAY,
-                          ...(current.eventDay[activePlanEvent.id] ?? {}),
-                          notes: event.target.value,
-                        },
-                      },
-                    }))
-                  }
-                />
-              </label>
-              <div className={styles.dayButtons}>
-                {EVENT_DAY_MILESTONES.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    aria-pressed={Boolean(eventDay.milestones[item.id])}
-                    onClick={() =>
-                      setPlan((current) => ({
-                        ...current,
-                        eventDay: {
-                          ...current.eventDay,
-                          [activePlanEvent.id]: {
-                            ...EMPTY_EVENT_DAY,
-                            ...(current.eventDay[activePlanEvent.id] ?? {}),
-                            milestones: {
-                              ...EMPTY_EVENT_DAY.milestones,
-                              ...(current.eventDay[activePlanEvent.id]?.milestones ?? {}),
-                              [item.id]: !current.eventDay[activePlanEvent.id]?.milestones?.[item.id],
-                            },
-                          },
-                        },
-                      }))
-                    }
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-
-      <section className={styles.section} id="archive">
-        <div className={styles.sectionHead}>
-          <p className="kicker">POST-EVENT ARCHIVE</p>
-          <h2>賽後數位檔案</h2>
-          <p>紀錄只保存在目前瀏覽器，本站不上傳個資或影片。</p>
-        </div>
-        <div className={styles.panel}>
-          <form className={styles.formGrid} onSubmit={(event) => event.preventDefault()}>
-            <label className={styles.field}>
-              <span>賽事</span>
-              <select value={draftResult.eventId} onChange={(event) => setDraftResult((current) => ({ ...current, eventId: event.target.value }))}>
-                <option value="">自行輸入或其他賽事</option>
-                {competitions.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.nameZh}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span>自行填寫賽事名稱</span>
-              <input value={draftResult.customName} onChange={(event) => setDraftResult((current) => ({ ...current, customName: event.target.value }))} />
-            </label>
-            {([
-              ["date", "日期"],
-              ["division", "組別"],
-              ["discipline", "項目"],
-              ["placement", "名次"],
-              ["total", "總分"],
-              ["tes", "TES"],
-              ["pcs", "PCS"],
-              ["deductions", "扣分"],
-              ["resultsUrl", "官方成績網址"],
-              ["videoUrl", "影片網址"],
-              ["photoUrl", "照片雲端網址"],
-            ] as Array<[keyof ResultRecord, string]>).map(([key, label]) => (
-              <label className={styles.field} key={key}>
-                <span>{label}</span>
-                <input value={String(draftResult[key] ?? "")} onChange={(event) => setDraftResult((current) => ({ ...current, [key]: event.target.value }))} />
-              </label>
-            ))}
-            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
-              <span>教練回饋</span>
-              <textarea value={draftResult.coachNotes} onChange={(event) => setDraftResult((current) => ({ ...current, coachNotes: event.target.value }))} />
-            </label>
-            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
-              <span>自我回顧</span>
-              <textarea value={draftResult.selfReview} onChange={(event) => setDraftResult((current) => ({ ...current, selfReview: event.target.value }))} />
-            </label>
-            <label className={styles.field} style={{ gridColumn: "1 / -1" }}>
-              <span>下次目標</span>
-              <textarea value={draftResult.nextGoal} onChange={(event) => setDraftResult((current) => ({ ...current, nextGoal: event.target.value }))} />
-            </label>
-          </form>
-          <div className={styles.actions}>
-            <button
-              className="button"
-              type="button"
-              onClick={() => {
-                setResults((current) => {
-                  const exists = current.records.some((item) => item.id === draftResult.id);
-                  return {
-                    records: exists
-                      ? current.records.map((item) => (item.id === draftResult.id ? draftResult : item))
-                      : [...current.records, draftResult],
-                  };
-                });
-              }}
-            >
-              儲存
-            </button>
-            <button
-              className="button-secondary"
-              type="button"
-              onClick={() => {
-                void copyText(buildResultSummary(draftResult, competitions)).then(() => markCopied("result"));
-              }}
-            >
-              {copied === "result" ? "已複製" : "複製摘要"}
-            </button>
-            <button className="button-secondary" type="button" onClick={exportResults}>
-              匯出 JSON
-            </button>
-            <label className="button-secondary">
-              匯入 JSON
-              <input
-                type="file"
-                accept="application/json"
-                hidden
-                onChange={(event) => {
-                  const file = event.target.files?.[0];
-                  if (file) {
-                    importResults(file);
-                  }
-                }}
-              />
-            </label>
-            <button className="button-secondary" type="button" onClick={() => setDraftResult(emptyResultRecord())}>
-              新增一筆
-            </button>
-          </div>
-          {results.records.length ? (
-            <div className={styles.cards}>
-              {results.records.map((record) => (
-                <article className={styles.scorecard} key={record.id}>
-                  <h3>{competitions.find((item) => item.id === record.eventId)?.nameZh || record.customName || "未命名紀錄"}</h3>
-                  <p>
-                    {record.date || "日期未填"} ｜ {record.division || "組別未填"} ｜ {record.placement || "名次未填"}
-                  </p>
-                  <div className={styles.actions}>
-                    <button className="button-secondary" type="button" onClick={() => setDraftResult(record)}>
-                      編輯
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          ) : null}
-        </div>
-      </section>
-
-      <section className={styles.section} id="support-contact">
-        <div className={styles.sectionHead}>
-          <p className="kicker">INQUIRY</p>
-          <h2>洽詢國內成人參賽支援</h2>
-        </div>
+        <h3 className={styles.subHead} id="support-contact">
+          洽詢國內成人參賽支援
+        </h3>
         <div className={styles.formPanel}>
           {formStatus === "success" ? (
             <p className={styles.statusOk} role="status">
@@ -1381,12 +1413,17 @@ export function TaiwanCompetitionHub() {
         </div>
       </section>
 
+      {listAd ? (
+        <section className={styles.adQuiet} aria-label="贊助資訊">
+          <AdBanner creative={listAd} />
+        </section>
+      ) : null}
+
       <section className={styles.brand} id="brand">
-        <p className="kicker">BRAND PARTNERSHIP</p>
-        <h2>一起支持台灣成人選手站上冰面</h2>
+        <h2>品牌合作</h2>
         <p>可合作內容：成人選手備賽紀錄、裝備使用內容、服裝與妝髮企劃、比賽日短影音、選手故事、賽後成果報告、成人運動族群精準曝光。</p>
         <p>合作產業：滑冰用品、運動服飾、美妝、攝錄影、交通、住宿、餐飲、健身、復健與恢復、在地中小品牌。</p>
-        <Link className="button" href="/advertising#contact">
+        <Link className="button-secondary" href="/advertising#contact">
           洽詢品牌合作
         </Link>
         <p className={styles.brandNote}>
@@ -1394,19 +1431,67 @@ export function TaiwanCompetitionHub() {
         </p>
       </section>
 
-      <section className={styles.section} id="faq">
+      <section className={styles.section} id="archive-data">
         <div className={styles.sectionHead}>
-          <p className="kicker">FAQ</p>
-          <h2>常見問題</h2>
+          <h2>已截止賽事、來源與歷屆資料</h2>
+          <p>報名已截止、已結束賽事與資料來源不影響現在還能參加哪一場，需要時再展開。</p>
         </div>
-        <div className={styles.faqList}>
-          {FAQ_ITEMS.map((item) => (
-            <article className={styles.faqItem} key={item.q}>
-              <h3>{item.q}</h3>
-              <p>{item.a}</p>
-            </article>
-          ))}
-        </div>
+        {archiveLanes.map(([title, items]) =>
+          items.length ? (
+            <details className={styles.fold} key={title}>
+              <summary>
+                {title}（{items.length}）
+              </summary>
+              <div className={styles.cards}>
+                {items.map((competition) => (
+                  <CompetitionCard
+                    key={competition.id}
+                    competition={competition}
+                    selected={plan.selectedIds.includes(competition.id)}
+                    now={clock}
+                    quiet
+                    onAdd={() => addToPlan(competition.id)}
+                    onArchive={() => {
+                      setDraftResult({
+                        ...emptyResultRecord(),
+                        eventId: competition.id,
+                        date: competition.startDate ?? "",
+                        resultsUrl: competition.resultsUrl ?? "",
+                      });
+                      document.getElementById("results-archive")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  />
+                ))}
+              </div>
+            </details>
+          ) : null,
+        )}
+        <details className={styles.fold}>
+          <summary>資料來源</summary>
+          {sourceLinks.length ? (
+            <ul>
+              {sourceLinks.map((url) => (
+                <li key={url}>
+                  <ExternalLink href={url}>{url}</ExternalLink>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.note}>目前沒有已核對來源。</p>
+          )}
+          {verifiedAt ? <p className={styles.note}>資料最後核對：{formatZhDate(verifiedAt)}</p> : null}
+        </details>
+        <details className={styles.fold} id="faq">
+          <summary>常見問題</summary>
+          <div className={styles.faqList}>
+            {FAQ_ITEMS.map((item) => (
+              <article className={styles.faqItem} key={item.q}>
+                <h3>{item.q}</h3>
+                <p>{item.a}</p>
+              </article>
+            ))}
+          </div>
+        </details>
         <p className={styles.privacy}>
           資格檢查、參賽計畫、預算、服務需求與賽後檔案只保存在目前瀏覽器，解析失敗時會安全恢復空白資料。
           本頁內容卡不是付費廣告，不會顯示 Sponsored，也不計入廣告成效報表。
@@ -1428,11 +1513,11 @@ export function TaiwanCompetitionHub() {
       </section>
 
       <div className={styles.sticky}>
-        <a className="button" href="#my-plan">
-          建立我的參賽計畫
+        <a className="button" href="#events-2026">
+          查看可參加賽事
         </a>
-        <a className="button-accent" href="#support-contact">
-          洽詢參賽支援
+        <a className="button-secondary" href="#eligibility">
+          檢查我的參賽條件
         </a>
       </div>
     </div>

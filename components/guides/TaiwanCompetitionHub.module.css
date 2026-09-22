@@ -1,14 +1,14 @@
 .wrap {
   display: grid;
-  gap: 36px;
+  gap: 56px;
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto 48px;
   padding-bottom: 120px;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: 24px;
-  align-items: start;
 }
 
 .heroCopy,
@@ -23,33 +23,52 @@
 }
 
 .lede {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   max-width: var(--measure);
   color: var(--color-text-muted-dark);
+  font-size: 1.05rem;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
 }
 
 .heroCard {
-  position: relative;
-  overflow: hidden;
-  padding: 24px;
+  padding: 22px 24px;
   border-radius: var(--radius-card);
-  background:
-    radial-gradient(circle at 88% 12%, rgba(217, 255, 67, 0.16), transparent 28%),
-    linear-gradient(160deg, #241a42 0%, #17122c 100%);
-  box-shadow: var(--shadow-dark);
+  background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-dark);
 }
 
-.heroCard::before {
-  content: "";
-  position: absolute;
-  inset: auto -40px -60px auto;
-  width: 180px;
-  height: 180px;
-  border: 2px dashed rgba(217, 255, 67, 0.28);
-  border-radius: 50%;
-  transform: rotate(-18deg);
-  pointer-events: none;
+.heroCard h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.heroMeta {
+  margin: 0 0 14px;
+  color: var(--color-text-muted-dark);
+}
+
+.pathNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.pathNav a {
+  color: var(--color-text-muted-dark);
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.pathNav a:hover,
+.pathNav a:focus-visible {
+  color: var(--color-text-on-dark);
 }
 
 .statGrid {
@@ -66,10 +85,10 @@
 
 .stat dt {
   margin: 0;
-  color: var(--color-accent);
+  color: var(--color-text-muted-dark);
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .stat dd {
@@ -93,34 +112,34 @@
   gap: 16px;
 }
 
+.cards > h3 {
+  margin: 4px 0 0;
+  color: var(--color-text-muted-dark);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .card {
   position: relative;
   padding: 22px;
   border-radius: var(--radius-card);
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-dark);
-  box-shadow: var(--shadow-dark);
-  overflow: hidden;
   scroll-margin-bottom: 108px;
 }
 
-.card::after {
-  content: "";
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  width: 54px;
-  height: 68px;
-  border-radius: 8px;
-  border: 1px solid rgba(217, 255, 67, 0.28);
-  background:
-    linear-gradient(180deg, rgba(112, 71, 235, 0.35), rgba(17, 12, 32, 0.1)),
-    repeating-linear-gradient(
-      180deg,
-      transparent 0 8px,
-      rgba(247, 243, 236, 0.08) 8px 9px
-    );
-  pointer-events: none;
+.cardQuiet {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.card h3,
+.panel h3,
+.route h3,
+.service h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
 }
 
 .cardMeta {
@@ -142,21 +161,12 @@
 }
 
 .badgeLive {
-  background: rgba(217, 255, 67, 0.18);
-  color: var(--color-accent);
+  background: rgba(112, 71, 235, 0.35);
+  color: var(--color-text-on-dark);
 }
 
 .badgeDone {
   background: rgba(255, 255, 255, 0.08);
-}
-
-.card h3,
-.panel h3,
-.route h3,
-.service h3 {
-  margin: 0 0 8px;
-  padding-right: 64px;
-  font-size: 1.25rem;
 }
 
 .card p,
@@ -178,7 +188,7 @@
 }
 
 .facts dt {
-  color: var(--color-accent);
+  color: var(--color-text-muted-dark);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -207,7 +217,7 @@
   padding: 16px;
   border-radius: 18px;
   background: rgba(17, 12, 32, 0.45);
-  border: 1px solid rgba(217, 255, 67, 0.2);
+  border: 1px solid var(--color-border-dark);
 }
 
 .panel {
@@ -323,7 +333,7 @@
   top: 8px;
   bottom: 8px;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-primary), rgba(217, 255, 67, 0.7));
+  background: var(--color-primary);
 }
 
 .phase {
@@ -342,36 +352,66 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-primary);
 }
 
 .routes,
-.services,
 .dayGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .route,
-.service {
-  padding: 16px;
+.serviceGroup {
+  padding: 20px;
   border-radius: 18px;
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-dark);
 }
 
 .route ul,
-.service ul,
+.serviceGroup ul,
+.prepList,
 .faqItem p {
   margin: 0;
   padding-left: 1.1rem;
 }
 
-.price {
-  margin-top: 10px;
-  color: var(--color-accent);
+.serviceGroup h3,
+.route h3 {
+  font-size: 1.05rem;
+}
+
+.feeNote {
+  margin: 12px 0 0;
+  font-size: 0.88rem;
+  color: var(--color-text-muted-dark);
+}
+
+.prepList li + li {
+  margin-top: 8px;
+}
+
+.subHead {
+  margin: 28px 0 12px;
+  font-size: 1.15rem;
+}
+
+.fold {
+  padding: 8px 0;
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.fold > summary {
+  cursor: pointer;
   font-weight: 800;
+  padding: 12px 0;
+}
+
+.fold > summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
 }
 
 .budgetTable {
@@ -429,8 +469,7 @@
 }
 
 .dayButtons button[aria-pressed="true"] {
-  background: var(--color-accent);
-  color: var(--color-accent-dark);
+  background: #5b3cc4;
 }
 
 .faqList {
@@ -452,12 +491,22 @@
 }
 
 .brand {
-  padding: 24px;
-  border-radius: var(--radius-card);
-  background:
-    linear-gradient(135deg, rgba(112, 71, 235, 0.22), rgba(17, 12, 32, 0.4)),
-    var(--color-bg-elevated);
-  border: 1px solid var(--color-border-dark);
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: var(--color-bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.brand p {
+  margin: 0 0 8px;
+  color: var(--color-text-muted-dark);
+  font-size: 0.92rem;
 }
 
 .brandNote {
@@ -562,34 +611,68 @@
 }
 
 .iceTrack {
-  height: 8px;
-  margin: 4px 0 16px;
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, transparent, rgba(247, 243, 236, 0.5), transparent),
-    repeating-linear-gradient(90deg, rgba(112, 71, 235, 0.35) 0 18px, transparent 18px 28px);
+  display: none;
+}
+
+.fold ul {
+  margin: 0 0 12px;
+  padding-left: 1.1rem;
+}
+
+.fold .cards {
+  margin-top: 8px;
+}
+
+.adQuiet {
+  max-width: 32rem;
+}
+
+.adQuiet :global(aside) {
+  margin: 0;
+}
+
+.adQuiet :global([class*="banner"]) {
+  padding: 16px 18px;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.adQuiet :global([class*="label"]) {
+  color: var(--color-text-muted-dark);
+}
+
+.adQuiet :global([class*="title"]) {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.adQuiet :global([class*="cta"]) {
+  min-height: 40px;
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+.adQuiet :global([class*="deco"]) {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 901px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    align-items: start;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 900px) {
-  .hero,
   .formGrid,
   .facts,
   .routes,
-  .services,
   .dayGrid,
   .totals,
   .dayButtons,
   .budgetRow {
     grid-template-columns: 1fr;
-  }
-
-  .card h3,
-  .panel h3 {
-    padding-right: 0;
-  }
-
-  .card::after {
-    display: none;
   }
 
   .sticky {
