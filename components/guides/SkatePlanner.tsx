@@ -2,13 +2,16 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
+  CHATGPT_SEARCH_ASK,
   COMPARE_ITEM_LIMIT,
   CURRENCIES,
   EMPTY_ITEM,
   PAYMENT_CHECKS,
+  SEARCH_FORMULA,
+  SEARCH_FORMULA_EXAMPLE,
   SKATE_GUIDE_STORAGE_KEY,
   TAIWAN_CHECKS,
-  buildSearchQuery,
+  buildChatGptPrompt,
   buildSummary,
   createItemId,
   emptyGuideStore,
@@ -27,8 +30,17 @@ import {
 } from "@/lib/guides/skate-compare";
 import styles from "./SkatePlanner.module.css";
 
-function SearchFormula({ query }: { query: string }) {
+const CHATGPT_SEARCH_URL = "https://chatgpt.com/";
+
+function openChatGptWithPrompt(prompt: string) {
+  const url = new URL(CHATGPT_SEARCH_URL);
+  url.searchParams.set("q", prompt);
+  window.open(url.toString(), "_blank", "noopener,noreferrer");
+}
+
+function SearchFormula({ needs }: { needs: NeedsWorksheet }) {
   const [copied, setCopied] = useState("");
+  const prompt = buildChatGptPrompt(needs);
 
   async function copy(text: string, label: string) {
     try {
@@ -39,31 +51,46 @@ function SearchFormula({ query }: { query: string }) {
     }
   }
 
+  async function copySearchAndOpenChatGpt() {
+    if (!prompt) {
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(prompt);
+      openChatGptWithPrompt(prompt);
+      setCopied("已複製搜尋字串，正在開啟 ChatGPT");
+    } catch {
+      openChatGptWithPrompt(prompt);
+      setCopied("無法自動複製，已開啟 ChatGPT，請再貼上");
+    }
+  }
+
   return (
     <div className={styles.panel}>
       <p>
-        搜尋公式：<code>品牌 + 型號 + 顏色 + 尺寸 + 寬度</code>
+        搜尋公式對應第一步每一項：<code>{SEARCH_FORMULA}</code>
       </p>
+      <p className={styles.note}>空白、「尚未選擇」、「尚未決定」不會帶入。已填的項目會原樣組成提問。</p>
       <div className={styles.searchBox}>
-        <strong>依你的備忘組成的字串</strong>
-        <code>{query || "先在上一步填入品牌、型號、顏色、尺寸與寬度"}</code>
-        <button className="button" type="button" onClick={() => copy(query, "已複製搜尋字串")} disabled={!query}>
+        <strong>依你第一步備忘組成的提問</strong>
+        <code>
+          {prompt ||
+            "先在上一步填入用途、程度、品牌與型號、尺寸、寬度、鞋色、鞋靴／冰刀、現貨／特訂、預計使用日期與預算上限"}
+        </code>
+        <button className="button" type="button" onClick={() => void copySearchAndOpenChatGpt()} disabled={!prompt}>
           複製搜尋字串
         </button>
+        <p className={styles.note}>複製後會開啟 ChatGPT，並附上「{CHATGPT_SEARCH_ASK}」。</p>
       </div>
-      <p>
-        教學範例：<code>Edea Chorus Ivory 245 D</code>
-        。這只示範如何組成關鍵字，不是商品或商店推薦。
-      </p>
-      <p>可再自行加上：</p>
+      <p>教學範例只示範如何組成提問，不是商品或商店推薦：</p>
+      <code className={styles.example}>{SEARCH_FORMULA_EXAMPLE}</code>
+      <p>運送與交易條件可再自行加上：</p>
       <div className={styles.chips}>
-        {["in stock", "ships to Taiwan", "international shipping", "return policy", "special order", "VAT excluded"].map(
-          (chip) => (
-            <button key={chip} className={styles.chip} type="button" onClick={() => copy(chip, `已複製 ${chip}`)}>
-              {chip}
-            </button>
-          ),
-        )}
+        {["ships to Taiwan", "international shipping", "return policy", "VAT excluded"].map((chip) => (
+          <button key={chip} className={styles.chip} type="button" onClick={() => copy(chip, `已複製 ${chip}`)}>
+            {chip}
+          </button>
+        ))}
       </div>
       {copied ? <p className={styles.status}>{copied}</p> : null}
     </div>
@@ -291,7 +318,6 @@ export function SkatePlanner() {
     saveGuideStore(store);
   }, [hydrated, store]);
 
-  const query = useMemo(() => buildSearchQuery(store.needs), [store.needs]);
   const ranked = useMemo(() => rankItems(store.items, store.rates), [store.items, store.rates]);
 
   function updateNeeds(key: keyof NeedsWorksheet, value: string) {
@@ -439,7 +465,7 @@ export function SkatePlanner() {
       <article className="card-dark learn-card" id="step-2">
         <p className="kicker">STEP 2</p>
         <h2>建立精準搜尋字串</h2>
-        <SearchFormula query={query} />
+        <SearchFormula needs={store.needs} />
       </article>
 
       <article className="card-dark learn-card" id="step-3">

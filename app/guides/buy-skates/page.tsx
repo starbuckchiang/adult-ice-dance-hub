@@ -26,7 +26,7 @@ const howToSteps = [
   },
   {
     name: "建立精準搜尋字串",
-    text: "用品牌、型號、顏色、尺寸與寬度組成搜尋字串，必要時再加上 in stock、ships to Taiwan 或 return policy。範例只示範搜尋方式，不是商品推薦。",
+    text: "用第一步已填的用途、程度、品牌與型號、尺寸、寬度、鞋色、鞋靴／冰刀、現貨／特訂、預計使用日期與預算上限組成提問，再請 ChatGPT 搜尋最便宜的網站。運送條件可自行加上 ships to Taiwan 或 return policy。範例只示範搜尋方式，不是商品推薦。",
   },
   {
     name: "先判斷是否真的有貨",

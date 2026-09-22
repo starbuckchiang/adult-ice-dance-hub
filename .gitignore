@@ -36,6 +36,7 @@ yarn-error.log*
 差異化條件/
 *API key.txt
 *API key*.txt
+review report/
 
 # vercel
 .vercel

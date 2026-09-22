@@ -338,11 +338,56 @@ export function safeHref(url: string): string | null {
   }
 }
 
-export function buildSearchQuery(needs: NeedsWorksheet): string {
-  return [needs.brandModel, needs.color, needs.size, needs.width]
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .join(" ");
+const SKIP_NEED_VALUES = new Set(["", "尚未選擇", "尚未決定"]);
+
+function needPart(value: string): string {
+  const text = value.trim();
+  return SKIP_NEED_VALUES.has(text) ? "" : text;
+}
+
+export const NEED_SEARCH_FIELDS: Array<{ key: keyof NeedsWorksheet; label: string }> = [
+  { key: "useCase", label: "用途" },
+  { key: "level", label: "程度" },
+  { key: "brandModel", label: "品牌與型號" },
+  { key: "size", label: "尺寸" },
+  { key: "width", label: "寬度" },
+  { key: "color", label: "鞋色" },
+  { key: "bootOnly", label: "鞋靴／冰刀" },
+  { key: "specialOrder", label: "現貨／特訂" },
+  { key: "neededBy", label: "預計使用日期" },
+  { key: "budget", label: "預算上限" },
+];
+
+export const SEARCH_FORMULA = NEED_SEARCH_FIELDS.map((field) => field.label).join(" + ");
+export const CHATGPT_SEARCH_ASK = "這雙鞋幫我搜尋最便宜的網站";
+export const SEARCH_FORMULA_EXAMPLE = [
+  "用途：花式滑冰",
+  "程度：一周跳",
+  "品牌與型號：Edea Chorus",
+  "尺寸：245",
+  "寬度：D",
+  "鞋色：Ivory",
+  "鞋靴／冰刀：只買鞋靴",
+  "現貨／特訂：只接受現貨",
+  "預計使用日期：2026-11-01",
+  "預算上限：35000 TWD",
+  CHATGPT_SEARCH_ASK,
+].join("\n");
+
+export function buildSearchQuery(needs: NeedsWorksheet = EMPTY_NEEDS): string {
+  return NEED_SEARCH_FIELDS.map((field) => needPart(needs[field.key])).filter(Boolean).join(" ");
+}
+
+export function buildChatGptPrompt(needs: NeedsWorksheet = EMPTY_NEEDS): string {
+  const lines = NEED_SEARCH_FIELDS.flatMap((field) => {
+    const part = needPart(needs[field.key]);
+    return part ? [`${field.label}：${part}`] : [];
+  });
+  if (lines.length === 0) {
+    return "";
+  }
+  lines.push(CHATGPT_SEARCH_ASK);
+  return lines.join("\n");
 }
 
 export function buildSummary(results: CompareResult[]): string {
