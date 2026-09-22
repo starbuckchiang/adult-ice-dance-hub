@@ -32,6 +32,11 @@ yarn-error.log*
 .env
 .env*.local
 
+# local secrets and confidential drafts
+差異化條件/
+*API key.txt
+*API key*.txt
+
 # vercel
 .vercel
 

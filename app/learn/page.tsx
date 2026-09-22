@@ -23,6 +23,7 @@ const entries = [
   { href: "/learn/pattern-dance", kicker: "PATTERN DANCE", title: "Pattern Dance", text: "只列出已查證的 2026–27 成人規定舞導覽，不含未核對步序圖。" },
   { href: "/testing", kicker: "TESTING", title: "成人檢定路線", text: "六國協會與 ISU 國際成人賽資格入口，不把 ISU 寫成全球統一檢定。" },
   { href: "/music", kicker: "MUSIC", title: "音樂與編舞", text: "Rhythm Dance 與自由舞選曲原則、檢查表與合法音樂來源。" },
+  { href: "/guides/buy-skates", kicker: "GUIDE", title: "花式滑冰鞋網路採購指南", text: "先確認尺寸與寬度，再比較庫存、運費、稅費與退換貨。中立工具，不替商店背書。" },
 ];
 
 export default function LearnPage() {

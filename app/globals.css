@@ -789,6 +789,8 @@ button:focus-visible,
 }
 
 .text-chip {
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
   padding: 8px 14px;
   border-radius: 999px;
@@ -796,6 +798,7 @@ button:focus-visible,
   background: var(--color-bg-secondary);
   color: var(--color-text-on-dark);
   font-weight: 700;
+  text-decoration: none;
 }
 
 .text-chip.is-active {

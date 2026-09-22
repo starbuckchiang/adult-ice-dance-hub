@@ -32,6 +32,9 @@ export function SiteFooter() {
             <Link href="/learn">學習中心</Link>
           </p>
           <p>
+            <Link href="/guides/buy-skates">滑冰鞋採購指南</Link>
+          </p>
+          <p>
             <Link href="/testing">成人檢定</Link>
           </p>
           <p>

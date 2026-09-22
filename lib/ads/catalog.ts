@@ -77,65 +77,108 @@ export function resolveDestinationUrl(
   }
 }
 
+function assignmentPaidRank(campaignId: string): number {
+  return getCampaign(campaignId)?.campaign_type === "paid" ? 1 : 0;
+}
+
+function creativeFromAssignment(
+  assignment: AdAssignment,
+  placement: AdPlacement,
+  now: Date,
+  paidOnly: boolean,
+): AdCreative | null {
+  if (assignment.status !== "active") {
+    return null;
+  }
+  if (!isWithinWindow(assignment.starts_at, assignment.ends_at, now)) {
+    return null;
+  }
+
+  const campaign = getCampaign(assignment.campaign_id);
+  const advertiser = campaign ? getAdvertiser(campaign.advertiser_id) : undefined;
+  if (
+    !campaign ||
+    !advertiser ||
+    campaign.status !== "active" ||
+    advertiser.status !== "active" ||
+    !isWithinWindow(campaign.starts_at, campaign.ends_at, now)
+  ) {
+    return null;
+  }
+  if (paidOnly && campaign.campaign_type !== "paid") {
+    return null;
+  }
+
+  const destinationUrl = campaign.destination_url;
+  if (!resolveDestinationUrl(destinationUrl)) {
+    return null;
+  }
+
+  return {
+    campaignId: campaign.id,
+    campaignName: campaign.name,
+    campaignType: campaign.campaign_type,
+    advertiserId: advertiser.id,
+    advertiserName: advertiser.name,
+    placementId: placement.id,
+    placementCode: placement.code,
+    desktopImageUrl: campaign.desktop_image_url,
+    mobileImageUrl: campaign.mobile_image_url,
+    altText: campaign.alt_text,
+    destinationUrl,
+    startsAt: campaign.starts_at,
+    endsAt: campaign.ends_at,
+    status: campaign.status,
+    isDemo: campaign.is_demo,
+    sponsored: true,
+  };
+}
+
+function listPlacementCreatives(
+  placementCode: PlacementCode,
+  now: Date,
+  paidOnly: boolean,
+): AdCreative[] {
+  const placement = getPlacementByCode(placementCode);
+  if (!placement || placement.status !== "active") {
+    return [];
+  }
+
+  return assignments
+    .filter((assignment) => assignment.placement_id === placement.id)
+    .sort((a, b) => {
+      const paidDiff = assignmentPaidRank(b.campaign_id) - assignmentPaidRank(a.campaign_id);
+      if (paidDiff !== 0) {
+        return paidDiff;
+      }
+      return b.priority - a.priority;
+    })
+    .map((assignment) => creativeFromAssignment(assignment, placement, now, paidOnly))
+    .filter((creative): creative is AdCreative => Boolean(creative));
+}
+
 export function getActiveCreative(
   placementCode: PlacementCode,
   now = new Date(),
 ): AdCreative | null {
-  const placement = getPlacementByCode(placementCode);
-  if (!placement || placement.status !== "active") {
-    return null;
+  return listPlacementCreatives(placementCode, now, false)[0] ?? null;
+}
+
+export function getActivePaidCreative(
+  placementCode: PlacementCode,
+  now = new Date(),
+): AdCreative | null {
+  return listPlacementCreatives(placementCode, now, true)[0] ?? null;
+}
+
+export function resolveHomeHeroSlot(
+  now = new Date(),
+): { mode: "paid"; creative: AdCreative } | { mode: "guide"; creative: null } {
+  const paid = getActivePaidCreative("HOME_HERO", now);
+  if (paid) {
+    return { mode: "paid", creative: paid };
   }
-
-  const candidates = assignments
-    .filter((assignment) => assignment.placement_id === placement.id)
-    .sort((a, b) => b.priority - a.priority);
-
-  for (const assignment of candidates) {
-    if (assignment.status !== "active") {
-      continue;
-    }
-    if (!isWithinWindow(assignment.starts_at, assignment.ends_at, now)) {
-      continue;
-    }
-
-    const campaign = getCampaign(assignment.campaign_id);
-    const advertiser = campaign ? getAdvertiser(campaign.advertiser_id) : undefined;
-    if (
-      !campaign ||
-      !advertiser ||
-      campaign.status !== "active" ||
-      advertiser.status !== "active" ||
-      !isWithinWindow(campaign.starts_at, campaign.ends_at, now)
-    ) {
-      continue;
-    }
-
-    const destinationUrl = campaign.destination_url;
-    if (!resolveDestinationUrl(destinationUrl)) {
-      continue;
-    }
-
-    return {
-      campaignId: campaign.id,
-      campaignName: campaign.name,
-      campaignType: campaign.campaign_type,
-      advertiserId: advertiser.id,
-      advertiserName: advertiser.name,
-      placementId: placement.id,
-      placementCode: placement.code,
-      desktopImageUrl: campaign.desktop_image_url,
-      mobileImageUrl: campaign.mobile_image_url,
-      altText: campaign.alt_text,
-      destinationUrl,
-      startsAt: campaign.starts_at,
-      endsAt: campaign.ends_at,
-      status: campaign.status,
-      isDemo: campaign.is_demo,
-      sponsored: true,
-    };
-  }
-
-  return null;
+  return { mode: "guide", creative: null };
 }
 
 export function isRegisteredClickTarget(
@@ -146,6 +189,10 @@ export function isRegisteredClickTarget(
   const placement = getPlacement(placementId);
   if (!placement) {
     return null;
+  }
+  const paid = getActivePaidCreative(placement.code, now);
+  if (paid && paid.campaignId === campaignId) {
+    return paid;
   }
   const creative = getActiveCreative(placement.code, now);
   if (!creative || creative.campaignId !== campaignId) {
