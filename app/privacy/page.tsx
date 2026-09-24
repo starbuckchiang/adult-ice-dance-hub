@@ -48,6 +48,10 @@ export default function PrivacyPage() {
         <p>
           申請頁見 <Link href="/submit-listing">申請刊登</Link>。
         </p>
+        <h2>冰舞檢定詢問</h2>
+        <p>
+          若你透過「寫信給極光冰場客服」表單留下姓名、Email、電話及詢問內容，本站只會用來轉寄該次詢問至極光冰場官方客服信箱，以便冰場回覆。這份資料不會用於廣告追蹤。
+        </p>
       </article>
     </>
   );

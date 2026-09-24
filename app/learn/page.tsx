@@ -25,6 +25,8 @@ const entries = [
   { href: "/music", kicker: "MUSIC", title: "音樂與編舞", text: "Rhythm Dance 與自由舞選曲原則、檢查表與合法音樂來源。" },
   { href: "/guides/buy-skates", kicker: "GUIDE", title: "花式滑冰鞋網路採購指南", text: "先確認尺寸與寬度，再比較庫存、運費、稅費與退換貨。中立工具，不替商店背書。" },
   { href: "/guides/taiwan-adult-competitions-2026", kicker: "TAIWAN 2026", title: "2026 台灣成人參賽指南", text: "查詢2026國內花式滑冰與冰舞賽事、成人組資格、報名期限、備賽計畫與參賽支援。" },
+  { href: "/guides/ice-dance-tests-in-taiwan", kicker: "ISIAsia", title: "在台灣參加冰舞檢定", text: "有機會，但須透過有效行政會員冰場、合格專業會員與個人會籍，並依序參加 Ice Dance 1–10。" },
+  { href: "/guides/ice-dance-video-tests-from-taiwan", kicker: "VIDEO TEST", title: "從台灣送件錄影檢定", text: "部分級別可能接受錄影審查，但不能自行上傳影片就取得結果。先確認會籍、承辦機構與送件資格。" },
 ];
 
 export default function LearnPage() {

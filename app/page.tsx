@@ -126,6 +126,21 @@ export default function HomePage() {
             進入台灣成人參賽指南
           </Link>
         </article>
+        <article className="card-dark" style={{ marginTop: 24 }}>
+          <p className="kicker">ISIAsia</p>
+          <h3>在台灣參加冰舞檢定</h3>
+          <p>
+            目前較明確的路徑是 ISIAsia Ice Dance 1–10。有機會，但須透過有效行政會員冰場、合格專業會員與個人會籍，並依序參加。
+          </p>
+          <div className="button-row">
+            <Link className="button" href="/guides/ice-dance-tests-in-taiwan">
+              查看台灣冰舞檢定
+            </Link>
+            <Link className="button-secondary" href="/guides/ice-dance-video-tests-from-taiwan">
+              了解錄影檢定
+            </Link>
+          </div>
+        </article>
       </Band>
 
       <Band tone="warm" className="band-ad">

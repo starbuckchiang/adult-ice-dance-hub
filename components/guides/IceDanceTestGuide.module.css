@@ -1,0 +1,327 @@
+.wrap {
+  display: grid;
+  gap: 48px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto 56px;
+}
+
+.hero {
+  display: grid;
+  gap: 14px;
+  max-width: 42rem;
+  padding: 4px 0 8px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  line-height: 1.2;
+}
+
+.answer {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--color-text-on-dark);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.prose,
+.lede,
+.note,
+.faqItem p,
+.sourceList a {
+  max-width: 40rem;
+}
+
+.lede,
+.note,
+.prose p,
+.faqItem p {
+  color: var(--color-text-muted-dark);
+}
+
+.section {
+  display: grid;
+  gap: 16px;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.callout {
+  padding: 18px 20px;
+  border-radius: var(--radius-card);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-dark);
+}
+
+.callout p {
+  margin: 0;
+  color: var(--color-text-muted-dark);
+}
+
+.timeline {
+  display: grid;
+  gap: 12px;
+  position: relative;
+  padding-left: 8px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--color-primary);
+}
+
+.level {
+  position: relative;
+  margin-left: 32px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-dark);
+}
+
+.level::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.level h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.level p,
+.member p,
+.card p {
+  margin: 0;
+  color: var(--color-text-muted-dark);
+}
+
+.reqGrid,
+.cardGrid,
+.flow,
+.faqList {
+  display: grid;
+  gap: 12px;
+}
+
+.reqGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card,
+.member,
+.faqItem {
+  min-width: 0;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-dark);
+}
+
+.card h3,
+.member h3,
+.faqItem h3,
+.req h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.req {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-dark);
+}
+
+.req p {
+  margin: 0;
+  color: var(--color-text-muted-dark);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 0 10px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.confirmed {
+  background: rgba(114, 212, 155, 0.18);
+  color: #9be7bc;
+}
+
+.ask {
+  background: rgba(112, 71, 235, 0.22);
+  color: var(--color-text-on-dark);
+}
+
+.none,
+.limited {
+  background: rgba(243, 201, 106, 0.16);
+  color: var(--color-warning);
+}
+
+.opportunity {
+  background: rgba(114, 212, 155, 0.18);
+  color: #9be7bc;
+}
+
+.video {
+  background: rgba(112, 71, 235, 0.28);
+}
+
+.panel {
+  background: rgba(114, 71, 235, 0.16);
+}
+
+.liveOnly {
+  background: rgba(243, 201, 106, 0.16);
+  color: var(--color-warning);
+}
+
+.live {
+  background: rgba(114, 212, 155, 0.18);
+  color: #9be7bc;
+}
+
+.tableWrap {
+  min-width: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.table th {
+  background: var(--color-bg-elevated);
+  font-size: 0.92rem;
+}
+
+.table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mobileCards {
+  display: none;
+}
+
+.checkList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkList li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--color-bg-secondary);
+}
+
+.checkMark {
+  display: inline-flex;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.actions :global(a),
+.actions :global(button) {
+  min-height: 44px;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.steps li {
+  margin: 0 0 10px;
+}
+
+.steps li::marker {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.sourceList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sourceList a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.verified {
+  margin: 8px 0 0;
+  color: var(--color-text-muted-dark);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 800px) {
+  .reqGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tableWrap .table {
+    display: none;
+  }
+
+  .mobileCards {
+    display: grid;
+    gap: 12px;
+  }
+}

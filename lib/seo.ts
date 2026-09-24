@@ -41,6 +41,35 @@ export function howToJsonLd(input: {
   };
 }
 
+export function articleJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified?: string;
+}) {
+  const url = new URL(input.path, getSiteUrl()).toString();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: input.name,
+    description: input.description,
+    inLanguage: "zh-Hant",
+    datePublished: input.datePublished,
+    dateModified: input.dateModified ?? input.datePublished,
+    mainEntityOfPage: url,
+    url,
+    author: {
+      "@type": "Organization",
+      name: "Adult Ice Dance Hub",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Adult Ice Dance Hub",
+    },
+  };
+}
+
 export function faqJsonLd(items: Array<{ q: string; a: string }>) {
   return {
     "@context": "https://schema.org",

@@ -33,6 +33,14 @@ export default function RulesPage() {
             查看台灣成人參賽指南
           </Link>
         </article>
+        <article className="card-dark">
+          <p className="kicker">TAIWAN TESTING</p>
+          <h2>台灣冰舞檢定</h2>
+          <p>ISIAsia Ice Dance 1–10 為目前較明確的台灣成人路徑。有機會不代表已可直接報名。</p>
+          <Link className="button-secondary" href="/guides/ice-dance-tests-in-taiwan">
+            查看冰舞檢定指南
+          </Link>
+        </article>
         <div className="grid">
           {rules.map((rule) => (
             <RuleCard key={rule.id} rule={rule} source={getSource(rule.sourceId)} />

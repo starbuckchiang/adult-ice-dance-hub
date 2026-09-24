@@ -5,12 +5,14 @@ type PageMetaInput = {
   title: string;
   description: string;
   path: string;
+  ogType?: "website" | "article";
 };
 
 export function createPageMetadata({
   title,
   description,
   path,
+  ogType = "website",
 }: PageMetaInput): Metadata {
   const url = new URL(path, getSiteUrl()).toString();
   const fullTitle = `${title}｜${SITE_NAME_ZH}`;
@@ -27,7 +29,7 @@ export function createPageMetadata({
       url,
       locale: "zh_TW",
       siteName: `${SITE_NAME_EN} ${SITE_NAME_ZH}`,
-      type: "website",
+      type: ogType,
     },
     twitter: {
       card: "summary_large_image",

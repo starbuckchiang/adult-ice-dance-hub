@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/learn", changeFrequency: "weekly", priority: 0.85 },
     { url: "/guides/buy-skates", changeFrequency: "monthly", priority: 0.7 },
     { url: "/guides/taiwan-adult-competitions-2026", changeFrequency: "weekly", priority: 0.8 },
+    { url: "/guides/ice-dance-tests-in-taiwan", changeFrequency: "monthly", priority: 0.75 },
+    { url: "/guides/ice-dance-video-tests-from-taiwan", changeFrequency: "monthly", priority: 0.75 },
     { url: "/learn/steps", changeFrequency: "weekly", priority: 0.8 },
     { url: "/learn/pattern-dance", changeFrequency: "weekly", priority: 0.8 },
     { url: "/testing", changeFrequency: "weekly", priority: 0.8 },

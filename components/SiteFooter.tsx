@@ -38,6 +38,12 @@ export function SiteFooter() {
             <Link href="/guides/taiwan-adult-competitions-2026">2026台灣成人參賽指南</Link>
           </p>
           <p>
+            <Link href="/guides/ice-dance-tests-in-taiwan">台灣冰舞檢定</Link>
+          </p>
+          <p>
+            <Link href="/guides/ice-dance-video-tests-from-taiwan">錄影檢定</Link>
+          </p>
+          <p>
             <Link href="/testing">成人檢定</Link>
           </p>
           <p>

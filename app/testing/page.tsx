@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { Breadcrumbs } from "@/components/nav/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -32,6 +33,19 @@ export default function TestingPage() {
         </p>
       </header>
       <ContentWithSidebar>
+        <article className="card-dark">
+          <p className="kicker">TAIWAN</p>
+          <h2>台灣冰舞檢定路徑</h2>
+          <p>ISIAsia Ice Dance 1–10 是目前較明確的台灣成人路徑。有機會不代表已可直接報名；錄影送件也不能跳過會籍與承辦機構。</p>
+          <div className="button-row">
+            <Link className="button-secondary" href="/guides/ice-dance-tests-in-taiwan">
+              台灣冰舞檢定
+            </Link>
+            <Link className="button-secondary" href="/guides/ice-dance-video-tests-from-taiwan">
+              錄影檢定
+            </Link>
+          </div>
+        </article>
         <TestingSwitcher programs={getTestingPrograms()} />
       </ContentWithSidebar>
     </>
