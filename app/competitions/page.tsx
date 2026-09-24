@@ -3,14 +3,10 @@ import Link from "next/link";
 import { AdList } from "@/components/ads/AdList";
 import { ContentWithSidebar } from "@/components/ads/ContentWithSidebar";
 import { EmptyState } from "@/components/EmptyState";
-import {
-  LiveNowCard,
-  ReplayEventCard,
-  UpcomingCompetitionCard,
-} from "@/components/watch/WatchCards";
-import { getCompetition, getSource } from "@/lib/content";
+import { ReplayEventCard, UpcomingCompetitionCard } from "@/components/watch/WatchCards";
+import { getSource } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
-import { getReplayLibrary, groupCompetitionsForWatch } from "@/lib/videos";
+import { groupCompetitionsForWatch } from "@/lib/videos";
 
 export const metadata: Metadata = createPageMetadata({
   title: "比賽資訊",
@@ -20,12 +16,11 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function CompetitionsPage() {
-  const { liveVideos, upcoming, recent, unscheduled } = groupCompetitionsForWatch();
-  const library = getReplayLibrary();
+  const { upcoming, recent, unscheduled } = groupCompetitionsForWatch();
 
   return (
     <>
-      <header className="page-header">
+      <header className="page-header" id="start">
         <p className="kicker">COMPETITIONS</p>
         <h1>比賽資訊</h1>
         <p>
@@ -45,24 +40,17 @@ export default function CompetitionsPage() {
             </Link>
           </article>
         </section>
-        {liveVideos.length > 0 ? (
-          <section className="section" id="live-now">
-            <div className="section-head">
-              <p className="kicker">LIVE NOW</p>
-              <h2>正在直播</h2>
-            </div>
-            <div className="grid">
-              {liveVideos.map((video) => (
-                <LiveNowCard
-                  key={video.id}
-                  video={video}
-                  competition={getCompetition(video.competitionSlug)}
-                  source={getSource(video.sourceId)}
-                />
-              ))}
-            </div>
-          </section>
-        ) : null}
+        <section className="section" id="live-now">
+          <article className="card-dark">
+            <p className="kicker">WATCH</p>
+            <h2>影音直播</h2>
+            <p>現正直播、即將直播與最新重播集中在影音頁，這裡只保留賽事資訊。</p>
+            <Link className="button" href="/watch">
+              前往影音直播
+            </Link>
+          </article>
+          <span id="replay-library" />
+        </section>
 
         <section className="section" id="upcoming">
           <div className="section-head">
@@ -101,31 +89,6 @@ export default function CompetitionsPage() {
             </div>
           ) : (
             <EmptyState title="最近結束的賽事" text="已結束的賽事會整理在這裡。" />
-          )}
-        </section>
-
-        <section className="section" id="replay-library">
-          <div className="section-head">
-            <p className="kicker">REPLAY LIBRARY</p>
-            <h2>賽事錄影庫</h2>
-          </div>
-          {library.length > 0 ? (
-            library.map((group) => (
-              <div key={group.year} className="year-block">
-                <h3>{group.year}</h3>
-                <div className="grid">
-                  {group.competitions.map((competition) => (
-                    <ReplayEventCard
-                      key={competition.id}
-                      competition={competition}
-                      source={getSource(competition.sourceId)}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))
-          ) : (
-            <EmptyState title="賽事錄影庫" text="官方回放會依年份整理於此。" />
           )}
         </section>
 

@@ -1,0 +1,154 @@
+.footer {
+  padding: 40px 30px 18px;
+  min-height: 0;
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.footerColumn h2,
+.footerColumn h3,
+.footerColumn p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.footerColumn a {
+  line-height: 1.45;
+  color: var(--color-text-muted-dark);
+  text-decoration: none;
+}
+
+.footerColumn a:hover {
+  color: var(--color-text-on-dark);
+}
+
+.brandName {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.brandZh {
+  display: block;
+  color: var(--color-text-muted-dark);
+}
+
+.footerDescription {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--color-text-muted-dark);
+  line-height: 1.6;
+}
+
+.desktopTitle {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  color: var(--color-accent);
+}
+
+.summary {
+  display: none;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.footerBottom {
+  max-width: 1440px;
+  margin: 24px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--color-text-muted-dark);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.footerBottom a {
+  color: var(--color-text-muted-dark);
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.footerBottom a:hover {
+  color: var(--color-text-on-dark);
+}
+
+@media (max-width: 900px) {
+  .footerInner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .footerColumn + .footerColumn {
+    border-top: 1px solid var(--color-border-dark);
+  }
+
+  .desktopTitle {
+    display: none;
+  }
+
+  .summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-accent);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .summary::after {
+    content: "+";
+    color: var(--color-text-on-dark);
+  }
+
+  .summary[aria-expanded="true"]::after {
+    content: "–";
+  }
+
+  .links {
+    display: none;
+    padding-bottom: 10px;
+  }
+
+  .linksOpen {
+    display: flex;
+  }
+}

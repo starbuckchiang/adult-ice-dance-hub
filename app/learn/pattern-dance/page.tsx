@@ -36,7 +36,7 @@ export default function PatternDancePage() {
         <p className="kicker">PATTERN DANCE</p>
         <h1>Pattern Dance</h1>
         <p>
-          只公開已核對的 2026–27 國際成人賽與加拿大成人比賽資料。下圖是本站原創冰場示意，不是官方步序圖，也不能取代 handbook。
+          只公開已核對的 2026–27 國際成人賽與加拿大成人比賽資料。
         </p>
         <IceRinkSchematic label="本站原創冰場示意：長軸、短軸與練習方向。非正式 Pattern 步序。" />
       </header>

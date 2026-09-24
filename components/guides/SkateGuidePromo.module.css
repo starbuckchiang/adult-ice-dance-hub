@@ -80,7 +80,7 @@
 
 .title {
   margin: 0;
-  max-width: 12em;
+  max-width: none;
   font-size: clamp(1.3rem, 3vw, 1.9rem);
   font-weight: 800;
   line-height: 1.25;
@@ -88,7 +88,7 @@
 
 .body {
   margin: 0;
-  max-width: 46ch;
+  max-width: none;
   color: var(--color-text-muted-dark);
   line-height: 1.65;
 }

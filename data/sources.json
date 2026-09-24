@@ -372,5 +372,38 @@
     "lastVerified": "2026-09-19",
     "status": "verified",
     "summary": "ISU 官方花式滑冰影音頻道，可用於延伸觀看，不作為規則依據。"
+  },
+  {
+    "id": "src-isu-fs-calendar-202627",
+    "slug": "isu-figure-skating-calendar-2026-27",
+    "nameZh": "ISU 2026/27 花式滑冰賽程",
+    "nameEn": "ISU Figure Skating Event Calendar 2026/27",
+    "publisher": "International Skating Union",
+    "url": "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-event-calendar-202627/",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "summary": "ISU 公布的 2026/27 花式滑冰賽程，含 Junior Grand Prix 各站日期與地點。"
+  },
+  {
+    "id": "src-isu-jgp-watch-202627",
+    "slug": "isu-jgp-where-to-watch-2026-27",
+    "nameZh": "ISU Junior Grand Prix 2026/27 官方觀看說明",
+    "nameEn": "Where to watch: ISU Figure Skating Junior Grand Prix Series 2026/27",
+    "publisher": "International Skating Union",
+    "url": "https://isu-skating.com/en/figure-skating/news/where-to-watch-isu-figure-skating-junior-grand-prix-series-202627/",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "summary": "ISU 說明多數地區可經官方 YouTube 頻道收看 Junior Grand Prix。頁內短網址導向 https://www.youtube.com/@SkatingISU，不是單一場次影片。"
+  },
+  {
+    "id": "src-isu-skating-youtube",
+    "slug": "isu-skating-youtube-channel",
+    "nameZh": "ISU 官方 YouTube 頻道（SkatingISU）",
+    "nameEn": "ISU YouTube channel @SkatingISU",
+    "publisher": "International Skating Union",
+    "url": "https://www.youtube.com/@SkatingISU",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "summary": "由 JGP 官方觀看頁的 isuweb.link/fS24pkY 轉址取得。這是頻道入口，不代表某一場正在播放。"
   }
 ]

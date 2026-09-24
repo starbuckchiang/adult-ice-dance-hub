@@ -24,7 +24,7 @@
 
 .lede {
   margin: 0 0 22px;
-  max-width: var(--measure);
+  max-width: none;
   color: var(--color-text-muted-dark);
   font-size: 1.05rem;
 }

@@ -110,5 +110,53 @@
     "lastVerified": "2026-09-18",
     "status": "unverified",
     "sourceId": "src-swiss-regs"
+  },
+  {
+    "id": "comp-jgp-batumi-2026",
+    "slug": "jgp-batumi-2026",
+    "nameZh": "2026 ISU 青少年大獎賽 Batumi",
+    "nameEn": "ISU Figure Skating Junior Grand Prix Batumi 2026",
+    "country": "international",
+    "type": "general",
+    "location": "Batumi, Georgia",
+    "startDate": "2026-09-23",
+    "endDate": "2026-09-26",
+    "summary": "ISU 2026/27 花式滑冰賽程載明，Junior Grand Prix Batumi 站為 2026 年 9 月 23 日至 26 日。官方觀看說明指出，多數地區可經 ISU 官方 YouTube 頻道收看，目前沒有獨立的單場直播網址。",
+    "officialUrl": "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-event-calendar-202627/",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "sourceId": "src-isu-fs-calendar-202627"
+  },
+  {
+    "id": "comp-jgp-ljubljana-2026",
+    "slug": "jgp-ljubljana-2026",
+    "nameZh": "2026 ISU 青少年大獎賽 Ljubljana",
+    "nameEn": "ISU Figure Skating Junior Grand Prix Ljubljana 2026",
+    "country": "international",
+    "type": "general",
+    "location": "Ljubljana, Slovenia",
+    "startDate": "2026-09-30",
+    "endDate": "2026-10-03",
+    "summary": "ISU 2026/27 花式滑冰賽程載明，Junior Grand Prix Ljubljana 站為 2026 年 9 月 30 日至 10 月 3 日。官方觀看說明指向 ISU YouTube 頻道，沒有公布單場開播時間或獨立直播網址。",
+    "officialUrl": "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-event-calendar-202627/",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "sourceId": "src-isu-fs-calendar-202627"
+  },
+  {
+    "id": "comp-jgp-gdansk-2026",
+    "slug": "jgp-gdansk-2026",
+    "nameZh": "2026 ISU 青少年大獎賽 Gdańsk",
+    "nameEn": "ISU Figure Skating Junior Grand Prix Gdansk 2026",
+    "country": "international",
+    "type": "general",
+    "location": "Gdańsk, Poland",
+    "startDate": "2026-10-07",
+    "endDate": "2026-10-10",
+    "summary": "ISU 2026/27 花式滑冰賽程載明，Junior Grand Prix Gdańsk 站為 2026 年 10 月 7 日至 10 日。官方觀看說明指向 ISU YouTube 頻道，沒有公布單場開播時間或獨立直播網址。",
+    "officialUrl": "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-event-calendar-202627/",
+    "lastVerified": "2026-09-24",
+    "status": "verified",
+    "sourceId": "src-isu-fs-calendar-202627"
   }
 ]

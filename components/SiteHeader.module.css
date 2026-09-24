@@ -1,12 +1,11 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 30;
   background: var(--color-bg-primary);
 }
 
 .scrolled {
-  background: var(--color-bg-primary);
   border-bottom: 1px solid var(--color-border-dark);
 }
 
@@ -16,9 +15,7 @@
   min-height: var(--header-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px 16px;
+  gap: 16px;
   padding: 10px 0;
 }
 
@@ -28,11 +25,13 @@
   min-width: 0;
   text-decoration: none;
   color: var(--color-text-on-dark);
+  flex: 0 0 auto;
 }
 
 .brandEm {
   font-size: 0.98rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .brandZh {
@@ -42,62 +41,159 @@
 
 .desktopNav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 2px;
+  flex: 1 1 auto;
   min-width: 0;
-  flex: 1 1 520px;
+}
+
+.menu {
+  position: relative;
+}
+
+.link,
+.iconButton,
+.mobileSummary {
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-on-dark);
+  font: inherit;
+  font-weight: 650;
+  font-size: 0.92rem;
+  cursor: pointer;
 }
 
 .link {
-  position: relative;
   padding: 8px 10px;
   border-radius: 999px;
-  text-decoration: none;
-  color: var(--color-text-on-dark);
-  font-weight: 600;
-  font-size: 0.9rem;
   white-space: nowrap;
+  text-decoration: none;
 }
 
-.link:hover {
+.link:hover,
+.link[aria-expanded="true"] {
   background: rgba(112, 71, 235, 0.22);
 }
 
-.link[aria-current="page"]::after {
-  content: "";
+.dropdown {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 4px;
-  height: 2px;
-  background: var(--color-accent);
+  top: calc(100% - 2px);
+  left: 0;
+  min-width: 220px;
+  padding: 8px;
+  border-radius: 16px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.dropdown[hidden] {
+  display: none;
+}
+
+.dropLink,
+.mobileLinks a,
+.searchList a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+}
+
+.dropLink:hover,
+.mobileLinks a:hover,
+.searchList a:hover {
+  background: rgba(112, 71, 235, 0.28);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 999px;
+}
+
+.searchLabel {
+  font-size: 0.92rem;
 }
 
 .toggle {
   display: none;
   min-width: 44px;
   min-height: 44px;
-  padding: 0 12px;
   border: 1px solid var(--color-border-dark);
   border-radius: 14px;
   background: transparent;
   color: var(--color-text-on-dark);
-  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.searchPanel {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto 12px;
+  padding: 12px;
+  border-radius: 18px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-dark);
+}
+
+.searchInput {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-dark);
+  background: var(--color-bg-primary);
+  color: var(--color-text-on-dark);
+  font: inherit;
+}
+
+.searchList {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.searchEmpty {
+  padding: 8px 12px;
+  color: var(--color-text-muted-dark);
 }
 
 .mobileNav {
   display: none;
 }
 
-@media (max-width: 860px) {
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1080px) {
   .bar {
     width: min(var(--max), calc(100% - 28px));
-    min-height: 64px;
   }
 
-  .desktopNav {
+  .desktopNav,
+  .searchLabel {
     display: none;
   }
 
@@ -108,21 +204,32 @@
   }
 
   .mobileNav {
-    display: none;
+    display: block;
     width: min(var(--max), calc(100% - 28px));
     margin: 0 auto;
-    padding: 8px 0 16px;
-    flex-direction: column;
-    gap: 4px;
+    padding: 0 0 12px;
   }
 
-  .mobileOpen {
-    display: flex;
+  .mobileNav[hidden] {
+    display: none;
   }
 
-  .mobileNav .link,
-  .mobileNav .button {
+  .searchPanel {
+    width: min(var(--max), calc(100% - 28px));
+  }
+
+  .mobileSummary {
+    width: 100%;
     min-height: 44px;
-    justify-content: flex-start;
+    text-align: left;
+    padding: 8px 4px;
+  }
+
+  .mobileLinks[hidden] {
+    display: none;
+  }
+
+  .mobileLinks a {
+    min-height: 44px;
   }
 }

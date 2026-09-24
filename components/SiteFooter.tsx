@@ -1,83 +1,53 @@
+"use client";
+
 import Link from "next/link";
-import { getCountries } from "@/lib/content";
+import { useState } from "react";
+import { footerColumns } from "@/lib/navigation";
 import { SITE_NAME_EN, SITE_NAME_ZH } from "@/lib/site";
+import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
-  const countries = getCountries();
+  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <footer className="site-footer">
-      <div className="footer-inner">
-        <div className="footer-brand">
-          <strong>{SITE_NAME_EN}</strong>
-          <span>{SITE_NAME_ZH}</span>
-          <p className="muted">
-            成人冰舞資訊入口：整理俱樂部名錄、賽事公告與規則來源，雙人冰舞與單人冰舞分開標示。
-          </p>
+    <footer className={`site-footer ${styles.footer}`} data-cta-hide>
+      <div className={styles.footerInner}>
+        <div className={styles.footerColumn}>
+          <strong className={styles.brandName}>{SITE_NAME_EN}</strong>
+          <span className={styles.brandZh}>{SITE_NAME_ZH}</span>
+          <p className={styles.footerDescription}>成人冰舞的學習、裝備、參賽與官方來源入口。</p>
         </div>
-        <div className="footer-col">
-          <h2>國家入口</h2>
-          <p>
-            <Link href="/countries">國家總覽</Link>
-          </p>
-          {countries.map((country) => (
-            <p key={country.slug}>
-              <Link href={`/countries/${country.slug}`}>{country.nameZh}</Link>
-            </p>
-          ))}
-        </div>
-        <div className="footer-col">
-          <h2>資料</h2>
-          <p>
-            <Link href="/learn">學習中心</Link>
-          </p>
-          <p>
-            <Link href="/guides/buy-skates">滑冰鞋採購指南</Link>
-          </p>
-          <p>
-            <Link href="/guides/taiwan-adult-competitions-2026">2026台灣成人參賽指南</Link>
-          </p>
-          <p>
-            <Link href="/guides/ice-dance-tests-in-taiwan">台灣冰舞檢定</Link>
-          </p>
-          <p>
-            <Link href="/guides/ice-dance-video-tests-from-taiwan">錄影檢定</Link>
-          </p>
-          <p>
-            <Link href="/testing">成人檢定</Link>
-          </p>
-          <p>
-            <Link href="/music">音樂與編舞</Link>
-          </p>
-          <p>
-            <Link href="/community">交流</Link>
-          </p>
-          <p>
-            <Link href="/competitions">比賽資訊</Link>
-          </p>
-          <p>
-            <Link href="/rules">規則中心</Link>
-          </p>
-          <p>
-            <Link href="/clubs">俱樂部</Link>
-          </p>
-        </div>
-        <div className="footer-col">
-          <h2>本站</h2>
-          <p>
-            <Link href="/about">關於本站</Link>
-          </p>
-          <p>
-            <Link href="/advertising#contact">廣告合作</Link>
-          </p>
-          <p>
-            <Link href="/privacy">隱私說明</Link>
-          </p>
-        </div>
-        <p className="footer-note">
-          <Link href="/about#data-policy">資料來源與更新政策</Link>
-        </p>
+        {footerColumns.map((column) => (
+          <div className={styles.footerColumn} key={column.id}>
+            <h2 className={styles.desktopTitle}>{column.title}</h2>
+            <button
+              className={styles.summary}
+              type="button"
+              aria-expanded={openId === column.id}
+              aria-controls={`footer-${column.id}`}
+              onClick={() => setOpenId((current) => (current === column.id ? null : column.id))}
+            >
+              {column.title}
+            </button>
+            <div id={`footer-${column.id}`} className={`${styles.links} ${openId === column.id ? styles.linksOpen : ""}`}>
+              {column.links.map((link) => (
+                <p key={`${column.id}-${link.href}-${link.label}`}>
+                  <Link href={link.href}>{link.label}</Link>
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
+      <p className={styles.footerBottom}>
+        © {SITE_NAME_EN}
+        <span aria-hidden="true">｜</span>
+        MAGIC-SNAIL CO.,LTD.
+        <span aria-hidden="true">｜</span>
+        <Link href="/privacy">隱私權</Link>
+        <span aria-hidden="true">｜</span>
+        <Link href="/terms">服務條款</Link>
+      </p>
     </footer>
   );
 }

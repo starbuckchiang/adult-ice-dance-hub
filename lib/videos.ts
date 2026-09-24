@@ -114,8 +114,44 @@ export function getCompetitionWatchSummary(
   };
 }
 
+function taipeiDate(now: Date): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei",
+    year: "numeric",
+    month: "2-digit",
+    day: "numeric",
+  }).format(now);
+}
+
+export function isEventInProgress(
+  startDate: string | null,
+  endDate: string | null,
+  now = new Date(),
+): boolean {
+  if (!startDate || !endDate) return false;
+  const today = taipeiDate(now);
+  return today >= startDate && today <= endDate;
+}
+
+export function isLiveWatchEntry(video: CompetitionVideo, now = new Date()): boolean {
+  if (video.liveWatch !== "channel" && video.liveWatch !== "broadcast") return false;
+  if (!video.isOfficial || !video.officialWatchUrl) return false;
+  const competition = competitions.find((item) => item.id === video.competitionId);
+  if (!competition || competition.status !== "verified") return false;
+  return isEventInProgress(competition.startDate, competition.endDate, now);
+}
+
+export function getCompetitionWatchPortal(competitionId: string): CompetitionVideo | undefined {
+  return getVideosByCompetition(competitionId).find(
+    (video) =>
+      video.isOfficial &&
+      Boolean(video.officialWatchUrl) &&
+      (video.liveWatch === "channel" || video.liveWatch === "broadcast"),
+  );
+}
+
 export function groupCompetitionsForWatch(now = new Date()) {
-  const liveVideos = getLiveVideos(now);
+  const liveVideos = getLiveStreams(now);
   const liveCompetitionIds = new Set(liveVideos.map((video) => video.competitionId));
 
   const upcoming: Competition[] = [];
@@ -140,6 +176,7 @@ export function groupCompetitionsForWatch(now = new Date()) {
 }
 
 export function getReplayLibrary(now = new Date()) {
+  void now;
   const completed = competitions
     .filter((competition) => getCompetitionPhase(competition.startDate, competition.endDate) === "completed")
     .sort((a, b) => (b.endDate ?? "").localeCompare(a.endDate ?? ""));
@@ -205,6 +242,68 @@ export function getSessionGroupKey(video: CompetitionVideo): (typeof sessionGrou
   }
 
   return "other";
+}
+
+function videoSortTime(video: CompetitionVideo): number {
+  const raw = video.endedAt ?? video.actualStartAt ?? video.scheduledStartAt;
+  if (!raw) return Number.NaN;
+  const time = new Date(raw).getTime();
+  return Number.isNaN(time) ? Number.NaN : time;
+}
+
+export function getLiveStreams(now = new Date()): CompetitionVideo[] {
+  return videos.filter((video) => isLiveWatchEntry(video, now));
+}
+
+export function getUpcomingStreams(now = new Date()): Competition[] {
+  return groupCompetitionsForWatch(now).upcoming;
+}
+
+export function competitionHasAnnouncedStream(competitionId: string, now = new Date()): boolean {
+  return getVideosByCompetition(competitionId).some((video) => {
+    if (!video.isOfficial || !video.officialWatchUrl) return false;
+    return resolveVideoStatus(video, now) === "scheduled";
+  });
+}
+
+export function getAnnouncedStreamUrl(competitionId: string, now = new Date()): string | null {
+  const video = getVideosByCompetition(competitionId).find((item) => {
+    if (!item.isOfficial || !item.officialWatchUrl) return false;
+    return resolveVideoStatus(item, now) === "scheduled";
+  });
+  return video?.officialWatchUrl ?? null;
+}
+
+export function getLatestReplays(now = new Date()): CompetitionVideo[] {
+  return getReplayVideos(now)
+    .filter((video) => video.isOfficial && Boolean(video.officialWatchUrl) && !video.liveWatch)
+    .sort((a, b) => {
+      const aTime = videoSortTime(a);
+      const bTime = videoSortTime(b);
+      if (Number.isNaN(aTime) && Number.isNaN(bTime)) return a.displayOrder - b.displayOrder;
+      if (Number.isNaN(aTime)) return 1;
+      if (Number.isNaN(bTime)) return -1;
+      return bTime - aTime;
+    });
+}
+
+export type TutorialTopic =
+  | "基礎步伐"
+  | "Pattern Dance"
+  | "Edges／Crossovers／Three-turns"
+  | "音樂與編舞"
+  | "成人參賽準備";
+
+export const tutorialTopics: TutorialTopic[] = [
+  "基礎步伐",
+  "Pattern Dance",
+  "Edges／Crossovers／Three-turns",
+  "音樂與編舞",
+  "成人參賽準備",
+];
+
+export function getTutorialVideos(): CompetitionVideo[] {
+  return [];
 }
 
 export function groupWatchSessions(items: CompetitionVideo[]) {

@@ -8,7 +8,7 @@
 .hero {
   display: grid;
   gap: 14px;
-  max-width: 42rem;
+  max-width: none;
   padding: 4px 0 8px;
 }
 
@@ -20,7 +20,7 @@
 
 .answer {
   margin: 0;
-  max-width: 40rem;
+  max-width: none;
   color: var(--color-text-on-dark);
   font-size: 1.05rem;
   line-height: 1.75;
@@ -31,7 +31,7 @@
 .note,
 .faqItem p,
 .sourceList a {
-  max-width: 40rem;
+  max-width: none;
 }
 
 .lede,

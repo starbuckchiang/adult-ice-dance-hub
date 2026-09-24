@@ -6,7 +6,7 @@
 
 .intro {
   margin: 0 0 28px;
-  max-width: var(--measure);
+  max-width: none;
   color: var(--color-text-muted-dark);
 }
 

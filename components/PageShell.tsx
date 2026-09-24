@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { FloatingCta } from "@/components/FloatingCta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -13,6 +14,7 @@ export function PageShell({ children }: { children: ReactNode }) {
         {children}
       </main>
       <SiteFooter />
+      <FloatingCta />
     </div>
   );
 }

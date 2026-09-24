@@ -1270,7 +1270,7 @@ export function TaiwanCompetitionHub() {
         <h3 className={styles.subHead} id="support-contact">
           洽詢國內成人參賽支援
         </h3>
-        <div className={styles.formPanel}>
+        <div className={styles.formPanel} data-cta-hide>
           {formStatus === "success" ? (
             <p className={styles.statusOk} role="status">
               已收到你的洽詢，我們將透過Email或電話與你聯繫。

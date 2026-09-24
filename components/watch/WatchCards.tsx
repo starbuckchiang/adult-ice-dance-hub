@@ -15,7 +15,8 @@ import {
   videoStatusLabel,
 } from "@/lib/format";
 import { getCompetitionWatchSummary, resolveVideoStatus } from "@/lib/videos";
-import { getYouTubeThumbnailUrl } from "@/lib/youtube";
+import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
+import { resolveReplayThumbnail } from "@/lib/youtube";
 
 export function LiveNowCard({
   video,
@@ -191,17 +192,11 @@ export function VideoThumbCard({
   current?: boolean;
 }) {
   const status = resolveVideoStatus(video);
-  const thumbnail = video.youtubeVideoId ? getYouTubeThumbnailUrl(video.youtubeVideoId) : null;
 
   return (
     <article className={`session-card ${current ? "is-current" : ""}`}>
       <span className="session-thumb">
-        {thumbnail ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={thumbnail} alt={`${video.titleZh} 縮圖`} />
-        ) : (
-          <span className="session-thumb-fallback" aria-hidden="true" />
-        )}
+        <ReplayThumbnail src={resolveReplayThumbnail(video)} alt={`${video.titleZh} 縮圖`} />
       </span>
       <span>
         <span className="badge-row">

@@ -122,6 +122,7 @@ export type CompetitionVideo = {
   discipline: VideoDiscipline;
   youtubeVideoId: string | null;
   youtubePlaylistId: string | null;
+  thumbnailUrl?: string | null;
   youtubeChannelUrl: string | null;
   officialWatchUrl: string;
   officialSourceUrl: string;
@@ -129,6 +130,8 @@ export type CompetitionVideo = {
   scheduledStartAt: string | null;
   actualStartAt: string | null;
   endedAt: string | null;
+  eventDate?: string | null;
+  publishedAt?: string | null;
   timezone: string;
   status: VideoStatus;
   isOfficial: boolean;
@@ -143,6 +146,7 @@ export type CompetitionVideo = {
   displayOrder: number;
   lastVerifiedAt: string;
   sourceId: string;
+  liveWatch?: "channel" | "broadcast" | null;
 };
 
 export type LearnStep = {
