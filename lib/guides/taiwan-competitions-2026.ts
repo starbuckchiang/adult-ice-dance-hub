@@ -55,6 +55,7 @@ export const TAIWAN_GUIDE_PATH = "/guides/taiwan-adult-competitions-2026";
 
 export const STORAGE_KEYS = {
   eligibility: "aidh:tw-competitions-2026:eligibility:v1",
+  routeFlow: "aidh:tw-competitions-2026:route-flow:v1",
   plan: "aidh:tw-competitions-2026:plan:v1",
   budget: "aidh:tw-competitions-2026:budget:v1",
   support: "aidh:tw-competitions-2026:support:v1",
@@ -1238,4 +1239,108 @@ export function seedBudgetFromCompetition(competition?: TaiwanCompetition2026): 
     }
   }
   return { eventId: competition?.id ?? "", items };
+}
+
+export type GateEventFit = "" | "listed" | "not-listed" | "unknown";
+export type GateLevel = "" | "meets" | "short" | "unknown";
+export type GateCoach = "" | "has-coach" | "no-regular" | "unsure";
+export type GateSignature = "" | "required" | "unsure" | "not-required";
+
+export type GateDiscipline = "" | "adult-singles" | "solo-dance" | "partnered-dance" | "unsure";
+
+export type GateAnswers = {
+  eventFit: GateEventFit;
+  level: GateLevel;
+  coach: GateCoach;
+  signature: GateSignature;
+  discipline?: GateDiscipline;
+};
+
+export const EMPTY_GATE: GateAnswers = {
+  eventFit: "",
+  level: "",
+  coach: "",
+  signature: "",
+};
+
+export type GateVerdict = "preliminary-match" | "need-more-info" | "ask-organizer" | "may-not-qualify";
+
+export type GateResult = {
+  verdict: GateVerdict;
+  title: string;
+  detail: string;
+  nextSteps: string[];
+};
+
+export function gateVerdictLabel(verdict: GateVerdict): string {
+  switch (verdict) {
+    case "preliminary-match":
+      return "初步符合";
+    case "need-more-info":
+      return "需要補充資料";
+    case "ask-organizer":
+      return "需要向主辦單位確認";
+    case "may-not-qualify":
+      return "目前條件可能不符合";
+  }
+}
+
+const ORGANIZER_STEPS = [
+  "確認目標比賽與成人項目",
+  "附上報名表或截圖詢問主辦單位",
+  "確認能否以自主選手報名",
+  "確認簽名者是否須具備特定教練資格",
+  "若必須簽署，安排一次性參賽評估",
+];
+
+export function evaluateGate(answers: GateAnswers): GateResult | null {
+  if (!answers.eventFit && !answers.level && !answers.coach && !answers.signature) {
+    return null;
+  }
+  if (!answers.eventFit || !answers.level || !answers.coach || !answers.signature) {
+    return {
+      verdict: "need-more-info",
+      title: "先補齊四關的答案",
+      detail: "項目、檢定、教練現況與簽名欄還沒有全部填完。這不是報名結論。",
+      nextSteps: ["依序完成四關選擇", "對照該場規程列出的項目與檢定條件", "沒有寫在規程裡的事項，向主辦單位確認"],
+    };
+  }
+  if (answers.eventFit === "not-listed") {
+    return {
+      verdict: "may-not-qualify",
+      title: "這場賽事沒有列出你要的成人項目",
+      detail: "名稱含有「成人」不代表花式、Solo Dance 與 Partnered Dance 都有開放。請改看規程實際列出的項目。",
+      nextSteps: ["對照該場規程的項目表", "若規程沒有你的項目，不要先做節目或繳註冊費", "仍有疑問時，向主辦單位確認"],
+    };
+  }
+  if (answers.level === "short") {
+    return {
+      verdict: "may-not-qualify",
+      title: "先安排檢定，不是先報名",
+      detail: "級別不足時，下一步是安排檢定。不要先製作節目或完成報名。",
+      nextSteps: ["對照該項目的正式檢定要求", "安排可參加的檢定", "檢定結果出來後，再回到資格檢查"],
+    };
+  }
+  if (answers.coach === "no-regular" && answers.signature === "required") {
+    return {
+      verdict: "ask-organizer",
+      title: "先處理教練簽署，不是先繳註冊費",
+      detail: "你目前沒有固定教練，而報名表出現教練簽名欄。先確認能否以自主選手報名，以及簽名者需要具備哪些資格。",
+      nextSteps: ORGANIZER_STEPS,
+    };
+  }
+  if (answers.eventFit === "unknown" || answers.signature === "unsure" || answers.coach === "unsure" || answers.level === "unknown") {
+    return {
+      verdict: "ask-organizer",
+      title: "規程沒有寫清楚的部分，先問主辦單位",
+      detail: "頁面不能把未公布的項目、檢定或簽名規則補成結論。",
+      nextSteps: ORGANIZER_STEPS.slice(0, 4),
+    };
+  }
+  return {
+    verdict: "preliminary-match",
+    title: "前三關目前看可行，接著才處理註冊",
+    detail: "這是初步整理，不是主辦單位的錄取或報名核准。前一年度的選手註冊不會自動延續。",
+    nextSteps: ["完成協會當年度選手註冊與繳費", "再依該場簡章正式報名", "報名截止與組別仍以主辦單位最新公告為準"],
+  };
 }

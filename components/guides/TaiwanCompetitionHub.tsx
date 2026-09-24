@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { TaiwanGateScreen } from "@/components/guides/TaiwanGateScreen";
 import { ExternalLink } from "@/components/ExternalLink";
 import { LazyYouTubePlayer } from "@/components/watch/LazyYouTubePlayer";
 import {
@@ -46,7 +47,6 @@ import {
   eligibilityLabel,
   emptyResultRecord,
   evaluateEligibility,
-  featuredActionableEvent,
   formatDateRange,
   formatZhDate,
   getTaiwanCompetitions2026,
@@ -335,8 +335,6 @@ export function TaiwanCompetitionHub() {
   }, [results, hydrated]);
 
   const lanes = groupGuideLanes(competitions, clock);
-  const featured = featuredActionableEvent(competitions, clock);
-  const featuredLane = featured ? resolveGuideLane(featured, clock) : null;
   const openLanes: Array<[string, TaiwanCompetition2026[]]> = [
     ["正在進行", lanes.ongoing],
     ["報名中", lanes["registration-open"]],
@@ -503,43 +501,7 @@ export function TaiwanCompetitionHub() {
 
   return (
     <div className={styles.wrap}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <h1>2026 台灣成人滑冰參賽指南</h1>
-          <p className={styles.lede}>先找到仍可準備的比賽，再確認資格、組別與準備時程。</p>
-          <div className="button-row">
-            <a className="button" href="#events-2026">
-              查看可參加賽事
-            </a>
-            <a className="button-secondary" href="#eligibility">
-              檢查我的參賽條件
-            </a>
-          </div>
-        </div>
-        <aside className={styles.heroCard} aria-label="仍可準備的賽事">
-          {featured ? (
-            <>
-              <p className={styles.heroMeta}>{featuredLane ? laneLabel(featuredLane) : ""}</p>
-              <h2>{featured.nameZh}</h2>
-              <p className={styles.heroMeta}>
-                {formatDateRange(featured.startDate, featured.endDate)}
-                {featured.city ? ` ｜ ${featured.city}` : ""}
-                {featured.adultEligibility === "confirmed" ? " ｜ 已確認成人可參加" : featured.adultEligibility === "ask-organizer" ? " ｜ 成人組需要向主辦單位確認" : ""}
-              </p>
-              <div className={styles.actions}>
-                <a className="button" href={`#${featured.id}`}>
-                  查看這場比賽
-                </a>
-                <a className="button-secondary" href="#eligibility">
-                  檢查我的參賽條件
-                </a>
-              </div>
-            </>
-          ) : (
-            <p>目前沒有報名中或即將開放、且已查證的國內花式滑冰賽事。</p>
-          )}
-        </aside>
-      </section>
+      <TaiwanGateScreen competitions={competitions} now={clock} />
 
       <nav className={styles.pathNav} aria-label="閱讀順序">
         {[
@@ -592,7 +554,7 @@ export function TaiwanCompetitionHub() {
         )}
       </section>
 
-      <section className={styles.section} id="eligibility">
+      <section className={styles.section} id="eligibility-form">
         <div className={styles.sectionHead}>
           <h2>資格與項目判斷</h2>
           <p>先確認成人組資格與項目，再決定要準備哪一場、哪一組。</p>
@@ -1513,11 +1475,11 @@ export function TaiwanCompetitionHub() {
       </section>
 
       <div className={styles.sticky}>
-        <a className="button" href="#events-2026">
-          查看可參加賽事
+        <a className="button" href="#eligibility">
+          開始資格檢查
         </a>
-        <a className="button-secondary" href="#eligibility">
-          檢查我的參賽條件
+        <a className="button-secondary" href="#prep-steps">
+          建立備賽計畫
         </a>
       </div>
     </div>

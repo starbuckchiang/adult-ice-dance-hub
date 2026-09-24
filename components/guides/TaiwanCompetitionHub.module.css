@@ -585,8 +585,8 @@
 }
 
 .sticky {
-  position: sticky;
-  bottom: 12px;
+  position: static;
+  bottom: auto;
   z-index: 8;
   display: flex;
   flex-wrap: wrap;
