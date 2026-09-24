@@ -1,0 +1,108 @@
+.page {
+  background: #f3eee6;
+  color: #1b1526;
+  padding: 36px 0 72px;
+}
+
+.inner {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: #3d2a78;
+  font-family: var(--font-noto), var(--font-inter), "Noto Sans TC", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  border-bottom: 2px solid #c6e24a;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.page h1,
+.page h2 {
+  margin: 0;
+  color: #1b1526;
+  font-family: var(--font-serif), "Noto Serif TC", serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.page h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.lede {
+  margin: 18px 0 0;
+  color: #3a3148;
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+
+.section {
+  margin-top: 36px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(27, 21, 38, 0.16);
+}
+
+.page h2 {
+  margin-bottom: 14px;
+  color: #2a1b4a;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.page p,
+.page li,
+.page a {
+  font-family: var(--font-noto), var(--font-inter), "Noto Sans TC", sans-serif;
+}
+
+.page p,
+.page li {
+  color: #3a3148;
+  line-height: 1.7;
+}
+
+.page p {
+  margin: 0 0 14px;
+}
+
+.page ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.page li + li {
+  margin-top: 8px;
+}
+
+.page a {
+  color: #4a2ea8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.page a:hover {
+  text-decoration: underline;
+}
+
+.page a:focus-visible {
+  outline: 2px solid #4a2ea8;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    width: min(760px, calc(100% - 28px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page a {
+    transition: none;
+  }
+}
