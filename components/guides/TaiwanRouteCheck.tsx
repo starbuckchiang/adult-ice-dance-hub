@@ -159,6 +159,11 @@ export function TaiwanRouteCheck({
           )}
           <div className={styles.actions}>
             {preview ? null : (
+              <button className={styles.secondary} type="button" onClick={onClear}>
+                清除並重新填寫
+              </button>
+            )}
+            {preview ? null : (
               <button className={styles.secondary} type="button" onClick={() => setPreview(true)}>
                 整頁預覽
               </button>
@@ -169,54 +174,34 @@ export function TaiwanRouteCheck({
           </div>
           <p className={styles.disclaimer}>本卡為參賽規劃摘要，不代表主辦單位或教練的正式資格核定。</p>
         </article>
-        <section className={styles.nextPanel} aria-label="Next Experience Support">
-          <div className={styles.parts}>
-            <div>
-              <p>NEXT</p>
-              <h3>仍可規劃的賽事</h3>
-              <span>只顯示尚可準備或待正式公告的機會。</span>
-            </div>
-            <div>
-              <p>EXPERIENCE</p>
-              <h3>別人的第一次參賽</h3>
-              <span>從真實準備經驗理解時間與工作量。</span>
-            </div>
-            <div>
-              <p>SUPPORT</p>
-              <h3>需要人協助判斷？</h3>
-              <span>整理規則、報名與參賽準備需求。</span>
-            </div>
-          </div>
-        </section>
         </div>
       </div>
+
+      <section className={styles.nextPanel} aria-label="Next Experience Support">
+        <div className={styles.parts}>
+          <div>
+            <p>NEXT</p>
+            <h3>仍可規劃的賽事</h3>
+            <span>只顯示尚可準備或待正式公告的機會。</span>
+          </div>
+          <div>
+            <p>EXPERIENCE</p>
+            <h3>別人的第一次參賽</h3>
+            <span>從真實準備經驗理解時間與工作量。</span>
+          </div>
+          <div>
+            <p>SUPPORT</p>
+            <h3>需要人協助判斷？</h3>
+            <span>整理規則、報名與參賽準備需求。</span>
+          </div>
+        </div>
+      </section>
 
       {preview ? (
         <button className={styles.exit} type="button" onClick={() => setPreview(false)}>
           返回編輯
         </button>
       ) : null}
-
-      <div className={styles.sources} id="official-sources">
-        <h2>官方來源</h2>
-        <ul>
-          {competitions.map((item) => (
-            <li key={item.id}>
-              {item.nameZh}
-              {item.officialNoticeUrl ? (
-                <a href={item.officialNoticeUrl} target="_blank" rel="noreferrer">
-                  公告
-                </a>
-              ) : null}
-              <span>查證 {item.verifiedAt}</span>
-            </li>
-          ))}
-        </ul>
-        <p>項目是否開放、檢定條件與教練簽名資格，以中華民國滑冰協會及該場主辦單位公告為準。</p>
-        <button className={styles.secondary} type="button" onClick={onClear}>
-          清除並重新填寫
-        </button>
-      </div>
     </section>
   );
 }
