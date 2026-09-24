@@ -116,9 +116,7 @@ export const footerColumns: { id: string; title: string; links: NavLink[] }[] = 
     links: [
       { href: "/guides/taiwan-adult-competitions-2026#services", label: "參賽服務" },
       { href: "/advertising", label: "廣告合作" },
-      { href: "/about", label: "聯絡本站" },
       { href: "/about", label: "關於本站" },
-      { href: "/about#data-policy", label: "資料來源" },
       { href: "/privacy", label: "隱私權" },
       { href: "/terms", label: "服務條款" },
     ],

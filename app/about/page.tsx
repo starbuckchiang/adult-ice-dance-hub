@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AboutRedirect } from "@/components/about/AboutRedirect";
 import styles from "@/components/about/AboutPage.module.css";
 import { createPageMetadata } from "@/lib/metadata";
 import { SITE_NAME_EN, SITE_NAME_ZH } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "關於本站",
-  description:
-    "了解 Adult Ice Dance Hub 成人冰舞資訊站的定位與資料原則：優先收錄具公開來源的成人冰舞資訊。",
+  description: `${SITE_NAME_EN}（${SITE_NAME_ZH}）關於本站頁面會在 6 秒後回到首頁。`,
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <div className={styles.page}>
+      <AboutRedirect />
       <article className={styles.inner}>
+        <p className={styles.notice}>6 秒後回到首頁。</p>
         <header>
           <p className={styles.kicker}>ABOUT</p>
           <h1>關於本站</h1>
