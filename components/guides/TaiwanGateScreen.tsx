@@ -23,6 +23,22 @@ const DEMO = {
   ],
 };
 
+function OrganizerContactFacts() {
+  return (
+    <div className={styles.contactFacts}>
+      <p>
+        臺中市長盃承辦信箱見該場公告頁：<span className={styles.keep}>tcfscrm@c-tek.com.tw</span>。
+      </p>
+      <p>
+        中華民國滑冰協會電話 <span className={styles.keep}>02-8771-1451</span>、<span className={styles.keep}>02-8771-1503</span>
+      </p>
+      <p>
+        花式滑冰信箱 <span className={styles.keep}>tpefsstssskating@gmail.com</span>（<a href="https://ctsu.com.tw/%e6%9c%83%e5%8b%99%e8%b3%87%e8%a8%8a/" target="_blank" rel="noreferrer">會務資訊</a>）
+      </p>
+    </div>
+  );
+}
+
 function isClosed(item: TaiwanCompetition2026, now: Date) {
   if (item.status === "completed") return true;
   if (!item.registrationDeadline) return false;
@@ -231,7 +247,16 @@ export function TaiwanGateScreen({
           <a className={styles.primary} href="#gate-event">
             開始資格檢查
           </a>
-          <a className={styles.secondary} href="#organizer-contacts">
+          <a
+            className={styles.secondary}
+            href="#organizer-contacts"
+            onClick={(event) => {
+              const target = document.getElementById("organizer-contacts");
+              if (!target) return;
+              event.preventDefault();
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
             查看主辦單位聯絡方式
           </a>
           {flow ? (
@@ -251,13 +276,32 @@ export function TaiwanGateScreen({
                   </li>
                 ))}
               </ul>
-              <p>臺中市長盃承辦信箱見該場公告頁：tcfscrm@c-tek.com.tw。全國賽請用中華民國滑冰協會公告上的聯絡方式。</p>
+              <OrganizerContactFacts />
             </div>
           ) : null}
         </aside>
       </div>
 
-      {flow ? null : (
+      {flow ? (
+        <section className={styles.contacts} id="organizer-contacts">
+          <h2>主辦單位聯絡方式</h2>
+          <ul>
+            {competitions.map((item) => (
+              <li key={item.id}>
+                <strong>{item.nameZh}</strong>
+                {isClosed(item, now) ? "（已截止，參考資料）" : ""}
+                {item.officialNoticeUrl ? (
+                  <a href={item.officialNoticeUrl} target="_blank" rel="noreferrer">
+                    官方公告
+                  </a>
+                ) : null}
+                <span>查證 {item.verifiedAt}</span>
+              </li>
+            ))}
+          </ul>
+          <OrganizerContactFacts />
+        </section>
+      ) : (
       <>
       <div className={styles.after} id="after-gates">
         <div>
@@ -285,7 +329,7 @@ export function TaiwanGateScreen({
             </li>
           ))}
         </ul>
-        <p>臺中市長盃承辦信箱見該場公告頁：tcfscrm@c-tek.com.tw。全國賽請用中華民國滑冰協會公告上的聯絡方式。</p>
+        <OrganizerContactFacts />
       </section>
       </>
       )}

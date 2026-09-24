@@ -173,9 +173,34 @@
 }
 
 .source a,
-.contacts a {
-  margin-left: 8px;
+.contacts a,
+.previewContacts a {
   color: #4a2ea8;
+}
+
+.contacts li a,
+.previewContacts li a {
+  margin-inline: 8px;
+}
+
+.contactFacts {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 0;
+}
+
+.contactFacts p {
+  margin: 0;
+  color: #3a3148;
+  line-height: 1.6;
+}
+
+.contactFacts a {
+  margin-inline: 0;
+}
+
+.keep {
+  white-space: nowrap;
 }
 
 .result {
@@ -247,6 +272,11 @@
 .contacts {
   display: grid;
   gap: 8px;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+:global(html[data-route-preview="1"]) .contacts {
+  display: none;
 }
 
 .contacts ul {
@@ -254,8 +284,10 @@
   padding-left: 1.2rem;
 }
 
-.contacts li {
-  margin: 6px 0;
+.contacts li,
+.previewContacts li {
+  margin: 8px 0;
+  line-height: 1.55;
 }
 
 @media (max-width: 900px) {
