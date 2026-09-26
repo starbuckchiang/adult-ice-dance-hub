@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { AsiaArtisticRoute } from "@/components/guides/AsiaArtisticRoute";
+import { AsiaArtisticRoute } from "@/components/guides/AsiaArtisticRoute.legacy";
+import { Breadcrumbs } from "@/components/nav/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ASIA_FAQS, ASIA_GUIDE_PATH } from "@/lib/guides/asia-artistic-2027";
 import { createPageMetadata } from "@/lib/metadata";
@@ -37,7 +38,10 @@ export default function AsiaArtisticSkating2027Page() {
         })}
       />
       <JsonLd data={faqJsonLd(ASIA_FAQS)} />
-      <AsiaArtisticRoute crumbs={crumbs} />
+      <header className="page-header">
+        <Breadcrumbs items={crumbs} />
+      </header>
+      <AsiaArtisticRoute />
     </>
   );
 }

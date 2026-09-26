@@ -103,7 +103,7 @@ export const EMPTY_ASIA: AsiaAnswers = {
 };
 
 const LEVEL_LABEL: Record<LevelState, string> = {
-  "": "尚待回答",
+  "": "待確認",
   unknown: "尚未確認",
   basic: "基本級（Pre-Alpha 至 Delta）",
   "fs-1-4": "Freestyle 1–4",
@@ -112,21 +112,21 @@ const LEVEL_LABEL: Record<LevelState, string> = {
 };
 
 const TRI_LABEL: Record<TriState, string> = {
-  "": "尚待回答",
+  "": "待確認",
   yes: "已有",
   no: "尚未",
   unsure: "尚不確定",
 };
 
 const PREP_LABEL: Record<PrepState, string> = {
-  "": "尚待回答",
+  "": "待確認",
   none: "尚未開始",
   drafting: "準備中",
   ready: "已有初稿",
 };
 
 const PARTNER_LABEL: Record<PartnerState, string> = {
-  "": "尚待回答",
+  "": "待確認",
   have: "已有舞伴",
   none: "尚未找到",
   "not-needed": "這次不需要",
@@ -160,7 +160,7 @@ function directionMeta(id: DirectionId) {
 function eventMeta(id: EventChoice) {
   if (id === "undecided") return { name: "尚未決定", status: "需要本人確認" };
   const event = asiaCatalog.events.find((item) => item.id === id);
-  if (!event) return { name: "尚待回答", status: "尚待回答" };
+  if (!event) return { name: "待確認", status: "待確認" };
   return { name: `${event.city} · ${event.nameEn}`, status: event.dateStatus === "tentative" ? "暫定" : "已確認" };
 }
 
@@ -233,8 +233,8 @@ export function buildAsiaRoute(answers: AsiaAnswers): AsiaRouteCard {
   const support = pickSupport(answers);
 
   return {
-    direction: direction?.title ?? "尚待回答",
-    focus: direction?.focus ?? "尚待回答",
+    direction: direction?.title ?? "待確認",
+    focus: direction?.focus ?? "待確認",
     eventName: event.name,
     eventStatus: event.status,
     level: LEVEL_LABEL[answers.level],
@@ -285,7 +285,7 @@ function pickSupport(answers: AsiaAnswers): AsiaRouteCard["support"] {
       title: "教練／Mentor 協調",
       detail: "請教練看表演方向、級別與動作是否適合這條路線。",
       href: "/community/coaches",
-      cta: "查看教練交流",
+      cta: "",
     };
   }
   if (answers.rink !== "yes" || answers.gates.representative !== "confirmed") {
