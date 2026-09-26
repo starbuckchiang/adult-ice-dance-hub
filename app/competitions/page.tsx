@@ -39,6 +39,14 @@ export default function CompetitionsPage() {
               進入台灣成人參賽指南
             </Link>
           </article>
+          <article className="card-dark">
+            <p className="kicker">ASIA 2027</p>
+            <h2>2027 亞洲藝術類成人賽規劃</h2>
+            <p>香港 CPIR 與深圳 Skate Asia 的日期狀態不同。先整理表演方向與資格問題，再交給教練或冰場確認。</p>
+            <Link className="button" href="/guides/asia-artistic-skating-2027">
+              進入亞洲參賽路線
+            </Link>
+          </article>
         </section>
         <section className="section" id="live-now">
           <article className="card-dark">

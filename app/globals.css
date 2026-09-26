@@ -1059,14 +1059,20 @@ button:focus-visible,
 
 html[data-route-preview="1"] header,
 html[data-route-preview="1"] footer,
-html[data-route-preview="1"] [class*="FloatingCta"] {
+html[data-route-preview="1"] [class*="FloatingCta"],
+html[data-asia-preview="1"] header,
+html[data-asia-preview="1"] footer,
+html[data-asia-preview="1"] [class*="FloatingCta"] {
   display: none !important;
 }
 
 @media print {
   html:has(#route-card) header,
   html:has(#route-card) footer,
-  html:has(#route-card) [class*="FloatingCta"] {
+  html:has(#route-card) [class*="FloatingCta"],
+  html:has(#asia-route-card) header,
+  html:has(#asia-route-card) footer,
+  html:has(#asia-route-card) [class*="FloatingCta"] {
     display: none !important;
   }
 }

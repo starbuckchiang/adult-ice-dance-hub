@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-09-26",
+  "sourceName": "ISIAsia Competition Schedule",
+  "sourceUrl": "https://isiasia.org/competitions/competition-schedule/?lang=zh-hant",
+  "events": [
+    {
+      "id": "hk-cpir-2027",
+      "nameEn": "ISIAsia CPIR Figure Skating Contest 2027",
+      "nameZh": "2027 ISIAsia 太古城中心冰上皇宮花樣滑冰競技賽",
+      "city": "香港",
+      "venue": "太古冰上皇宮溜冰場（Cityplaza Ice Palace）",
+      "dateLabel": "2027.04.23–26",
+      "startDate": "2027-04-23",
+      "endDate": "2027-04-26",
+      "dateStatus": "confirmed",
+      "dateStatusLabel": "日期與地點已公布",
+      "programStatus": "awaiting-rules",
+      "programStatusLabel": "比賽項目待章程確認"
+    },
+    {
+      "id": "sz-skate-asia-2027",
+      "nameEn": "Skate Asia 2027",
+      "nameZh": "2027 亞洲滑冰邀請賽",
+      "city": "深圳",
+      "venue": "深圳冰紛萬象滑冰場（World Ice Arena Shenzhen）",
+      "dateLabel": "暫定 2027.08.06–14",
+      "startDate": "2027-08-06",
+      "endDate": "2027-08-14",
+      "dateStatus": "tentative",
+      "dateStatusLabel": "暫定日期",
+      "programStatus": "awaiting-rules",
+      "programStatusLabel": "比賽項目待章程確認"
+    }
+  ]
+}

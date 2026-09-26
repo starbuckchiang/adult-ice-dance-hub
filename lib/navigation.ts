@@ -48,6 +48,7 @@ export const navCategories: NavCategory[] = [
     label: "參賽與檢定",
     children: [
       { href: "/guides/taiwan-adult-competitions-2026", label: "台灣成人賽" },
+      { href: "/guides/asia-artistic-skating-2027", label: "2027 亞洲藝術類成人賽規劃" },
       { href: "/competitions", label: "海外與近期賽事" },
       { href: "/guides/ice-dance-tests-in-taiwan", label: "台灣冰舞檢定" },
       { href: "/guides/ice-dance-video-tests-from-taiwan", label: "錄影檢定" },
