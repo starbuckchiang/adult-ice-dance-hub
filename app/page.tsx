@@ -6,6 +6,7 @@ import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { Competition, Country } from "@/data/types";
 import { getCompetitionPhase, formatDate, formatDateRange } from "@/lib/format";
+import { FIGURE_SKATING_ICE_DANCE_PATH, VERIFIED_ON as ICE_DANCE_INTRO_VERIFIED_ON } from "@/lib/guides/figure-skating-ice-dance";
 import { VERIFIED_ON } from "@/lib/guides/ice-dance-tests-taiwan";
 import { TAIWAN_GUIDE_PATH } from "@/lib/guides/taiwan-competitions-2026";
 import { getCompetitions, getCountries } from "@/lib/content";
@@ -16,13 +17,18 @@ import { getLatestReplays } from "@/lib/videos";
 import { resolveReplayThumbnail } from "@/lib/youtube";
 
 const description =
-  "成人冰舞的學習、裝備、檢定與參賽指南。依照你現在的程度，找到開始學、準備鞋子、完成檢定或走向第一場比賽的下一步。";
+  "花滑（花式滑冰）與冰舞的成人入門。依你現在的程度開始學、準備鞋子、完成檢定，或走向第一場比賽。比賽術語、2026冬奧組合與服裝音樂規定另有深入介紹。";
 
-export const metadata: Metadata = createPageMetadata({
-  title: `${SITE_NAME_EN}｜成人冰舞學習、裝備、檢定與參賽`,
-  description,
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: "花滑、花式滑冰與冰舞",
+    description,
+    path: "/",
+  }),
+  title: {
+    absolute: "花滑、花式滑冰與冰舞｜成人學習、檢定與參賽",
+  },
+};
 
 const paths = [
   {
@@ -129,7 +135,7 @@ export default function HomePage() {
             <p className={styles.kicker}>ADULT ICE DANCE · TAIWAN</p>
             <h1>成人冰舞，從「想試試」開始。</h1>
             <p className={styles.lede}>
-              不是只收藏規則與賽事，而是找到符合你現在程度的下一個行動：開始學、準備裝備、尋找檢定，或走向第一場比賽。
+              花滑是花式滑冰的常見簡稱，冰舞是其中的雙人項目。這裡依你現在的程度，安排開始學、準備裝備、尋找檢定，或走向第一場比賽。
             </p>
             <div className={styles.actions}>
               <a className={styles.primary} href="#paths">
@@ -158,6 +164,22 @@ export default function HomePage() {
         <div className={styles.adBreak}>
           <AdSlot placementCode="HOME_HERO" />
         </div>
+
+        <section className={styles.section} id="ice-dance" aria-labelledby="ice-dance-title">
+          <div className={styles.sectionHead}>
+            <h2 id="ice-dance-title">花滑、花式滑冰與冰舞</h2>
+          </div>
+          <article className={styles.story}>
+            <p className={styles.category}>入門</p>
+            <h3>比賽在比什麼</h3>
+            <p>
+              冰舞看步伐、握持、音樂與托舉，不以跳躍為主。這篇整理同步旋轉、圖形步法序列、2026 冬奧頂尖組合，以及服裝與音樂規定。
+            </p>
+            <Link className={styles.cardLink} href={FIGURE_SKATING_ICE_DANCE_PATH}>
+              閱讀冰舞深入介紹
+            </Link>
+          </article>
+        </section>
 
         <section className={styles.section} id="featured" aria-labelledby="featured-title">
           <div className={styles.sectionHead}>
@@ -225,9 +247,9 @@ export default function HomePage() {
             ) : null}
             <article className={styles.recentCard}>
               <p className={styles.category}>最近更新的指南</p>
-              <h3>在台灣能參加冰舞檢定嗎？</h3>
-              <p className={styles.meta}>查證日期：{formatDate(VERIFIED_ON)}</p>
-              <Link className={styles.cardLink} href="/guides/ice-dance-tests-in-taiwan">
+              <h3>花式滑冰與冰舞入門</h3>
+              <p className={styles.meta}>查證日期：{formatDate(ICE_DANCE_INTRO_VERIFIED_ON)}</p>
+              <Link className={styles.cardLink} href={FIGURE_SKATING_ICE_DANCE_PATH}>
                 閱讀指南
               </Link>
             </article>

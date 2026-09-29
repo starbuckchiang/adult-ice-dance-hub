@@ -19,6 +19,12 @@ const crumbs = [
 ];
 
 const entries = [
+  {
+    href: "/guides/figure-skating-ice-dance",
+    kicker: "START HERE",
+    title: "花滑、花式滑冰與冰舞",
+    text: "先分清三個詞，再看同步旋轉、圖形步法序列、2026 冬奧組合，以及服裝與音樂規定。",
+  },
   { href: "/learn/steps", kicker: "STEPS", title: "冰舞基礎步伐", text: "內外刃、交叉步、三字轉、Mohawk、Choctaw 與 Twizzle 入門。" },
   { href: "/learn/pattern-dance", kicker: "PATTERN DANCE", title: "Pattern Dance", text: "只列出已查證的 2026–27 成人規定舞導覽，不含未核對步序圖。" },
   { href: "/testing", kicker: "TESTING", title: "成人檢定路線", text: "六國協會與 ISU 國際成人賽資格入口，不把 ISU 寫成全球統一檢定。" },

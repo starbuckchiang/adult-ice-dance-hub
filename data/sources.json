@@ -405,5 +405,27 @@
     "lastVerified": "2026-09-24",
     "status": "verified",
     "summary": "由 JGP 官方觀看頁的 isuweb.link/fS24pkY 轉址取得。這是頻道入口，不代表某一場正在播放。"
+  },
+  {
+    "id": "src-wafsc-swan-trophy-2026",
+    "slug": "wafsc-swan-trophy-2026",
+    "nameZh": "WAFSC 2026 Swan Trophy",
+    "nameEn": "WAFSC Swan Trophy 2026",
+    "publisher": "Western Australian Figure Skating Club",
+    "url": "https://www.wafsc.org/competitions/swan-trophy",
+    "lastVerified": "2026-09-29",
+    "status": "verified",
+    "summary": "俱樂部賽事頁寫明 Swan Trophy 會在其 YouTube 頻道直播。成績與 9 月 29 日晚場時刻表見 https://results.wafsc.org/2026/swanint/。"
+  },
+  {
+    "id": "src-wafsc-swan-trophy-2026-live",
+    "slug": "wafsc-swan-trophy-2026-day3-part2",
+    "nameZh": "WAFSC YouTube：2026 Swan Trophy",
+    "nameEn": "WAFSC YouTube Swan Trophy 2026",
+    "publisher": "Western Australian Figure Skating Club",
+    "url": "https://www.youtube.com/channel/UCBxsG7RS_s5ablvyRBH3SNQ/streams",
+    "lastVerified": "2026-09-29",
+    "status": "verified",
+    "summary": "俱樂部 Swan Trophy 頁的 Livestream 連結指向此頻道。已收錄 2026 Day 1、Day 2 與正在播出的 Day 3 Part 2。"
   }
 ]

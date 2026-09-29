@@ -26,6 +26,14 @@ export default function RulesPage() {
       </header>
       <ContentWithSidebar>
         <article className="card-dark">
+          <p className="kicker">ICE DANCE</p>
+          <h2>花滑與冰舞在比什麼</h2>
+          <p>先看比賽術語、2026 冬奧冰舞組合，以及服裝與音樂規定。成人賽的元素與時間仍以各場規程為準。</p>
+          <Link className="button-secondary" href="/guides/figure-skating-ice-dance">
+            閱讀花滑與冰舞入門
+          </Link>
+        </article>
+        <article className="card-dark">
           <p className="kicker">TAIWAN 2026</p>
           <h2>國內賽事規程入口</h2>
           <p>2026 台灣成人花式滑冰與冰舞參賽指南整理協會及主辦單位已公布的規程與報名資料，不取代官方文件。</p>

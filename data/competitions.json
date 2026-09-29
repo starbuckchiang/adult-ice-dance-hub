@@ -158,5 +158,21 @@
     "lastVerified": "2026-09-24",
     "status": "verified",
     "sourceId": "src-isu-fs-calendar-202627"
+  },
+  {
+    "id": "comp-swan-trophy-2026",
+    "slug": "swan-trophy-2026",
+    "nameZh": "2026 Swan Trophy",
+    "nameEn": "2026 Swan Trophy",
+    "country": "australia",
+    "type": "general",
+    "location": "Cockburn Ice Arena, Bibra Lake, Perth, Australia",
+    "startDate": "2026-09-27",
+    "endDate": "2026-09-30",
+    "summary": "西澳花式滑冰俱樂部（Western Australian Figure Skating Club，WAFSC）主辦 2026 Swan Trophy，合併 Swan Trophy International 與年度 Interclub。賽期為 2026 年 9 月 27 日至 30 日，場地是珀斯 Cockburn Ice Arena。俱樂部頁面寫明賽事在其 YouTube 頻道直播。",
+    "officialUrl": "https://www.wafsc.org/competitions/swan-trophy",
+    "lastVerified": "2026-09-29",
+    "status": "verified",
+    "sourceId": "src-wafsc-swan-trophy-2026"
   }
 ]

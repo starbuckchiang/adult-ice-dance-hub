@@ -32,6 +32,7 @@ export const navCategories: NavCategory[] = [
     id: "learn",
     label: "學習冰舞",
     children: [
+      { href: "/guides/figure-skating-ice-dance", label: "花滑與冰舞入門" },
       { href: "/learn/steps", label: "基礎步伐" },
       { href: "/learn/pattern-dance", label: "Pattern Dance" },
       { href: "/music", label: "音樂與編舞" },
@@ -68,8 +69,8 @@ export const navCategories: NavCategory[] = [
     id: "live",
     label: "影音直播",
     children: [
-      { href: "/watch#replays", label: "最新重播" },
       { href: "/watch#live-now", label: "現正直播" },
+      { href: "/watch#replays", label: "最新重播" },
       { href: "/watch#upcoming", label: "即將直播" },
     ],
   },
@@ -105,6 +106,7 @@ export const footerColumns: { id: string; title: string; links: NavLink[] }[] = 
     id: "shortcuts",
     title: "實用入口",
     links: [
+      { href: "/guides/figure-skating-ice-dance", label: "花滑與冰舞入門" },
       { href: "/competitions#upcoming", label: "近期賽事" },
       { href: "/testing", label: "冰舞檢定入口" },
       { href: "/guides/buy-skates", label: "滑冰鞋採購指南" },

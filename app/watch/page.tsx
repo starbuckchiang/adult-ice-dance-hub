@@ -8,6 +8,8 @@ import { breadcrumbJsonLd } from "@/lib/seo";
 import { getLatestReplays, getLiveStreams } from "@/lib/videos";
 import { getYouTubeThumbnailUrl, isYouTubeVideoId } from "@/lib/youtube";
 
+export const revalidate = 60;
+
 const crumbs = [
   { name: "首頁", path: "/" },
   { name: "影音直播", path: "/watch" },

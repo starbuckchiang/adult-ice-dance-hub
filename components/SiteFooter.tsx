@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div className={styles.footerColumn}>
           <strong className={styles.brandName}>{SITE_NAME_EN}</strong>
           <span className={styles.brandZh}>{SITE_NAME_ZH}</span>
-          <p className={styles.footerDescription}>成人冰舞的學習、裝備、參賽與官方來源入口。</p>
+          <p className={styles.footerDescription}>花式滑冰裡的成人冰舞：學習、裝備、參賽與官方來源入口。</p>
         </div>
         {footerColumns.map((column) => (
           <div className={styles.footerColumn} key={column.id}>

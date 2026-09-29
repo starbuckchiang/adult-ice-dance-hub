@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
-  const lastModified = new Date("2026-09-19");
+  const lastModified = new Date("2026-09-29");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: "/", changeFrequency: "weekly", priority: 1 },
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { url: "/terms", changeFrequency: "yearly", priority: 0.3 },
     { url: "/learn", changeFrequency: "weekly", priority: 0.85 },
+    { url: "/guides/figure-skating-ice-dance", changeFrequency: "monthly", priority: 0.85 },
     { url: "/guides/buy-skates", changeFrequency: "monthly", priority: 0.7 },
     { url: "/guides/taiwan-adult-competitions-2026", changeFrequency: "weekly", priority: 0.8 },
     { url: "/guides/asia-artistic-skating-2027", changeFrequency: "weekly", priority: 0.8 },

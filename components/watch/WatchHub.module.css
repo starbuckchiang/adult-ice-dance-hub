@@ -59,6 +59,21 @@
   font-weight: 800;
 }
 
+.event {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+}
+
+.event > div > h3,
+.event > div > p {
+  margin: 0;
+}
+
+.event > div > p {
+  color: var(--color-text-muted-dark);
+}
+
 .thumb {
   position: relative;
   aspect-ratio: 16 / 9;
