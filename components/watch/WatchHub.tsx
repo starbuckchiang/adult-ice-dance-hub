@@ -44,23 +44,36 @@ function channelButton(video: CompetitionVideo | undefined) {
   );
 }
 
+function sessionMode(video: CompetitionVideo, now = new Date()): "live" | "scheduled" | "replay" | "unavailable" {
+  if (!video.stillAvailable || video.status === "unavailable") return "unavailable";
+  const startIso = video.actualStartAt ?? video.scheduledStartAt;
+  const start = startIso ? new Date(startIso).getTime() : Number.NaN;
+  const ended = video.endedAt ? new Date(video.endedAt).getTime() : Number.NaN;
+  if (Number.isFinite(ended) && now.getTime() > ended) return "replay";
+  if (Number.isFinite(start) && start > now.getTime()) return "scheduled";
+  if (video.status === "scheduled" && !Number.isFinite(start)) return "scheduled";
+  if (video.status === "live" || video.status === "scheduled") return "live";
+  return "replay";
+}
+
 function SessionCard({
   video,
-  live,
   sourceName,
 }: {
   video: CompetitionVideo;
-  live: boolean;
   sourceName: Source | undefined;
 }) {
-  const href = watchUrl(video);
+  const mode = sessionMode(video);
+  const href = mode === "unavailable" ? null : watchUrl(video);
   const ago = startedAgo(video.actualStartAt ?? video.scheduledStartAt);
   const localTime = formatZonedDateTime(video.actualStartAt ?? video.scheduledStartAt, video.timezone);
+  const buttonLabel = mode === "live" ? "立即觀看" : mode === "scheduled" ? "查看預定直播" : "觀看重播";
 
   return (
     <article className={styles.card}>
-      {live ? <p className={styles.live}>LIVE 正在直播</p> : null}
-      {video.youtubeVideoId ? (
+      {mode === "live" ? <p className={styles.live}>LIVE 正在直播</p> : null}
+      {mode === "scheduled" ? <p className={styles.live}>預定直播</p> : null}
+      {video.youtubeVideoId && mode !== "unavailable" ? (
         <div className={styles.thumb}>
           <ReplayThumbnail src={resolveReplayThumbnail(video)} alt="" />
         </div>
@@ -68,15 +81,20 @@ function SessionCard({
       <h3>{video.titleZh}</h3>
       <p>{video.titleEn}</p>
       <p>{video.sessionName}</p>
-      {live && ago ? <p>開始直播時間：{ago}</p> : null}
-      {localTime ? <p>{live ? "當地開播" : "當地時間"}：{localTime}</p> : null}
+      {mode === "live" && ago ? <p>開始直播時間：{ago}</p> : null}
+      {mode === "unavailable" ? <p>這段重播目前無法播放。YouTube 顯示因音樂版權主張而封鎖。</p> : null}
+      {localTime ? (
+        <p>
+          {mode === "live" ? "當地開播" : mode === "scheduled" ? "預定開播" : "當地時間"}：{localTime}
+        </p>
+      ) : null}
       {video.durationLabel ? <p>長度：{video.durationLabel}</p> : null}
       <SourceMeta source={sourceName} lastVerified={video.lastVerifiedAt} />
       {href ? (
         <ExternalLink className="button" href={href}>
-          {live ? "立即觀看" : "觀看重播"}
+          {buttonLabel}
         </ExternalLink>
-      ) : (
+      ) : mode === "unavailable" ? null : (
         <p>直播連結待官方發布</p>
       )}
     </article>
@@ -149,7 +167,7 @@ export function WatchHub({
                     <h3>{competition?.nameZh ?? video.titleZh}</h3>
                     <p>Western Australian Figure Skating Club (WAFSC)</p>
                     <p>
-                      合併 Swan Trophy International 與年度 Interclub，賽期 9 月 27 日至 30 日。以下依 Day 1、Day 2、Day 3 排列。頻道目前沒有 Day 3 Part 1。
+                      合併 Swan Trophy International 與年度 Interclub，賽期 9 月 27 日至 30 日。以下依 Day 1 到 Day 4 排列。Day 3 Part 2 的重播目前無法播放。
                     </p>
                   </div>
                   <div className={styles.grid}>
@@ -157,7 +175,6 @@ export function WatchHub({
                       <SessionCard
                         key={session.id}
                         video={session}
-                        live={session.id === video.id}
                         sourceName={getSource(session.sourceId)}
                       />
                     ))}
