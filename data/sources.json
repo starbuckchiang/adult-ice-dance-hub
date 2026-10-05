@@ -270,9 +270,9 @@
     "nameEn": "Skate Canada Watch",
     "publisher": "Skate Canada",
     "url": "https://skatecanada.ca/fans/watch/",
-    "lastVerified": "2026-09-18",
+    "lastVerified": "2026-10-05",
     "status": "verified",
-    "summary": "Skate Canada 官方觀看入口。Vernon 國際成人賽列於該頁；直播與回放請以官方最新公告為準。"
+    "summary": "Skate Canada 官方觀看入口。2026 Vernon 國際成人賽回放已在 streaming.skatecanada.ca 的 Archives 公布。"
   },
   {
     "id": "src-fisg-home",
@@ -460,5 +460,16 @@
     "lastVerified": "2026-10-05",
     "status": "verified",
     "summary": "U.S. Figure Skating IJS 計分板，Competition ID 37083。成績與出發順序以此為準。"
+  },
+  {
+    "id": "src-skate-canada-iafsc-2026-stream",
+    "slug": "skate-canada-streaming-vernon-2026-archives",
+    "nameZh": "2026 國際成人花式滑冰比賽（Vernon）官方回放庫",
+    "nameEn": "2026 International Adult Figure Skating Competition Vernon archives",
+    "publisher": "Skate Canada",
+    "url": "https://streaming.skatecanada.ca/schedule/skcan-2026-international-adult-figure-skating-competition-2026-a83d9e1b",
+    "lastVerified": "2026-10-05",
+    "status": "verified",
+    "summary": "Skate Canada 官方串流平台的 2026 Vernon 國際成人花式滑冰比賽 Archives。頁面標示本賽有 57 段回放，含單人規定舞、韻律舞與自由舞等場次。由 Above The Rest Productions 承製。"
   }
 ]

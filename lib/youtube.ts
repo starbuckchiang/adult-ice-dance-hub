@@ -97,5 +97,8 @@ export function getExternalWatchLabel(url: string): string {
   if (url.includes("vimeo.com")) {
     return "前往 Vimeo 觀看";
   }
+  if (url.includes("streaming.skatecanada.ca") || url.includes("abovetherestproductions.ca")) {
+    return "前往 Skate Canada 官方觀看頁";
+  }
   return "前往官方轉播觀看";
 }
