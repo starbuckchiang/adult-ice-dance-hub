@@ -427,5 +427,38 @@
     "lastVerified": "2026-09-30",
     "status": "verified",
     "summary": "俱樂部 Swan Trophy 頁的 Livestream 連結指向此頻道。已收錄 2026 Day 1 至 Day 4。Day 3 Part 2 重播因音樂版權無法播放；Day 4 兩段為預定直播。"
+  },
+  {
+    "id": "src-gksa-nsdf-2026",
+    "slug": "gksa-national-solo-dance-final-2026",
+    "nameZh": "2026 全美單人冰舞決賽主辦頁",
+    "nameEn": "2026 National Solo Dance Final host page",
+    "publisher": "Greater Kalamazoo Skating Association",
+    "url": "https://skatekalamazoo.org/2026-national-solo-dance-final/",
+    "lastVerified": "2026-10-05",
+    "status": "verified",
+    "summary": "主辦單位載明賽期為 2026 年 9 月 16 日至 19 日，場地為密西根州 Kalamazoo 的 Wings Event Center。頁內說明直播資訊另公布，選手個人影片由 828 Studios 賽後寄送且不含音樂。"
+  },
+  {
+    "id": "src-828-solodance-2026",
+    "slug": "828-studios-national-solo-dance-final-2026",
+    "nameZh": "828 Studios 2026 全美單人冰舞決賽官方觀看頁",
+    "nameEn": "828 Studios 2026 National Solo Dance Final watch page",
+    "publisher": "828 Studios",
+    "url": "https://828studios.com/solodance/",
+    "lastVerified": "2026-10-05",
+    "status": "verified",
+    "summary": "主辦指定的官方直播／回放頁。頁面嵌入 Vimeo Event 6189273（https://vimeo.com/event/6189273/601dc91eb3）。Vimeo oEmbed 回報 domain_status_code 403，嵌入可能只允許 828studios.com。"
+  },
+  {
+    "id": "src-usfs-nsdf-2026-results",
+    "slug": "us-national-solo-dance-final-2026-results",
+    "nameZh": "2026 全美單人冰舞決賽官方成績",
+    "nameEn": "2026 National Solo Dance Final IJS results",
+    "publisher": "U.S. Figure Skating",
+    "url": "https://ijs.usfigureskating.org/leaderboard/results/2026/37083/index.asp",
+    "lastVerified": "2026-10-05",
+    "status": "verified",
+    "summary": "U.S. Figure Skating IJS 計分板，Competition ID 37083。成績與出發順序以此為準。"
   }
 ]

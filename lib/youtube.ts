@@ -91,6 +91,11 @@ export function getExternalWatchLabel(url: string): string {
   if (url.includes("youtube.com") || url.includes("youtu.be")) {
     return "前往 YouTube 觀看";
   }
-
+  if (url.includes("828studios.com")) {
+    return "前往 828 Studios 官方觀看頁";
+  }
+  if (url.includes("vimeo.com")) {
+    return "前往 Vimeo 觀看";
+  }
   return "前往官方轉播觀看";
 }
