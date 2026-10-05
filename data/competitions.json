@@ -174,5 +174,21 @@
     "lastVerified": "2026-09-29",
     "status": "verified",
     "sourceId": "src-wafsc-swan-trophy-2026"
+  },
+  {
+    "id": "comp-us-nsdf-2026",
+    "slug": "us-national-solo-dance-final-2026",
+    "nameZh": "2026 全美單人冰舞決賽",
+    "nameEn": "2026 National Solo Dance Final",
+    "country": "usa",
+    "type": "solo",
+    "location": "Wings Event Center, Kalamazoo, Michigan, United States",
+    "startDate": "2026-09-16",
+    "endDate": "2026-09-19",
+    "summary": "U.S. Figure Skating 全美單人冰舞決賽，2026 年 9 月 16 日至 19 日在密西根州 Kalamazoo 的 Wings Event Center 舉行。主辦為 Greater Kalamazoo Skating Association。公開比賽影像由 828 Studios 官方觀看頁提供，不經 Peacock 或 USFS YouTube。",
+    "officialUrl": "https://skatekalamazoo.org/2026-national-solo-dance-final/",
+    "lastVerified": "2026-10-05",
+    "status": "verified",
+    "sourceId": "src-gksa-nsdf-2026"
   }
 ]
