@@ -41,11 +41,14 @@
 
 .card h3 {
   margin: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .card p {
   margin: 0;
   color: var(--color-text-muted-dark);
+  overflow-wrap: anywhere;
 }
 
 .live {
@@ -111,6 +114,10 @@
 @media (max-width: 860px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 18px;
   }
 }
 
