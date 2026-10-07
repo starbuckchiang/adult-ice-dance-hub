@@ -114,6 +114,7 @@
   margin: 2px 0 0;
   color: #1b1526;
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 .card ol {
@@ -276,6 +277,23 @@
   .actions,
   .parts {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .questions,
+  .card {
+    padding: 16px;
+  }
+
+  .questions label {
+    max-width: 100%;
+    white-space: normal;
   }
 }
 

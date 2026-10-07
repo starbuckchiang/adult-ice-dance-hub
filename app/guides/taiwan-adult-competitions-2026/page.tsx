@@ -25,7 +25,9 @@ export default function TaiwanAdultCompetitions2026Page() {
       <header className="page-header">
         <Breadcrumbs items={crumbs} />
       </header>
-      <TaiwanGuideFlow />
+      <div data-cta-hide="">
+        <TaiwanGuideFlow />
+      </div>
     </>
   );
 }
