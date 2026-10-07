@@ -51,8 +51,9 @@
   max-width: none;
   font-size: clamp(2.4rem, 4.6vw, 4.2rem);
   color: #1b1526;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .lede {
@@ -215,8 +216,9 @@
 .countryCard h3,
 .videoCard h3 {
   font-size: 1.35rem;
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .story p,

@@ -41,8 +41,9 @@
 
 .card h3 {
   margin: 0;
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .card p {

@@ -176,8 +176,9 @@ html[data-plan-cta] .page-main {
   font-size: clamp(2.6rem, 6vw, 5.4rem);
   font-weight: 800;
   line-height: 1.08;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .hero-en {
@@ -229,8 +230,9 @@ html[data-plan-cta] .page-main {
   font-size: clamp(2.2rem, 4.5vw, 3.6rem);
   font-weight: 800;
   line-height: 1.08;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .page-header p {
@@ -289,8 +291,9 @@ html[data-plan-cta] .page-main {
   font-size: clamp(2.4rem, 5vw, 4.4rem);
   font-weight: 800;
   line-height: 1.06;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .section-head {
@@ -305,8 +308,9 @@ html[data-plan-cta] .page-main {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
   line-height: 1.15;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .grid {
@@ -914,8 +918,9 @@ html[data-plan-cta] .page-main {
 .empty-state h2 {
   margin: 0;
   font-size: 1.2rem;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  line-break: strict;
 }
 
 .empty-state p {
