@@ -267,11 +267,14 @@ export function competitionHasAnnouncedStream(competitionId: string, now = new D
 }
 
 export function getAnnouncedStreamUrl(competitionId: string, now = new Date()): string | null {
-  const video = getVideosByCompetition(competitionId).find((item) => {
-    if (!item.isOfficial || !item.officialWatchUrl) return false;
-    return resolveVideoStatus(item, now) === "scheduled";
+  return getScheduledWatchVideos(competitionId, now)[0]?.officialWatchUrl ?? null;
+}
+
+export function getScheduledWatchVideos(competitionId: string, now = new Date()): CompetitionVideo[] {
+  return getVideosByCompetition(competitionId).filter((video) => {
+    if (!video.isOfficial || !video.officialWatchUrl) return false;
+    return resolveVideoStatus(video, now) === "scheduled";
   });
-  return video?.officialWatchUrl ?? null;
 }
 
 export function getLatestReplays(now = new Date()): CompetitionVideo[] {

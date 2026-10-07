@@ -14,7 +14,7 @@ import {
   videoDisciplineLabel,
   videoStatusLabel,
 } from "@/lib/format";
-import { getCompetitionWatchSummary, resolveVideoStatus } from "@/lib/videos";
+import { getAnnouncedStreamUrl, getCompetitionWatchSummary, resolveVideoStatus } from "@/lib/videos";
 import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
 import { resolveReplayThumbnail } from "@/lib/youtube";
 
@@ -73,6 +73,7 @@ export function UpcomingCompetitionCard({
   const phase = getCompetitionPhase(competition.startDate, competition.endDate);
   const summary = getCompetitionWatchSummary(competition.id);
   const scheduledTime = formatZonedDateTime(summary.nextScheduledAt, "Asia/Taipei");
+  const announcedUrl = getAnnouncedStreamUrl(competition.id);
   const parts = formatDateParts(competition.startDate);
 
   return (
@@ -123,7 +124,11 @@ export function UpcomingCompetitionCard({
               加入行事曆
             </a>
           ) : null}
-          {summary.livestream === "scheduled" ? (
+          {announcedUrl ? (
+            <ExternalLink className="button-secondary" href={announcedUrl}>
+              前往 YouTube 設定提醒
+            </ExternalLink>
+          ) : summary.livestream === "scheduled" ? (
             <Link className="button-secondary" href={`/watch/${competition.slug}`}>
               前往 YouTube 設定提醒
             </Link>

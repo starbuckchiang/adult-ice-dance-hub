@@ -176,6 +176,22 @@
     "sourceId": "src-wafsc-swan-trophy-2026"
   },
   {
+    "id": "comp-wa-state-champs-2026",
+    "slug": "wa-state-championships-spring-challenge-2026",
+    "nameZh": "2026 西澳州錦標賽暨 Spring Challenge",
+    "nameEn": "WA State Championships and Spring Challenge 2026",
+    "country": "australia",
+    "type": "both",
+    "location": "Cockburn Ice Arena, Bibra Lake, Perth, Australia",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-11",
+    "summary": "西澳滑冰協會（Western Australian Ice Skating Association，WAISA）主辦 2026 西澳州錦標賽暨 Spring Challenge，賽期為 2026 年 10 月 10 日至 11 日，場地是珀斯 Cockburn Ice Arena Rink 1。官方賽事頁載明項目含單人花式滑冰、成人組、單人冰舞、雙人冰舞與同步滑冰。第一日官方 YouTube 直播已排程於當地時間 10 月 10 日 16:45。",
+    "officialUrl": "https://waisa.org/waisa-events/wa-statechamp",
+    "lastVerified": "2026-10-07",
+    "status": "verified",
+    "sourceId": "src-waisa-state-champs-2026"
+  },
+  {
     "id": "comp-us-nsdf-2026",
     "slug": "us-national-solo-dance-final-2026",
     "nameZh": "2026 全美單人冰舞決賽",
