@@ -1,0 +1,73 @@
+---
+description: Repository-scoped release agent for starbuckchiang/adult-ice-dance-hub
+alwaysApply: true
+---
+
+# Release Agent（僅限本 repository）
+
+只操作 GitHub repository `starbuckchiang/adult-ice-dance-hub`。
+origin 必須是 `https://github.com/starbuckchiang/adult-ice-dance-hub.git`。
+不得 clone、fetch、push 或修改任何其他 repository。
+
+## 禁止事項
+
+- 不得 `git push --force`、`git push --force-with-lease`、`git reset --hard`。
+- 不得刪除或覆蓋使用者未提交的修改。
+- 不得讀取、輸出、記錄或提交 `.env`、`.env.*`、Token、API Key、憑證、私鑰、`.pem`。
+- 未取得使用者明確確認，不得合併 `main`，不得關閉／重開他人 PR 以外的流程。
+- 不得執行 `vercel --prod` 或任何直接正式發布指令。正式站只經 GitHub `main` 的既有 Vercel Git Integration。
+
+## 每次任務開始
+
+1. 執行唯讀檢查：`git status`、`git branch --show-current`、`git remote -v`、`git fetch origin`。
+2. 確認 remote 路徑是 `starbuckchiang/adult-ice-dance-hub`。
+3. 若工作區有未提交修改：停止覆蓋，先向使用者報告檔案清單與 `git diff --stat`。
+4. 從最新 `origin/main` 建立**獨立工作分支**。使用者指定分支名時使用該名稱；否則使用描述性分支名。
+5. 不要在 `main` 上直接提交。
+
+## 修改後的品質閘門
+
+在 push 或開 PR 之前，於 repository 根目錄依序執行：
+
+```bash
+npm ci
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+或一次執行 `npm run check:release`（仍須先能安裝依賴）。
+
+任一項失敗：停止。不得 commit（若品質檢查尚未通過）、不得 push、不得開「請合併」的發布流程、不得要求正式發布。
+
+接著檢查 diff 不含敏感資料：
+
+- 變更檔名不得包含 `.env`、`id_rsa`、`.pem`、`credentials.json`
+- diff 內容不得包含 token、private key、密碼
+- 不要把 Vercel / Resend / GitHub token 寫進 workflow、文件或程式
+
+## Git 與 PR
+
+測試成功後：
+
+1. 只 stage 本任務相關檔案。
+2. Commit（訊息清楚說明變更）。
+3. `git push -u origin <branch>`（禁止 force push）。
+4. 建立 Pull Request，base 為 `main`。
+5. 回報：commit SHA、branch、PR URL、lint／typecheck／test／build 結果。
+6. 等待 Vercel Git Integration 自動建立 Preview，回報 Preview URL。不要用 Vercel CLI 部署。
+
+## 合併與正式發布
+
+- 預設停在 PR + Preview。
+- 只有使用者用明確語句確認（例如「合併 main」、「可以發布正式站」）才可合併。
+- 合併 `main` 後，由 Vercel 自動部署 Production。Agent 不跑 `vercel --prod`。
+- Production 網址以 Vercel Dashboard／GitHub deployment 為準；目前正式站為 `https://adult-ice-dance-hub.vercel.app`。
+
+## Rollback
+
+- 不要 force push `main`。
+- 以 GitHub 上的 revert PR，或 Vercel Dashboard 的 Rollback 回到前一個成功的 Production deployment。
+- build / CI / Preview 失敗時，視為不得發布。
+---

@@ -105,6 +105,10 @@
   margin: 12px 0;
 }
 
+.card dl > div {
+  min-width: 0;
+}
+
 .card dt {
   color: #4e455c;
   font-size: 0.82rem;
@@ -271,11 +275,23 @@
 }
 
 @media (max-width: 900px) {
+  .wrap {
+    width: 100%;
+    margin-inline: 0;
+    padding-inline: 16px;
+  }
+
   .grid,
   .card dl,
   .actions,
   .parts {
     grid-template-columns: 1fr;
+  }
+
+  .questions label {
+    display: flex;
+    max-width: 100%;
+    margin-right: 0;
   }
 }
 
