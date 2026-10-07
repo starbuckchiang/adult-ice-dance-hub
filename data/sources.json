@@ -471,5 +471,27 @@
     "lastVerified": "2026-10-05",
     "status": "verified",
     "summary": "Skate Canada 官方串流平台的 2026 Vernon 國際成人花式滑冰比賽 Archives。頁面標示本賽有 57 段回放，含單人規定舞、韻律舞與自由舞等場次。由 Above The Rest Productions 承製。"
+  },
+  {
+    "id": "src-waisa-state-champs-2026",
+    "slug": "waisa-state-championships-spring-challenge-2026",
+    "nameZh": "WAISA 2026 西澳州錦標賽暨 Spring Challenge",
+    "nameEn": "WAISA State Championships and Spring Challenge 2026",
+    "publisher": "Western Australian Ice Skating Association",
+    "url": "https://waisa.org/waisa-events/wa-statechamp",
+    "lastVerified": "2026-10-07",
+    "status": "verified",
+    "summary": "協會賽事頁載明賽期為 2026 年 10 月 10 日至 11 日，場地為 Cockburn Ice Arena。項目含單人花式滑冰、成人組、單人冰舞、冰舞與同步滑冰。報名與組別說明見 https://waisa.org/waisa-events/event-calendar/states-2026。"
+  },
+  {
+    "id": "src-waisa-state-champs-2026-live",
+    "slug": "waisa-youtube-state-championships-2026-day1",
+    "nameZh": "WAISA YouTube：2026 西澳州錦標賽暨 Spring Challenge 第一日",
+    "nameEn": "WAISA YouTube WA State Championships and Spring Challenge 2026 Day 1",
+    "publisher": "Western Australian Ice Skating Association",
+    "url": "https://www.youtube.com/watch?v=fuMpa6t_fz4",
+    "lastVerified": "2026-10-07",
+    "status": "verified",
+    "summary": "WAISA 官方 YouTube 頻道 @waisa9648 已排程第一日直播。開播時間為 2026 年 10 月 10 日 16:45（Australia/Perth，與台灣時間相同）。說明列出 Solo Ice Dance（所有組別）、Advanced Novice 短曲、Junior／Senior 短曲、所有成人組，以及 Intermediate／Intermediate Novice。目前尚未公布第二日獨立直播網址。"
   }
 ]

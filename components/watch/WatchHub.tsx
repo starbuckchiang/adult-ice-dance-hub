@@ -7,6 +7,7 @@ import {
   getCompetitionWatchPortal,
   getLatestReplays,
   getLiveStreams,
+  getScheduledWatchVideos,
   getUpcomingStreams,
   getVideosByCompetition,
 } from "@/lib/videos";
@@ -147,7 +148,7 @@ export function WatchHub({
             {live.map((video) => {
               const competition = getCompetition(video.competitionSlug);
               const sessions = getVideosByCompetition(video.competitionId);
-              const grouped = video.liveWatch === "broadcast" && sessions.length > 1;
+              const grouped = video.liveWatch === "broadcast";
               if (!grouped) {
                 const source = getSource(video.sourceId);
                 return (
@@ -165,9 +166,10 @@ export function WatchHub({
                 <div className={styles.event} key={video.competitionId}>
                   <div>
                     <h3>{competition?.nameZh ?? video.titleZh}</h3>
-                    <p>Western Australian Figure Skating Club (WAFSC)</p>
+                    <p>{competition?.nameEn ?? video.titleEn}</p>
                     <p>
-                      合併 Swan Trophy International 與年度 Interclub，賽期 9 月 27 日至 30 日。以下依 Day 1 到 Day 4 排列。Day 3 Part 2 的重播目前無法播放。
+                      {competition?.location}｜
+                      {formatDateRange(competition?.startDate ?? null, competition?.endDate ?? null)}
                     </p>
                   </div>
                   <div className={styles.grid}>
@@ -251,6 +253,35 @@ export function WatchHub({
             {upcoming.map((competition) => {
               const portal = getCompetitionWatchPortal(competition.id);
               const source = getSource(competition.sourceId);
+              const scheduled = getScheduledWatchVideos(competition.id);
+              if (scheduled.length > 0) {
+                return (
+                  <div className={styles.event} key={competition.id}>
+                    <div>
+                      <h3>{competition.nameZh}</h3>
+                      <p>{competition.nameEn}</p>
+                      <p>
+                        {competition.location}｜{formatDateRange(competition.startDate, competition.endDate)}
+                      </p>
+                      <SourceMeta source={source} lastVerified={competition.lastVerified} />
+                      <div className={styles.actions}>
+                        <ExternalLink className="button-secondary" href={competition.officialUrl}>
+                          官方賽事頁
+                        </ExternalLink>
+                      </div>
+                    </div>
+                    <div className={styles.grid}>
+                      {scheduled.map((session) => (
+                        <SessionCard
+                          key={session.id}
+                          video={session}
+                          sourceName={getSource(session.sourceId)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <article className={styles.card} key={competition.id}>
                   <h3>{competition.nameZh}</h3>
