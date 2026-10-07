@@ -44,11 +44,12 @@
 
 @media (max-width: 860px) {
   .cta {
-    left: 16px;
+    left: auto;
     right: 16px;
     bottom: calc(12px + env(safe-area-inset-bottom));
+    max-width: min(240px, calc(100% - 32px));
     justify-content: center;
-    padding: 14px 18px;
+    padding: 12px 16px;
   }
 
   .desktopLabel,
@@ -58,6 +59,7 @@
 
   .mobileLabel {
     display: inline;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -65,8 +67,4 @@
   .cta {
     transition: none;
   }
-}
-
-:global(html[data-plan-cta]) .page-main {
-  padding-bottom: 96px;
 }
