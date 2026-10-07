@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   COMPETITION_PLAN_HREF,
@@ -9,10 +10,19 @@ import {
 } from "@/lib/navigation";
 import styles from "./FloatingCta.module.css";
 
+const HIDDEN_ON = ["/guides/taiwan-adult-competitions-2026"];
+
 export function FloatingCta() {
+  const pathname = usePathname();
+  const suppressed = HIDDEN_ON.some((path) => pathname === path || pathname.startsWith(`${path}/`));
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (suppressed) {
+      setVisible(false);
+      return;
+    }
+
     const update = () => {
       if (document.documentElement.hasAttribute("data-nav-open")) {
         setVisible(false);
@@ -35,12 +45,18 @@ export function FloatingCta() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, []);
+  }, [suppressed]);
 
   useEffect(() => {
+    if (suppressed) {
+      document.documentElement.removeAttribute("data-plan-cta");
+      return;
+    }
     document.documentElement.toggleAttribute("data-plan-cta", visible);
     return () => document.documentElement.removeAttribute("data-plan-cta");
-  }, [visible]);
+  }, [visible, suppressed]);
+
+  if (suppressed) return null;
 
   return (
     <Link

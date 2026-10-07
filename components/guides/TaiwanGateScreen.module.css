@@ -164,12 +164,15 @@
 }
 
 .gate select {
+  width: 100%;
+  max-width: 100%;
   min-height: 44px;
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid rgba(42, 27, 74, 0.28);
   background: #fff;
   color: #1b1526;
+  font: inherit;
 }
 
 .source a,
@@ -291,11 +294,20 @@
 }
 
 @media (max-width: 900px) {
+  .screen {
+    width: 100%;
+    margin-inline: 0;
+    padding-inline: 16px;
+  }
+
   .columns,
-  .gateHead,
   .after {
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .gateHead {
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .result {
@@ -303,6 +315,8 @@
   }
 
   .tag {
+    grid-column: 2;
     justify-self: start;
+    white-space: normal;
   }
 }
