@@ -19,8 +19,7 @@ export type ManagedAd = {
 export const FIRST_COMPETITION_PLAN_PLACEMENT = "first-competition-plan";
 
 /**
- * 廣告清單。正式連結確認前，Claw Lucky 必須維持 active: false。
- * 不可把封閉測試頁（路徑結尾為 beta.html）填進 targetUrl。
+ * 廣告清單。路徑結尾為 beta.html 的封閉測試頁不可作為 targetUrl。
  */
 export const ads: ManagedAd[] = [
   {
@@ -29,10 +28,9 @@ export const ads: ManagedAd[] = [
     advertiser: "Claw Lucky",
     title: "Claw Lucky Wallpaper × Adult Ice Dance",
     imageSrc: "/ads/claw-lucky-adult-ice-dance.jpg",
-    // TODO: 正式連結確認後再填入 targetUrl，並將 active 改為 true。
-    targetUrl: "",
+    targetUrl: "https://starbuckchiang.github.io/claw-lucky/index.html",
     alt: "Claw Lucky Wallpaper 與 Adult Ice Dance 合作推廣",
-    active: false,
+    active: true,
     startsAt: "2026-10-08T00:00:00+08:00",
     endsAt: "2026-12-31T23:59:59+08:00",
     utmCampaign: "claw_lucky_2026_q4",
