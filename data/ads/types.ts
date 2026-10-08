@@ -1,6 +1,6 @@
 export type AdStatus = "active" | "inactive";
 
-export type PlacementCode = "HOME_HERO" | "HOME_INLINE" | "LIST_INLINE" | "SIDEBAR";
+export type PlacementCode = "HOME_HERO" | "HOME_INLINE" | "HOME_PARTNER" | "LIST_INLINE" | "SIDEBAR";
 
 export type AdEventType = "impression" | "click";
 

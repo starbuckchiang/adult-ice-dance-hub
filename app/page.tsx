@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { ClawLuckyPartnerBanner } from "@/components/ads/ClawLuckyPartnerBanner";
 import styles from "@/components/home/HomeMagazine.module.css";
 import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -227,33 +228,43 @@ export default function HomePage() {
           <AdSlot placementCode="HOME_INLINE" />
         </div>
 
-        <section className={styles.section} aria-labelledby="latest-title">
+        {competition || latestReplay ? (
+          <section className={styles.section} aria-labelledby="latest-title">
+            <div className={styles.sectionHead}>
+              <h2 id="latest-title">近期賽事與重播</h2>
+            </div>
+            <div className={styles.recentGrid}>
+              {competition ? (
+                <article className={styles.recentCard}>
+                  <p className={styles.category}>近期可規劃賽事</p>
+                  <h3>{competition.nameZh}</h3>
+                  <p>{formatDateRange(competition.startDate, competition.endDate)}</p>
+                  <Link className={styles.cardLink} href="/competitions#upcoming">
+                    查看賽事
+                  </Link>
+                </article>
+              ) : null}
+              {latestReplay ? (
+                <ReplayCard videoId={latestReplay.id} competitions={competitions} />
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
+        <ClawLuckyPartnerBanner />
+
+        <section className={styles.section} aria-labelledby="articles-title">
           <div className={styles.sectionHead}>
-            <h2 id="latest-title">近期與最新</h2>
+            <h2 id="articles-title">最新文章</h2>
           </div>
-          <div className={styles.recentGrid}>
-            {competition ? (
-              <article className={styles.recentCard}>
-                <p className={styles.category}>近期可規劃賽事</p>
-                <h3>{competition.nameZh}</h3>
-                <p>{formatDateRange(competition.startDate, competition.endDate)}</p>
-                <Link className={styles.cardLink} href="/competitions#upcoming">
-                  查看賽事
-                </Link>
-              </article>
-            ) : null}
-            {latestReplay ? (
-              <ReplayCard videoId={latestReplay.id} competitions={competitions} />
-            ) : null}
-            <article className={styles.recentCard}>
-              <p className={styles.category}>最近更新的指南</p>
-              <h3>花式滑冰與冰舞入門</h3>
-              <p className={styles.meta}>查證日期：{formatDate(ICE_DANCE_INTRO_VERIFIED_ON)}</p>
-              <Link className={styles.cardLink} href={FIGURE_SKATING_ICE_DANCE_PATH}>
-                閱讀指南
-              </Link>
-            </article>
-          </div>
+          <article className={styles.recentCard}>
+            <p className={styles.category}>最近更新的指南</p>
+            <h3>花式滑冰與冰舞入門</h3>
+            <p className={styles.meta}>查證日期：{formatDate(ICE_DANCE_INTRO_VERIFIED_ON)}</p>
+            <Link className={styles.cardLink} href={FIGURE_SKATING_ICE_DANCE_PATH}>
+              閱讀指南
+            </Link>
+          </article>
         </section>
 
         <section className={styles.section} aria-labelledby="countries-title">
