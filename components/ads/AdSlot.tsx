@@ -61,18 +61,20 @@ function ManagedAdSlot({ placement }: { placement: string }) {
 
   return (
     <aside className={slotStyles.slot} aria-label="合作推廣" data-ad={ad.id} data-placement={ad.placement}>
-      <p className={imageStyles.disclosure}>合作推廣</p>
-      <a className={slotStyles.trigger} href={ad.href} target="_blank" rel="sponsored noopener noreferrer">
-        <Image
-          className={imageStyles.image}
-          src={ad.imageSrc}
-          alt={ad.alt}
-          width={ad.width}
-          height={ad.height}
-          sizes="(max-width: 640px) 100vw, 1120px"
-          style={{ width: "100%", height: "auto" }}
-        />
-      </a>
+      <div className={imageStyles.frame}>
+        <p className={imageStyles.disclosure}>合作推廣</p>
+        <a className={slotStyles.trigger} href={ad.href} target="_blank" rel="sponsored noopener noreferrer">
+          <Image
+            className={imageStyles.image}
+            src={ad.imageSrc}
+            alt={ad.alt}
+            width={ad.width}
+            height={ad.height}
+            sizes="(max-width: 640px) 70vw, 784px"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </a>
+      </div>
     </aside>
   );
 }
