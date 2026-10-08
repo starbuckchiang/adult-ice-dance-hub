@@ -18,6 +18,15 @@
     "status": "active"
   },
   {
+    "id": "asg_home_partner",
+    "campaign_id": "camp_claw_lucky_2026",
+    "placement_id": "plc_home_partner",
+    "starts_at": "2026-10-01T00:00:00.000Z",
+    "ends_at": "2027-12-31T23:59:59.000Z",
+    "priority": 10,
+    "status": "active"
+  },
+  {
     "id": "asg_list",
     "campaign_id": "house-ad-advertising-partnership-2026",
     "placement_id": "plc_list_inline",

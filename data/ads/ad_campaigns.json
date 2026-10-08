@@ -16,6 +16,22 @@
     "updated_at": "2026-09-18T00:00:00.000Z"
   },
   {
+    "id": "camp_claw_lucky_2026",
+    "advertiser_id": "adv_claw_lucky",
+    "name": "Claw Lucky Wallpaper 合作推廣",
+    "campaign_type": "paid",
+    "destination_url": "https://starbuckchiang.github.io/claw-lucky/claw-lucky-home.html?utm_source=adult-ice-dance-hub&utm_medium=banner&utm_campaign=claw-lucky",
+    "desktop_image_url": "/images/claw-lucky-adult-ice-dance-banner.jpg",
+    "mobile_image_url": "/images/claw-lucky-adult-ice-dance-banner.jpg",
+    "alt_text": "Claw Lucky Wallpaper 與 Adult Ice Dance 合作橫幅：爪印標誌、雙人冰舞剪影，以及免費試用 AI 桌布的邀請。",
+    "starts_at": "2026-10-01T00:00:00.000Z",
+    "ends_at": "2027-12-31T23:59:59.000Z",
+    "status": "active",
+    "is_demo": false,
+    "created_at": "2026-10-08T00:00:00.000Z",
+    "updated_at": "2026-10-08T00:00:00.000Z"
+  },
+  {
     "id": "camp_expired",
     "advertiser_id": "adv_demo",
     "name": "Expired inventory (hidden)",
