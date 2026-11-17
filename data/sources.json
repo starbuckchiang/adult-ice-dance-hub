@@ -380,9 +380,42 @@
     "nameEn": "ISU Figure Skating Event Calendar 2026/27",
     "publisher": "International Skating Union",
     "url": "https://www.isu-skating.com/en/figure-skating/news/isu-figure-skating-event-calendar-202627/",
-    "lastVerified": "2026-09-24",
+    "lastVerified": "2026-11-17",
     "status": "verified",
-    "summary": "ISU 公布的 2026/27 花式滑冰賽程，含 Junior Grand Prix 各站日期與地點。"
+    "summary": "ISU 公布的 2026/27 花式滑冰賽程，含大獎賽六站、大獎賽決賽，以及 Junior Grand Prix 各站日期與地點。"
+  },
+  {
+    "id": "src-isu-gp-series-202627",
+    "slug": "isu-grand-prix-series-2026-27",
+    "nameZh": "ISU 2026/27 大獎賽系列說明",
+    "nameEn": "ISU Figure Skating Grand Prix Series 2026/27",
+    "publisher": "International Skating Union",
+    "url": "https://isu-skating.com/en/figure-skating/news/isu-figure-skating-grand-prix-series-2026-27/",
+    "lastVerified": "2026-11-17",
+    "status": "verified",
+    "summary": "ISU 說明 2026/27 大獎賽六站與決賽的日期和地點：法國站 Angers、Skate Canada Kelowna、中國站深圳、Skate America Everett、Finlandia Trophy Helsinki、NHK 盃東京，決賽在重慶。"
+  },
+  {
+    "id": "src-isu-gp-watch-skate-america-2026",
+    "slug": "isu-where-to-watch-skate-america-2026",
+    "nameZh": "ISU 2026 Skate America 官方觀看說明",
+    "nameEn": "Where to watch the ISU Figure Skating Grand Prix Skate America 2026",
+    "publisher": "International Skating Union",
+    "url": "https://isu-skating.com/en/figure-skating/news/where-to-watch-isu-grand-prix-figure-skating/",
+    "lastVerified": "2026-11-17",
+    "status": "verified",
+    "summary": "2026 年 11 月 12 日的觀看說明。多數地區列 Eurosport 與 ISU YouTube；中華台北列 ELTA，美國列 NBC／Peacock。這頁不是單一場次影片。"
+  },
+  {
+    "id": "src-jsf-nhk-2026",
+    "slug": "jsf-nhk-trophy-2026",
+    "nameZh": "日本滑冰聯盟 2026 NHK 盃賽事頁",
+    "nameEn": "Japan Skating Federation NHK Trophy 2026",
+    "publisher": "Japan Skating Federation",
+    "url": "https://www.skatingjapan.or.jp/event/detail.php?id=2374",
+    "lastVerified": "2026-11-17",
+    "status": "verified",
+    "summary": "日本滑冰聯盟載明 ISU 大獎賽 NHK 盃為 2026 年 11 月 27 日至 29 日，場地為東京都京王 Arena TOKYO。"
   },
   {
     "id": "src-isu-jgp-watch-202627",
