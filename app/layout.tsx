@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
+import { Inter } from "next/font/google";
 import { PageShell } from "@/components/PageShell";
 import { getRootMetadata } from "@/lib/metadata";
 import "./globals.css";
@@ -10,19 +10,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const notoSansTc = Noto_Sans_TC({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  display: "swap",
-  variable: "--font-noto",
-});
-
-const notoSerifTc = Noto_Serif_TC({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-serif",
-});
+const notoStylesheet =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&family=Noto+Serif+TC:wght@600;700&display=swap";
 
 export const metadata: Metadata = getRootMetadata();
 
@@ -33,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant">
-      <body className={`${inter.variable} ${notoSansTc.variable} ${notoSerifTc.variable} ${notoSansTc.className}`}>
+      <body className={inter.variable}>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href={notoStylesheet} rel="stylesheet" />
         <PageShell>{children}</PageShell>
       </body>
     </html>
