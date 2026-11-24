@@ -224,7 +224,7 @@ export default function HomePage() {
         </section>
 
         <div className={styles.adBreak}>
-          <AdSlot placementCode="HOME_INLINE" />
+          <AdSlot placement="first-competition-plan" />
         </div>
 
         <section className={styles.section} aria-labelledby="latest-title">
