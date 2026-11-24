@@ -25,6 +25,8 @@
   --measure: 45rem;
   --header-h: 76px;
   --ease: 200ms ease;
+  --font-noto: "Noto Sans TC", sans-serif;
+  --font-serif: "Noto Serif TC", serif;
 }
 
 * {
