@@ -28,7 +28,7 @@ export const ads: ManagedAd[] = [
     advertiser: "Claw Lucky",
     title: "Claw Lucky Wallpaper × Adult Ice Dance",
     imageSrc: "/ads/claw-lucky-adult-ice-dance.jpg",
-    targetUrl: "https://starbuckchiang.github.io/claw-lucky/index.html",
+    targetUrl: "https://starbuckchiang.github.io/claw-lucky/claw-lucky-home.html",
     alt: "Claw Lucky Wallpaper 與 Adult Ice Dance 合作推廣",
     active: true,
     startsAt: "2026-10-08T00:00:00+08:00",
