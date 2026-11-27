@@ -5,6 +5,7 @@ import { getCompetitionPhase } from "@/lib/format";
 
 const videos = videosData as CompetitionVideo[];
 const competitions = competitionsData as Competition[];
+export const COMPETITION_VIDEO_COUNT = videos.length;
 
 export function getCompetitionVideos(): CompetitionVideo[] {
   return videos;

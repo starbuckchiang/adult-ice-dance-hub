@@ -1,38 +1,19 @@
 import { ExternalLink } from "@/components/ExternalLink";
 import { SourceMeta } from "@/components/SourceMeta";
+import { ReplayArchive } from "@/components/watch/ReplayArchive";
+import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
+import { WatchJumpNav } from "@/components/watch/WatchJumpNav";
 import type { Competition, CompetitionVideo, Source } from "@/data/types";
-import { formatDateRange, formatZonedDateTime, videoDisciplineLabel } from "@/lib/format";
-import { getReplayDateLine } from "@/lib/replay-date";
+import { formatDateRange, formatZonedDateTime } from "@/lib/format";
+import { buildReplayArchive, buildUpcomingArchive, watchUrl } from "@/lib/replay-archive";
 import {
-  getCompetitionWatchPortal,
   getLatestReplays,
   getLiveStreams,
   getUpcomingStreams,
   getVideosByCompetition,
 } from "@/lib/videos";
-import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
 import { resolveReplayThumbnail } from "@/lib/youtube";
 import styles from "./WatchHub.module.css";
-
-function platformLabel(url: string | null | undefined): string {
-  if (!url) return "官方平台";
-  try {
-    const host = new URL(url).hostname.replace(/^www\./, "");
-    if (host.includes("youtube") || host === "youtu.be") return "YouTube";
-    return host;
-  } catch {
-    return "官方平台";
-  }
-}
-
-function watchUrl(video: CompetitionVideo): string | null {
-  if (!video.officialWatchUrl) return null;
-  try {
-    return new URL(video.officialWatchUrl).toString();
-  } catch {
-    return null;
-  }
-}
 
 function channelButton(video: CompetitionVideo | undefined) {
   const href = video ? watchUrl(video) : null;
@@ -128,14 +109,12 @@ export function WatchHub({
   const replays = getLatestReplays().filter((video) => !liveCompetitionIds.has(video.competitionId));
   const upcoming = getUpcomingStreams();
   const channel = getSource("src-isu-skating-youtube");
+  const archive = buildReplayArchive(replays);
+  const upcomingArchive = buildUpcomingArchive(upcoming);
 
   return (
     <div className={styles.hub}>
-      <nav className={styles.jumps} aria-label="影音區段">
-        <a href="#live-now">現正直播</a>
-        <a href="#replays">最新重播</a>
-        <a href="#upcoming">即將直播</a>
-      </nav>
+      <WatchJumpNav />
 
       <section className={styles.section} id="live-now">
         <div className="section-head">
@@ -202,38 +181,12 @@ export function WatchHub({
         <div className="section-head">
           <p className="kicker">REPLAYS</p>
           <h2>最新重播</h2>
+          <p className={styles.sectionLead}>
+            按賽季與賽事整理官方回放，快速找到 Rhythm Dance、Free Dance 或完整場次。
+          </p>
         </div>
-        {replays.length > 0 ? (
-          <div className={styles.grid}>
-            {replays.map((video) => {
-              const competition = getCompetition(video.competitionSlug);
-              const href = watchUrl(video);
-              const thumb = resolveReplayThumbnail(video);
-              const when = getReplayDateLine(video, competition);
-              return (
-                <article className={styles.card} key={video.id}>
-                  <div className={styles.thumb}>
-                    <ReplayThumbnail key={thumb} src={thumb} />
-                  </div>
-                  <h3>{competition?.nameZh ?? video.titleZh}</h3>
-                  <p>{videoDisciplineLabel[video.discipline] ?? video.sessionName}</p>
-                  {when ? (
-                    <p>
-                      {when.label}：{when.text}
-                    </p>
-                  ) : null}
-                  <p>
-                    {video.isOfficial ? "官方重播" : "來源待查證"} · {platformLabel(href)}
-                  </p>
-                  {href ? (
-                    <ExternalLink className="button" href={href}>
-                      觀看重播
-                    </ExternalLink>
-                  ) : null}
-                </article>
-              );
-            })}
-          </div>
+        {archive.totalVideos > 0 ? (
+          <ReplayArchive archive={archive} />
         ) : (
           <p className={styles.empty} role="status">
             目前沒有可播放的官方重播。
@@ -245,27 +198,10 @@ export function WatchHub({
         <div className="section-head">
           <p className="kicker">UPCOMING</p>
           <h2>即將直播</h2>
+          <p className={styles.sectionLead}>按賽季與賽事整理即將開始的官方觀看入口，與回放列表分開顯示。</p>
         </div>
-        {upcoming.length > 0 ? (
-          <div className={styles.grid}>
-            {upcoming.map((competition) => {
-              const portal = getCompetitionWatchPortal(competition.id);
-              const source = getSource(competition.sourceId);
-              return (
-                <article className={styles.card} key={competition.id}>
-                  <h3>{competition.nameZh}</h3>
-                  <p>台灣時間：{formatDateRange(competition.startDate, competition.endDate)}</p>
-                  <SourceMeta source={source} lastVerified={competition.lastVerified} />
-                  <div className={styles.actions}>
-                    <ExternalLink className="button-secondary" href={competition.officialUrl}>
-                      官方賽事頁
-                    </ExternalLink>
-                    {channelButton(portal) ?? <p>直播連結待官方發布</p>}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+        {upcomingArchive.events.length > 0 ? (
+          <ReplayArchive archive={upcomingArchive} variant="upcoming" />
         ) : (
           <p className={styles.empty} role="status">
             目前沒有即將開始、且日期已核對的賽事。
