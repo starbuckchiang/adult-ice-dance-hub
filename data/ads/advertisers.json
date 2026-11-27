@@ -9,6 +9,15 @@
     "updated_at": "2026-09-18T00:00:00.000Z"
   },
   {
+    "id": "adv_claw_lucky",
+    "name": "Claw Lucky",
+    "contact_name": "神奇蝸牛有限公司",
+    "contact_email": "ads@example.invalid",
+    "status": "active",
+    "created_at": "2026-10-08T00:00:00.000Z",
+    "updated_at": "2026-10-08T00:00:00.000Z"
+  },
+  {
     "id": "adv_inactive",
     "name": "廣告合作（未啟用）",
     "contact_name": "Advertising desk",

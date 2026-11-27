@@ -14,6 +14,13 @@
     "status": "active"
   },
   {
+    "id": "plc_home_partner",
+    "code": "HOME_PARTNER",
+    "name": "首頁近期賽事與最新文章之間",
+    "page_type": "home",
+    "status": "active"
+  },
+  {
     "id": "plc_list_inline",
     "code": "LIST_INLINE",
     "name": "列表內容中間",
