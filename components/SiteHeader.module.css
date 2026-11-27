@@ -32,6 +32,7 @@
   font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
 }
 
 .brandZh {
@@ -190,6 +191,11 @@
 @media (max-width: 1080px) {
   .bar {
     width: min(var(--max), calc(100% - 28px));
+    gap: 10px;
+  }
+
+  .brand {
+    flex: 1 1 auto;
   }
 
   .desktopNav,
@@ -231,5 +237,15 @@
 
   .mobileLinks a {
     min-height: 44px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brandEm {
+    font-size: 0.88rem;
+  }
+
+  .iconButton {
+    padding: 0 8px;
   }
 }

@@ -9,6 +9,16 @@
   color: var(--color-text-on-light);
 }
 
+@media (max-width: 640px) {
+  .form {
+    padding: 18px 16px;
+  }
+
+  .form :global(.button) {
+    width: 100%;
+  }
+}
+
 .tabs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
