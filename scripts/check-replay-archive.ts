@@ -4,6 +4,7 @@ import {
   buildReplayArchive,
   buildUpcomingArchive,
   collectReplayHrefs,
+  disciplineCountsFor,
   filterReplayArchive,
   filterReplayArchiveWithFallback,
   formatCompactDateRange,
@@ -74,6 +75,57 @@ assert.equal(skatingSeasonFromIso("2026-08-19")?.id, "2026-27");
 
 const unfiltered = filterReplayArchive(archive, { seasonId: ALL_SEASONS_ID });
 assert.equal(unfiltered.videoCount, archive.totalVideos);
+
+assert.equal(
+  archive.seasons.reduce((total, season) => total + season.videoCount, 0),
+  archive.totalVideos,
+  "season video counts must add up to the archive total",
+);
+assert.equal(
+  archive.disciplines.reduce((total, item) => total + item.count, 0),
+  archive.totalVideos,
+  "discipline counts must add up to the archive total",
+);
+
+function assertMenuCounts(seasonId: string, expected: Record<string, number>) {
+  const counts = disciplineCountsFor(archive, { seasonId });
+  const menuSum = counts.reduce((total, item) => total + item.count, 0);
+  const expectedSum = Object.values(expected).reduce((total, count) => total + count, 0);
+  const filtered = filterReplayArchive(archive, { seasonId, discipline: "all" });
+  assert.equal(menuSum, filtered.videoCount, `${seasonId} filter menu must add up to the visible total`);
+  assert.equal(expectedSum, filtered.videoCount, `${seasonId} expected counts must add up to the visible total`);
+  assert.equal(counts.length, Object.keys(expected).length, seasonId);
+  for (const [id, count] of Object.entries(expected)) {
+    assert.equal(counts.find((item) => item.id === id)?.count, count, `${seasonId} ${id}`);
+  }
+  const season = archive.seasons.find((item) => item.id === seasonId);
+  if (season) assert.equal(season.videoCount, filtered.videoCount, seasonId);
+}
+
+assertMenuCounts(ALL_SEASONS_ID, {
+  mixed: 22,
+  free_dance: 13,
+  rhythm_dance: 11,
+  solo_dance: 1,
+  pattern_dance: 1,
+});
+assertMenuCounts("2026-27", {
+  free_dance: 12,
+  rhythm_dance: 11,
+  mixed: 7,
+  solo_dance: 1,
+});
+assertMenuCounts("2025-26", {
+  mixed: 15,
+  free_dance: 1,
+  pattern_dance: 1,
+});
+assert.equal(archive.seasons.find((season) => season.id === "2026-27")?.videoCount, 31);
+assert.equal(archive.seasons.find((season) => season.id === "2025-26")?.videoCount, 17);
+assert.deepEqual(
+  disciplineCountsFor(archive, { seasonId: ALL_SEASONS_ID }),
+  archive.disciplines,
+);
 
 const patternInCurrent = filterReplayArchive(archive, { discipline: "pattern_dance", seasonId: "2026-27" });
 assert.equal(patternInCurrent.videoCount, 0);

@@ -226,6 +226,21 @@ export function buildUpcomingArchive(competitions: Competition[]): ReplayArchive
   return finalizeArchive(events);
 }
 
+export function disciplineCountsFor(
+  archive: ReplayArchiveData,
+  {
+    query = "",
+    seasonId = ALL_SEASONS_ID,
+  }: Pick<ReplayArchiveFilter, "query" | "seasonId"> = {},
+): ReplayDisciplineOption[] {
+  const scoped = filterReplayArchive(archive, {
+    query,
+    discipline: "all",
+    seasonId,
+  });
+  return countSessionDisciplines(scoped.events);
+}
+
 export function filterReplayArchive(
   archive: ReplayArchiveData,
   {
@@ -375,6 +390,16 @@ function finalizeArchive(events: ReplayEventView[]): ReplayArchiveData {
   }
 
   const seasons = [...seasonCounts.values()].sort((a, b) => b.startYear - a.startYear);
+
+  return {
+    seasons,
+    events,
+    disciplines: countSessionDisciplines(events),
+    totalVideos: events.reduce((sum, event) => sum + event.sessions.length, 0),
+  };
+}
+
+function countSessionDisciplines(events: ReplayEventView[]): ReplayDisciplineOption[] {
   const disciplineCounts = new Map<VideoDiscipline, number>();
   for (const event of events) {
     for (const session of event.sessions) {
@@ -382,20 +407,13 @@ function finalizeArchive(events: ReplayEventView[]): ReplayArchiveData {
     }
   }
 
-  const disciplines = [...disciplineCounts.entries()]
+  return [...disciplineCounts.entries()]
     .map(([id, count]) => ({
       id,
       label: videoDisciplineLabel[id],
       count,
     }))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "zh-Hant"));
-
-  return {
-    seasons,
-    events,
-    disciplines,
-    totalVideos: events.reduce((sum, event) => sum + event.sessions.length, 0),
-  };
 }
 
 function upcomingChannelSession(video: CompetitionVideo, competition: Competition): ReplaySessionView {
