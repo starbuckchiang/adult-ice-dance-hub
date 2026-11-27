@@ -45,11 +45,11 @@ const sourceIds = [...new Set(replays.map((video) => video.competitionId))].sort
 assert.deepEqual(groupedIds, sourceIds);
 
 const currentSeason = filterReplayArchive(archive, { seasonId: "2026-27", sort: "newest" });
-assert.equal(currentSeason.events[0]?.id, "comp-jgp-gdansk-2026");
+assert.equal(currentSeason.events[0]?.id, "comp-gp-finlandia-2026");
 assert.ok((currentSeason.events[0]?.sortTime ?? 0) >= (currentSeason.events.at(-1)?.sortTime ?? 0));
 
 const oldest = filterReplayArchive(archive, { seasonId: "2026-27", sort: "oldest" });
-assert.equal(oldest.events.at(-1)?.id, "comp-jgp-gdansk-2026");
+assert.equal(oldest.events.at(-1)?.id, "comp-gp-finlandia-2026");
 
 const citySearch = filterReplayArchive(archive, { query: "Gdańsk", seasonId: ALL_SEASONS_ID });
 assert.equal(citySearch.events.length, 1);
@@ -92,6 +92,27 @@ assert.equal(
   replays.filter((video) => video.competitionSlug.startsWith("jgp-") && !video.liveWatch).length,
   13,
 );
+
+const gpSessions: Array<[string, string, string]> = [
+  ["comp-gp-france-2026", "LRE4tBg4mSc", "kBeb--1tJEY"],
+  ["comp-gp-canada-2026", "_XckZ6OEdBc", "4mCkiRZDil0"],
+  ["comp-gp-china-2026", "aX6lnOJOPwg", "b0MBGTnjI_M"],
+  ["comp-gp-america-2026", "OuOHJX8ea9g", "0TmnPSuhrwU"],
+  ["comp-gp-finlandia-2026", "yjWJReRLTzE", "K8UPt8A7Z3Y"],
+];
+for (const [id, rhythmId, freeId] of gpSessions) {
+  const event = archive.events.find((item) => item.id === id);
+  assert.ok(event, id);
+  const hrefs = event.sessions.map((session) => session.href);
+  assert.ok(hrefs.some((href) => href.includes(rhythmId)), `${id} rhythm`);
+  assert.ok(hrefs.some((href) => href.includes(freeId)), `${id} free`);
+  assert.deepEqual(
+    event.sessions.map((session) => session.title),
+    ["Rhythm Dance", "Free Dance"],
+  );
+}
+assert.equal(replays[0]?.id, "vid-gp-finlandia-2026-fd");
+assert.ok(!replays.some((video) => video.competitionSlug === "gp-nhk-2026"));
 
 const upcoming = buildUpcomingArchive(getUpcomingStreams());
 assert.ok(upcoming.events.length >= 3);
