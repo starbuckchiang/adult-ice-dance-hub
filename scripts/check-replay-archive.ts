@@ -101,13 +101,13 @@ assert.equal(
 );
 assert.ok(upcoming.events.every((event) => event.sessions.length > 0));
 assert.ok(upcoming.events.every((event) => event.sessions.every((session) => session.href.startsWith("http"))));
-assert.ok(upcoming.events.some((event) => event.nameZh.includes("Finlandia")));
-assert.ok(upcoming.events.some((event) => event.nameZh.includes("NHK")));
+assert.ok(!upcoming.events.some((event) => event.nameZh.includes("Finlandia")));
+assert.ok(!upcoming.events.some((event) => event.nameZh.includes("NHK")));
 const soonest = filterReplayArchive(upcoming, { seasonId: ALL_SEASONS_ID, sort: "oldest" });
-assert.equal(soonest.events[0]?.id, "comp-gp-finlandia-2026");
-const finlandia = upcoming.events.find((event) => event.id === "comp-gp-finlandia-2026");
-assert.ok(finlandia?.sessions.some((session) => session.href.includes("youtube.com")));
-assert.ok(finlandia?.sessions.some((session) => session.title === "官方賽事頁"));
+assert.equal(soonest.events[0]?.id, "comp-gp-final-2026");
+const finalEvent = upcoming.events.find((event) => event.id === "comp-gp-final-2026");
+assert.ok(finalEvent?.sessions.some((session) => session.href.includes("youtube.com")));
+assert.ok(finalEvent?.sessions.some((session) => session.title === "官方賽事頁"));
 assert.ok(!upcoming.events.some((event) => event.nameZh.includes("Gdańsk") || event.nameZh.includes("Ljubljana")));
 
 console.log(
