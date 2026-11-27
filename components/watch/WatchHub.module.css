@@ -573,6 +573,21 @@
     justify-self: stretch;
     white-space: normal;
   }
+
+  .controlPair {
+    position: relative;
+  }
+
+  .menu {
+    position: static;
+  }
+
+  .menuList {
+    left: 0;
+    right: 0;
+    width: auto;
+    min-width: 0;
+  }
 }
 
 @media (max-width: 520px) {

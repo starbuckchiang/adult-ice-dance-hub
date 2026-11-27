@@ -6,6 +6,7 @@ import { ReplayThumbnail } from "@/components/watch/ReplayThumbnail";
 import type { VideoDiscipline } from "@/data/types";
 import {
   ALL_SEASONS_ID,
+  disciplineCountsFor,
   filterReplayArchive,
   filterReplayArchiveWithFallback,
   type ReplayArchiveData,
@@ -79,6 +80,10 @@ export function ReplayArchive({
     if (activeSeasonId !== seasonId) setSeasonId(activeSeasonId);
   }, [activeSeasonId, seasonId]);
 
+  const visibleDisciplines = useMemo(
+    () => disciplineCountsFor(archive, { query, seasonId: activeSeasonId }),
+    [archive, query, activeSeasonId],
+  );
   const currentSeason = archive.seasons.find((item) => item.id === activeSeasonId);
   const heading =
     activeSeasonId === ALL_SEASONS_ID
@@ -92,7 +97,7 @@ export function ReplayArchive({
   const older = archive.seasons.slice(2);
   const disciplineOptions = [
     { value: "all" as const, label: "全部項目" },
-    ...archive.disciplines.map((item) => ({
+    ...visibleDisciplines.map((item) => ({
       value: item.id,
       label: `${item.label}（${item.count}）`,
     })),
@@ -238,11 +243,11 @@ export function ReplayArchive({
               autoComplete="off"
             />
           </div>
-          {archive.disciplines.length > 0 ? (
+          {visibleDisciplines.length > 0 ? (
             <div className={styles.chips}>
                   <p>{copy.chipsTitle}</p>
               <div>
-                {archive.disciplines.map((item) => {
+                {visibleDisciplines.map((item) => {
                   const pressed = discipline === item.id;
                   return (
                     <button
